@@ -24,7 +24,7 @@ Real-time computer vision model that detects helmet compliance using a phone cam
 
 ### 📊 PotholeNet — road quality classifier
 Using phone accelerometer data to classify road surface quality in real time. Built for Indian road conditions.
-`Python` `scikit-learn` `pandas` `numpy` `scipy` `joblib` `matplotlib` · **Completed**
+`Python` `scikit-learn` `pandas` `numpy` `scipy` `joblib` `matplotlib` · **Beta phase**
 
 ### 🔜 Next: Fuel efficiency predictor using ride telemetry
 Planning stage — ML model trained on throttle, speed, and gradient data.
