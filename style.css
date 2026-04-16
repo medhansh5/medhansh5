@@ -161,6 +161,9 @@ body {
     padding: 2.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: border-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .project-card:hover {
