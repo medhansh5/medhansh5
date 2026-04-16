@@ -18,16 +18,24 @@ Currently prepping for the SAT and building my first ML projects. Applying to MI
 
 ## What I'm building
 
-### 🏍️ BikeGuard — helmet detection for Indian roads
-Real-time computer vision model that detects helmet compliance using a phone camera. Trained on Indian road conditions.
-`Python` `OpenCV` `YOLOv8` · **In progress**
-
 ### 📊 PotholeNet — road quality classifier
 Using phone accelerometer data to classify road surface quality in real time. Built for Indian road conditions.
-`Python` `scikit-learn` `pandas` `numpy` `scipy` `joblib` `matplotlib` · **Beta phase**
+`Python` `scikit-learn` `pandas` `numpy` `scipy` `joblib` `matplotlib` · **In progress (Beta)**
 
-### 🔜 Next: Fuel efficiency predictor using ride telemetry
-Planning stage — ML model trained on throttle, speed, and gradient data.
+### 🗺️ ShadowMap — crowdsourced road quality visualization
+A platform that visualizes road quality data using motorcycle telemetry. Aggregates data from PotholeNet to map road anomalies.
+`Python` `Folium` `FastAPI` `PostgreSQL` · **In progress (Alpha)**
+
+### 🧠 MindBridge — anonymous peer-support platform
+A secure, moderated ecosystem designed to address mental health stigma in India for students. 
+`React` `Node.js` `MongoDB` `Socket.io` · **In progress**
+
+### 🏍️ 🔜 Next: BikeGuard — helmet detection for Indian roads
+Real-time computer vision model that detects helmet compliance using a phone camera. Trained on Indian road conditions.
+`Python` `OpenCV` `YOLOv8` · **Planning stage**
+
+### ⛽ 🔜 Next: Fuel efficiency predictor using ride telemetry
+ML model trained on throttle, speed, and gradient data. · **Planning stage**
 
 ---
 
