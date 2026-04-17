@@ -1,7 +1,7 @@
 # Medhansh Kabadwal
 > Building AI for the roads I ride. &nbsp;Ghaziabad, India • Aspiring Founder • Class of 2027 Prospect (MIT/Ivy League)
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=4A90E2&width=435&lines=AI+Engineer+in+the+making;Motorcycle+Enthusiast;Building+ShadowMap;Aspiring+Founder)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=4A90E2&width=435&lines=AI+Engineer+in+the+making;Motorcycle+Enthusiast;Building+PotholeNet+ShadowMap,+and+more;Aspiring+Founder)](https://git.io/typing-svg)
 
 ---
 
@@ -11,7 +11,7 @@ I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility
 
 - 🛠️ **Currently building:** [ShadowMap](https://github.com/medhansh5/shadowmap) & [PotholeNet](https://github.com/medhansh5/potholenet)
 - 📚 **Studying:** SAT prep, Embedded AI, and ROS (Robot Operating System)
-- 🏍️ **The Baron:** Collecting telemetry on a 2025 Royal Enfield Classic 350 (Shadow)
+- 🏍️ **Shadow:** Collecting telemetry on a 2025 Royal Enfield Classic 350 (Shadow)
 
 ---
 
@@ -58,9 +58,10 @@ Computer Vision model for edge devices to detect helmet compliance and rider saf
 
 ## 🖋️ Beyond the Code
 
-When I'm not training models or working on my 2016 Baleno, I write poetry and document the journey through cinematic 35mm-style aesthetics.
-
-- 📸 **Socials:** [@medhansh.5](https://www.instagram.com/medhansh.5/)
+When I'm not training models or riding my bike, I write poetry and document the journey through cinematic 35mm-style aesthetics.
+ 
+- 📸 **Main:** [@medhansh.5](https://www.instagram.com/medhansh.5/)
+- ✍️ **Poetry & writing:** [@ashvelde](https://www.instagram.com/ashvelde/) *(Ash Velde)*
 - 📧 **Direct:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
 - 💼 **LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b347/)
 
