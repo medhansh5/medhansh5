@@ -28,7 +28,7 @@ A platform that visualizes road quality data using motorcycle telemetry. Aggrega
 
 ### 🧠 MindBridge — anonymous peer-support platform
 A secure, moderated ecosystem designed to address mental health stigma in India for students. 
-`React` `Node.js` `MongoDB` `Socket.io` · **In progress**
+`React` `Node.js` `MongoDB` `Socket.io` · **On hold (Acquiring knowledge and looking for collaborators.)**
 
 ### 🏍️ 🔜 Next: BikeGuard — helmet detection for Indian roads
 Real-time computer vision model that detects helmet compliance using a phone camera. Trained on Indian road conditions.
