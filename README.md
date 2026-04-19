@@ -46,7 +46,7 @@ I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility
 A road surface classifier using high-frequency accelerometer data to detect and categorize anomalies.
 - **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `Joblib`
 
-### 🧠 MindBridge | *On Hold*
+### 🧠 [MindBridge](https://github.com/medhansh5/mindbridge) | *On Hold*
 Early-stage project in the mental health / emotional AI space. Currently in knowledge acquisition phase — exploring the research landscape and identifying the right technical approach.
 > 🤝 **Seeking collaborators** — reach out if this space interests you.
 
