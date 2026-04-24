@@ -64,7 +64,7 @@ Under the alias **Ash**, I explore the intersection of technology and art throug
 - 📸 **Cinematic Photography:** [@medhansh.5](https://instagram.com/medhansh.5)
 - ✍️ **Poetry & Writing:** [@ashvelde](https://instagram.com/ashvelde)
 - 📧 **Direct:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
-- 💼 **LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b347/)
+- 💼 **LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b374/)
 - 🌐 **Portfolio:** [medhansh5.github.io](https://medhansh5.github.io)
 
 ---
