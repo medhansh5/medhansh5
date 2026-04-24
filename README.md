@@ -38,13 +38,13 @@ I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility
 
 ## 🚀 Projects
 
+### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v2.1*
+A road surface classifier using high-frequency accelerometer data to detect and categorize anomalies.
+- **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `Joblib`
+
 ### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *Alpha*
 **The Waze for road quality.** A crowdsourced platform visualizing road anomalies using real-time motorcycle telemetry.
 - **Tech:** `Python`, `Folium`, `FastAPI`, `PostgreSQL`
-
-### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *Beta*
-A road surface classifier using high-frequency accelerometer data to detect and categorize anomalies.
-- **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `Joblib`
 
 ### 🧠 [MindBridge](https://github.com/medhansh5/mindbridge) | *On Hold*
 Early-stage project in the mental health / emotional AI space. Currently in knowledge acquisition phase — exploring the research landscape and identifying the right technical approach.
