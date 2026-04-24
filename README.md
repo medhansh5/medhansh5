@@ -46,7 +46,7 @@ A road surface classifier using high-frequency accelerometer data to detect and 
 **The Waze for road quality.** A crowdsourced platform visualizing road anomalies using real-time motorcycle telemetry.
 - **Tech:** `Python`, `Folium`, `FastAPI`, `PostgreSQL`
 
-### 🧠 [MindBridge](https://github.com/medhansh5/mindbridge) | *On Hold*
+### 🧠 [MindBridge](https://github.com/medhansh5/mindbridge) | *In works*
 Early-stage project in the mental health / emotional AI space. Currently in knowledge acquisition phase — exploring the research landscape and identifying the right technical approach.
 > 🤝 **Seeking collaborators** — reach out if this space interests you.
 
