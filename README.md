@@ -42,7 +42,7 @@ I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility
 A road surface classifier using high-frequency accelerometer data to detect and categorize anomalies.
 - **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `Joblib`
 
-### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *Alpha*
+### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.0.0*
 **The Waze for road quality.** A crowdsourced platform visualizing road anomalies using real-time motorcycle telemetry.
 - **Tech:** `Python`, `Folium`, `FastAPI`, `PostgreSQL`
 
