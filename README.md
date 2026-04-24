@@ -1,7 +1,7 @@
 # Medhansh Kabadwal
 > Building AI for the roads I ride. &nbsp;Ghaziabad, India • Aspiring Founder • Class of 2027 Prospect (MIT/Ivy League)
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=4A90E2&width=435&lines=AI+Engineer+in+the+making;Motorcycle+Enthusiast;Building+PotholeNet+ShadowMap,+and+more;Aspiring+Founder)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=4A90E2&width=435&lines=AI+Engineer+in+the+making;Motorcycle+Enthusiast;Building+PotholeNet,+ShadowMap+and+more;Aspiring+Founder)](https://git.io/typing-svg)
 
 ---
 
