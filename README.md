@@ -1,17 +1,18 @@
 # Medhansh Kabadwal
-> Building AI for the roads I ride. &nbsp;Ghaziabad, India • Aspiring Founder • Class of 2027 Prospect (MIT/Ivy League)
+> Building for the edge where AI meets physical reality. &nbsp;Ghaziabad, India • Physical AI Engineer • Class of 2027 MIT Applicant
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=4A90E2&width=435&lines=AI+Engineer+in+the+making;Motorcycle+Enthusiast;Building+PotholeNet,+ShadowMap+and+more;Aspiring+Founder)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00ffcc&width=435&lines=Physical+AI+Engineer;Computer+Vision+Specialist;Building+PotholeNet,+ShadowMap,+BikeGuard;Aspiring+Founder)](https://git.io/typing-svg)
 
 ---
 
 ## ⚡ The Mission
 
-I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility**. While most focus on LLMs, I'm focused on the edge — using Python and Computer Vision to make Indian roads safer for the 200M+ people on two wheels.
+I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challenges in road safety and infrastructure. My mission is to bridge the gap between digital intelligence and physical reality on the roads of Ghaziabad and beyond.
 
-- 🛠️ **Currently building:** [ShadowMap](https://github.com/medhansh5/shadowmap) & [PotholeNet](https://github.com/medhansh5/potholenet)
+- 🛠️ **Currently building:** [PotholeNet v2.1](https://github.com/medhansh5/potholenet), [ShadowMap v1.0.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Planning)](https://github.com/medhansh5/bikeguard)
 - 📚 **Studying:** SAT prep, Embedded AI, and ROS (Robot Operating System)
-- 🏍️ **Shadow:** Collecting telemetry on a 2025 Royal Enfield Classic 350 (Shadow)
+- 🏍️ **Field testing:** Collecting telemetry on 2025 Royal Enfield Classic 350
+- 🎯 **Goal:** MIT Class of 2027
 
 ---
 
@@ -28,46 +29,56 @@ I'm bridging the gap between **Artificial Intelligence** and **Physical Mobility
  </tr>
 </table>
 
-### 🛠 Tech Stack
+### 🛠 Core Stack
 - **Languages:** `Python (Expert)`, `C++ (Embedded)`, `JavaScript (Fullstack)`
-- **AI/ML:** `PyTorch`, `scikit-learn`, `OpenCV`, `YOLOv8`
+- **AI/ML:** `PyTorch`, `scikit-learn`, `OpenCV`, `YOLOv8`, `TFLite`
 - **Backend/Data:** `FastAPI`, `PostgreSQL`, `Flask`, `Pandas`
-- **Tools:** `Linux (Fedora/Ubuntu)`, `Git`, `Ollama (Local LLMs)`, `Jupyter`
+- **Systems:** `Linux (Ubuntu)`, `Termux`, `Virtual Machines`, `Git`
+- **Hardware:** `Raspberry Pi`, `Arduino`, `Accelerometer Sensors`
 
 ---
 
 ## 🚀 Projects
 
 ### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v2.1*
-A road surface classifier using high-frequency accelerometer data to detect and categorize anomalies.
-- **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `Joblib`
+A road surface classifier using high-frequency accelerometer data to detect and categorize potholes and road anomalies.
+- **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `High-frequency accelerometer classification`
+- **Impact:** Systematic approach to India's road infrastructure challenges
 
 ### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.0.0*
-**The Waze for road quality.** A crowdsourced platform visualizing road anomalies using real-time motorcycle telemetry.
-- **Tech:** `Python`, `Folium`, `FastAPI`, `PostgreSQL`
-
-### 🧠 [MindBridge](https://github.com/medhansh5/mindbridge) | *In works*
-Early-stage project in the mental health / emotional AI space. Currently in knowledge acquisition phase — exploring the research landscape and identifying the right technical approach.
-> 🤝 **Seeking collaborators** — reach out if this space interests you.
+**Real-time motorcycle telemetry visualization.** A geospatial tool modeling shadow patterns and road quality for urban planning.
+- **Tech:** `FastAPI`, `PostgreSQL`, `Real-time telemetry visualization`, `Geospatial analysis`
+- **Features:** Solar planning, architectural design integration
 
 ### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *Planning*
-Computer Vision model for edge devices to detect helmet compliance and rider safety in dense urban traffic.
-- **Tech:** `YOLOv8`, `TFLite`
+AI-powered helmet compliance detection system using computer vision for enhanced rider safety enforcement.
+- **Tech:** `YOLOv8`, `TFLite`, `Edge deployment`
+- **Mission:** Reduce rider fatalities through automated safety monitoring
 
 ---
 
 ## 🖋️ Beyond the Code
 
-When I'm not training models or riding my bike, I write poetry and document the journey through cinematic 35mm-style aesthetics.
+Under the alias **Ash**, I explore the intersection of technology and art through cinematic photography and poetry. My work captures the raw beauty of urban landscapes and human emotion, providing a creative counterbalance to my technical pursuits.
  
-- 📸 **Main:** [@medhansh.5](https://www.instagram.com/medhansh.5/)
-- ✍️ **Poetry & writing:** [@ashvelde](https://www.instagram.com/ashvelde/) *(Ash Velde)*
+- 📸 **Cinematic Photography:** [@medhansh.5](https://instagram.com/medhansh.5)
+- ✍️ **Poetry & Writing:** [@ashvelde](https://instagram.com/ashvelde)
 - 📧 **Direct:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
 - 💼 **LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b347/)
+- 🌐 **Portfolio:** [medhansh5.github.io](https://medhansh5.github.io)
+
+---
+
+## 🎯 Academic Journey
+
+- **📚 Class of 2027:** MIT Applicant
+- **📊 CBSE Boards:** 90%+ in Class 12
+- **🔬 Focus:** Computer Vision × Physical Mobility
+- **🏆 Achievement:** Building real-world AI solutions while maintaining academic excellence
 
 ---
 
 <p align="center">
-  <i>"The best way to predict the future is to build it."</i><br>
-  <b>Medhansh Kabadwal — 2026</b>
+  <i>"I don't just build models—I build solutions that save lives and improve infrastructure, one pothole at a time."</i><br>
+  <b>Medhansh Kabadwal — Building for the Edge — 2026</b>
 </p>

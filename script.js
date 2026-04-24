@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Reveal Animation
+    // Scroll Reveal Animation with Stagger
     const revealElements = document.querySelectorAll('.reveal');
 
     const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
         const revealPoint = 100;
 
-        revealElements.forEach(el => {
+        revealElements.forEach((el, index) => {
             const revealTop = el.getBoundingClientRect().top;
             if (revealTop < windowHeight - revealPoint) {
-                el.classList.add('active');
+                // Add stagger effect for project cards
+                if (el.classList.contains('project-card')) {
+                    setTimeout(() => {
+                        el.classList.add('active');
+                    }, index * 150); // 150ms stagger delay
+                } else {
+                    el.classList.add('active');
+                }
             }
         });
     };
@@ -35,12 +42,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Simple hover effect for the logo
+    // Enhanced hover effect for the logo
     const logo = document.querySelector('.logo');
     logo.addEventListener('mouseover', () => {
         logo.style.color = '#ffffff';
+        logo.style.textShadow = '0 0 20px rgba(0, 255, 204, 0.5)';
     });
     logo.addEventListener('mouseout', () => {
         logo.style.color = 'var(--accent-color)';
+        logo.style.textShadow = 'none';
     });
+
+    // Add dynamic grain effect
+    const body = document.body;
+    let grainIntensity = 0;
+    
+    setInterval(() => {
+        grainIntensity = Math.random() * 0.02;
+        body.style.setProperty('--grain-intensity', grainIntensity);
+    }, 100);
 });
