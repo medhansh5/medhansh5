@@ -21,10 +21,10 @@ I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challeng
 <table border="0">
  <tr>
     <td>
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=medhansh5&layout=compact&theme=vision-friendly-dark&hide_border=true" alt="Top Languages" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=medhansh5&layout=compact&theme=vision-friendly-dark&hide_border=true&cache_seconds=1800" alt="Top Languages" />
     </td>
     <td>
-       <img src="https://github-readme-stats.vercel.app/api?username=medhansh5&show_icons=true&theme=vision-friendly-dark&hide_border=true" alt="Medhansh's GitHub Stats" />
+       <img src="https://github-readme-stats.vercel.app/api?username=medhansh5&show_icons=true&theme=vision-friendly-dark&hide_border=true&cache_seconds=1800" alt="Medhansh's GitHub Stats" />
     </td>
  </tr>
 </table>
