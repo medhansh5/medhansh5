@@ -9,7 +9,7 @@
 
 I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challenges in road safety and infrastructure. My mission is to bridge the gap between digital intelligence and physical reality on the roads of Ghaziabad and beyond.
 
-- 🛠️ **Currently building:** [PotholeNet v2.1](https://github.com/medhansh5/potholenet), [ShadowMap v1.0.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Planning)](https://github.com/medhansh5/bikeguard)
+- 🛠️ **Currently building:** [PotholeNet v2.1](https://github.com/medhansh5/potholenet), [ShadowMap v1.0.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Under Development)](https://github.com/medhansh5/bikeguard)
 - 📚 **Studying:** SAT prep, Embedded AI, and ROS (Robot Operating System)
 - 🏍️ **Field testing:** Collecting telemetry on 2025 Royal Enfield Classic 350
 - 🎯 **Goal:** MIT Class of 2027
