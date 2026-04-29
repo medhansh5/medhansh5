@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medhansh Kabadwal | Builder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <title>Medhansh Kabadwal | Physical AI Engineer</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a0a0a%22/><text y=%22.9em%22 font-size=%2290%22 font-family=%22Space Grotesk, sans-serif%22 font-weight=%22bold%22 fill=%22%2300ffcc%22>M</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a0a0a%22/><text y=%22.9em%22 font-size=%2290%22 font-family=%22system-ui, sans-serif%22 font-weight=%22bold%22 fill=%22%23ccff00%22>M</text></svg>">
 </head>
 <body>
     <nav class="sticky-nav">
@@ -45,28 +42,65 @@
             </div>
         </section>
 
-        <section id="projects" class="projects-section">
+        <section id="projects" class="bento-section">
             <div class="container">
-                <h2 class="section-title reveal">PROJECTS</h2>
-                <div class="projects-grid">
-                    <a href="https://github.com/medhansh5/potholenet" target="_blank" class="project-card reveal">
-                        <h3 class="project-name">PotholeNet</h3>
-                        <p class="project-desc">A computer vision model trained to detect and map potholes from images. Built to systematically address India's road infrastructure challenges.</p>
-                        <p class="project-tech">v2.1 / scikit-learn / High-frequency accelerometer data classification</p>
-                    </a>
-                    <a href="https://github.com/medhansh5/shadowmap" target="_blank" class="project-card reveal">
-                        <h3 class="project-name">ShadowMap</h3>
-                        <p class="project-desc">A geospatial tool that models and visualizes shadow patterns in urban environments for solar planning and architectural design.</p>
-                        <p class="project-tech">v1.0.0 / FastAPI / PostgreSQL / Real-time motorcycle telemetry visualization</p>
-                    </a>
-                    <div class="project-card reveal planning-card">
-                        <h3 class="project-name">BikeGuard</h3>
-                        <p class="project-desc">AI-powered helmet compliance detection system using computer vision for enhanced rider safety enforcement.</p>
-                        <p class="project-tech">Planning / YOLOv8 / TFLite</p>
-                    </div>
+                <div class="breadcrumb reveal">
+                    <span class="breadcrumb-item">Home</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-item">Projects</span>
                 </div>
-                <div class="portfolio-cta reveal">
-                    <a href="https://github.com/medhansh5" target="_blank" class="btn-secondary">View Full Portfolio</a>
+                <h2 class="section-title reveal">ARCHITECTURE OVERVIEW</h2>
+                <div class="bento-grid">
+                    <a href="https://github.com/medhansh5/potholenet" target="_blank" class="bento-card bento-large reveal">
+                        <div class="bento-header">
+                            <h3 class="bento-title">PotholeNet</h3>
+                            <span class="bento-version">v2.1</span>
+                        </div>
+                        <p class="bento-desc">Road surface classifier using high-frequency accelerometer data</p>
+                        <div class="code-block">
+                            <pre><code class="language-python"># Accelerometer classification
+model.predict(accel_data)
+pothole_detected = confidence > 0.85</code></pre>
+                        </div>
+                        <div class="bento-tech">scikit-learn / SciPy / NumPy</div>
+                    </a>
+                    <a href="https://github.com/medhansh5/shadowmap" target="_blank" class="bento-card bento-wide reveal">
+                        <div class="bento-header">
+                            <h3 class="bento-title">ShadowMap</h3>
+                            <span class="bento-version">v1.0.0</span>
+                        </div>
+                        <p class="bento-desc">Real-time motorcycle telemetry visualization</p>
+                        <div class="code-block">
+                            <pre><code class="language-python"># Real-time telemetry
+@app.websocket("/telemetry")
+async def stream_telemetry():
+    await websocket.send_json(data)</code></pre>
+                        </div>
+                        <div class="bento-tech">FastAPI / PostgreSQL</div>
+                    </a>
+                    <div class="bento-card bento-stats reveal">
+                        <div class="bento-header">
+                            <h3 class="bento-title">Academic Stats</h3>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value" data-target="90">0</div>
+                                <div class="stat-label">CBSE %</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" data-target="2027">0</div>
+                                <div class="stat-label">MIT Class</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-card bento-small reveal">
+                        <div class="bento-header">
+                            <h3 class="bento-title">Ash</h3>
+                            <span class="bento-alias">Creative</span>
+                        </div>
+                        <p class="bento-desc">Cinematic photography & poetry</p>
+                        <a href="https://instagram.com/medhansh.5" target="_blank" class="bento-link">@medhansh.5</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -90,33 +124,22 @@
             </div>
         </section>
 
-        <section id="technical" class="technical-section">
+        <section id="technical" class="atomic-section">
             <div class="container">
-                <h2 class="section-title reveal">TECHNICAL LANDSCAPE</h2>
-                <div class="technical-grid">
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">Python</div>
-                        <div class="tech-name">Python</div>
+                <h2 class="section-title reveal">ATOMIC SKILL MAP</h2>
+                <div class="atomic-system reveal">
+                    <div class="nucleus">MK</div>
+                    <div class="orbit orbit-1">
+                        <div class="electron" data-skill="Python">Python</div>
+                        <div class="electron" data-skill="PyTorch">PyTorch</div>
                     </div>
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">C++</div>
-                        <div class="tech-name">C++</div>
+                    <div class="orbit orbit-2">
+                        <div class="electron" data-skill="C++">C++</div>
+                        <div class="electron" data-skill="OpenCV">OpenCV</div>
                     </div>
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">PyTorch</div>
-                        <div class="tech-name">PyTorch</div>
-                    </div>
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">Linux</div>
-                        <div class="tech-name">Linux (Ubuntu)</div>
-                    </div>
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">Termux</div>
-                        <div class="tech-name">Termux</div>
-                    </div>
-                    <div class="tech-item reveal">
-                        <div class="tech-icon">VM</div>
-                        <div class="tech-name">Virtual Machines</div>
+                    <div class="orbit orbit-3">
+                        <div class="electron" data-skill="Linux">Linux</div>
+                        <div class="electron" data-skill="FastAPI">FastAPI</div>
                     </div>
                 </div>
             </div>
