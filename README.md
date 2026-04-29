@@ -50,7 +50,7 @@ A road surface classifier using high-frequency accelerometer data to detect and 
 - **Tech:** `FastAPI`, `PostgreSQL`, `Real-time telemetry visualization`, `Geospatial analysis`
 - **Features:** Solar planning, architectural design integration
 
-### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *Planning*
+### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *Under Development*
 AI-powered helmet compliance detection system using computer vision for enhanced rider safety enforcement.
 - **Tech:** `YOLOv8`, `TFLite`, `Edge deployment`
 - **Mission:** Reduce rider fatalities through automated safety monitoring
