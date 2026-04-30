@@ -9,7 +9,7 @@
 
 I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challenges in road safety and infrastructure. My mission is to bridge the gap between digital intelligence and physical reality on the roads of Ghaziabad and beyond.
 
-- 🛠️ **Currently building:** [PotholeNet v2.1](https://github.com/medhansh5/potholenet), [ShadowMap v1.0.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Under Development)](https://github.com/medhansh5/bikeguard)
+- 🛠️ **Currently building:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Under Development)](https://github.com/medhansh5/bikeguard)
 - 📚 **Studying:** SAT prep, Embedded AI, and ROS (Robot Operating System)
 - 🏍️ **Field testing:** Collecting telemetry on 2025 Royal Enfield Classic 350
 - 🎯 **Goal:** MIT Class of 2027
@@ -40,12 +40,12 @@ I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challeng
 
 ## 🚀 Projects
 
-### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v2.1*
+### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v2.3*
 A road surface classifier using high-frequency accelerometer data to detect and categorize potholes and road anomalies.
 - **Tech:** `scikit-learn`, `SciPy`, `NumPy`, `High-frequency accelerometer classification`
 - **Impact:** Systematic approach to India's road infrastructure challenges
 
-### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.0.0*
+### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.3.0*
 **Real-time motorcycle telemetry visualization.** A geospatial tool modeling shadow patterns and road quality for urban planning.
 - **Tech:** `FastAPI`, `PostgreSQL`, `Real-time telemetry visualization`, `Geospatial analysis`
 - **Features:** Solar planning, architectural design integration
