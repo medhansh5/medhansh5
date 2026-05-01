@@ -9,7 +9,7 @@
 
 I'm focused on **Physical AI**—moving beyond LLMs to solve real-world challenges in road safety and infrastructure. My mission is to bridge the gap between digital intelligence and physical reality on the roads of Ghaziabad and beyond.
 
-- 🛠️ **Currently building:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0](https://github.com/medhansh5/shadowmap), [BikeGuard (Under Development)](https://github.com/medhansh5/bikeguard)
+- 🛠️ **Currently building:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0](https://github.com/medhansh5/shadowmap), [BikeGuard (v0.2.0-alpha)](https://github.com/medhansh5/bikeguard)
 - 📚 **Studying:** SAT prep, Embedded AI, and ROS (Robot Operating System)
 - 🏍️ **Field testing:** Collecting telemetry on 2025 Royal Enfield Classic 350
 - 🎯 **Goal:** MIT Class of 2027
@@ -50,7 +50,7 @@ A road surface classifier using high-frequency accelerometer data to detect and 
 - **Tech:** `FastAPI`, `PostgreSQL`, `Real-time telemetry visualization`, `Geospatial analysis`
 - **Features:** Solar planning, architectural design integration
 
-### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *Under Development*
+### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v0.2.0-alpha*
 AI-powered helmet compliance detection system using computer vision for enhanced rider safety enforcement.
 - **Tech:** `YOLOv8`, `TFLite`, `Edge deployment`
 - **Mission:** Reduce rider fatalities through automated safety monitoring
