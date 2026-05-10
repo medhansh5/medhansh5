@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600&family=Geist:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-module {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.topo-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 Q 100 50 200 100 T 400 100 T 600 50 T 800 100' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 200 Q 150 120 300 200 T 600 200 T 800 150' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 300 Q 200 350 400 300 T 800 250' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 400 Q 100 450 300 400 T 500 450 T 800 400' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 500 Q 300 480 500 500 T 800 520' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 600 Q 200 650 400 600 T 600 650 T 800 600' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3Cpath d='M0 700 Q 400 680 800 700' fill='none' stroke='%2372796e' stroke-opacity='0.1'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+.shadow-ambient {
+  box-shadow: 0 20px 40px rgba(45, 90, 39, 0.08);
+}
+
+.inner-glow {
+  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.sonic-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 40px;
+}
+
+.wave-bar {
+  width: 3px;
+  background-color: #2D5A27;
+  border-radius: 99px;
+}
+
+/* Custom Hover Expansion Logic for Sidebar */
+.sidebar-expanded {
+  width: 240px;
+}
+
+.sidebar-collapsed {
+  width: 80px;
+}
+
+.sidebar-nav-label {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+aside:hover .sidebar-nav-label,
+aside.manual-expand .sidebar-nav-label {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+aside:hover {
+  width: 240px !important;
+}
+
+/* Main content adjustments for fixed sidebar width offset */
+@media (min-width: 1024px) {
+  main, nav, footer {
+    padding-left: 80px; /* Base collapse width */
+    transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
