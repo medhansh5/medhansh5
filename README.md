@@ -66,8 +66,7 @@ Under the alias **Ash**, I explore the dark, moody side of human emotion and urb
 ## 🎯 The Academic Blueprint
 
 - **🔬 Core Specialization:** Computer Science × Artificial Intelligence
-- **📊 CBSE Boards:** 90%+ in Class 12
-- **🏆 Current Mandate:** Publishing *FusionNet* (Multi-Modal Edge AI Framework for Vision & Inertial Telemetry)
+- **🏆 Current Mandate:** Published *FusionNet* (Multi-Modal Edge AI Framework for Vision & Inertial Telemetry) and working on it's next version.
 - **🌌 Long-Term Horizon:** Transitioning from undergraduate execution to a Stanford Masters degree.
 
 ---
