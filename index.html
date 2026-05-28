@@ -1,448 +1,494 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medhansh Kabadwal - Visionary Engineering</title>
-  <meta name="description" content="Visionary Engineering - Engineering Intelligent Safety Systems for the Developing World">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            surface: '#fafaf4',
-            'surface-dim': '#dadad5',
-            'surface-bright': '#fafaf4',
-            'surface-container-lowest': '#ffffff',
-            'surface-container-low': '#f4f4ee',
-            'surface-container': '#eeeee9',
-            'surface-container-high': '#e8e8e3',
-            'surface-container-highest': '#e3e3de',
-            'on-surface': '#1a1c19',
-            'on-surface-variant': '#42493e',
-            'inverse-surface': '#2f312e',
-            'inverse-on-surface': '#f1f1ec',
-            outline: '#72796e',
-            'outline-variant': '#c2c9bb',
-            'surface-tint': '#3b6934',
-            primary: '#154212',
-            'on-primary': '#ffffff',
-            'primary-container': '#2d5a27',
-            'on-primary-container': '#9dd090',
-            'inverse-primary': '#a1d494',
-            secondary: '#50606f',
-            'on-secondary': '#ffffff',
-            'secondary-container': '#d1e1f4',
-            'on-secondary-container': '#556474',
-            tertiary: '#37393a',
-            'on-tertiary': '#ffffff',
-            'tertiary-container': '#4e5051',
-            'on-tertiary-container': '#c2c2c3',
-            error: '#ba1a1a',
-            'on-error': '#ffffff',
-            'error-container': '#ffdad6',
-            'on-error-container': '#93000a',
-            'primary-fixed': '#bcf0ae',
-            'primary-fixed-dim': '#a1d494',
-            'on-primary-fixed': '#002201',
-            'on-primary-fixed-variant': '#23501e',
-            'secondary-fixed': '#d4e4f6',
-            'secondary-fixed-dim': '#b8c8da',
-            'on-secondary-fixed': '#0d1d2a',
-            'on-secondary-fixed-variant': '#394857',
-            'tertiary-fixed': '#e2e2e2',
-            'tertiary-fixed-dim': '#c6c6c7',
-            'on-tertiary-fixed': '#1a1c1c',
-            'on-tertiary-fixed-variant': '#454747',
-            background: '#fafaf4',
-            'on-background': '#1a1c19',
-            'surface-variant': '#e3e3de',
-          },
-          fontFamily: {
-            'display-lg': ['Manrope', 'sans-serif'],
-            'headline-lg': ['Manrope', 'sans-serif'],
-            'headline-lg-mobile': ['Manrope', 'sans-serif'],
-            'body-md': ['Hanken Grotesk', 'sans-serif'],
-            'label-sm': ['Geist', 'monospace'],
-          },
-          fontSize: {
-            'display-lg': ['48px', { lineHeight: '56px', letterSpacing: '-0.02em' }],
-            'headline-lg': ['32px', { lineHeight: '40px' }],
-            'headline-lg-mobile': ['28px', { lineHeight: '36px' }],
-            'body-md': ['16px', { lineHeight: '24px' }],
-            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.05em' }],
-          },
-          spacing: {
-            'gutter': '24px',
-            'margin-desktop': '64px',
-            'margin-mobile': '20px',
-            'container-max': '1280px',
-          },
-          borderRadius: {
-            'xl': '1.5rem',
-            '2xl': '1.5rem',
-            '3xl': '1.5rem',
-          },
+
+<html class="dark" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313031",
+                        "on-primary-fixed-variant": "#004a77",
+                        "surface-variant": "#353436",
+                        "on-primary-fixed": "#001d33",
+                        "background": "#131314",
+                        "on-tertiary": "#303031",
+                        "on-primary": "#003354",
+                        "surface": "#131314",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#690000",
+                        "primary-fixed": "#cfe5ff",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-secondary-container": "#fff6f5",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#9d9c9c",
+                        "secondary": "#ffb4a8",
+                        "outline": "#88919d",
+                        "on-tertiary-container": "#333434",
+                        "inverse-surface": "#e5e2e3",
+                        "surface-bright": "#3a393a",
+                        "tertiary": "#c7c6c6",
+                        "secondary-container": "#e60000",
+                        "on-primary-container": "#00375a",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-background": "#e5e2e3",
+                        "surface-tint": "#98cbff",
+                        "surface-container-low": "#1c1b1c",
+                        "surface-dim": "#131314",
+                        "primary-container": "#00a3ff",
+                        "primary": "#98cbff",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "surface-container-high": "#2a2a2b",
+                        "tertiary-fixed": "#e4e2e2",
+                        "primary-fixed-dim": "#98cbff",
+                        "secondary-fixed": "#ffdad4",
+                        "inverse-primary": "#00629d",
+                        "on-secondary-fixed-variant": "#930100",
+                        "on-surface": "#e5e2e3",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353436",
+                        "on-surface-variant": "#bec7d4",
+                        "on-secondary-fixed": "#410000",
+                        "outline-variant": "#3f4852",
+                        "surface-container-lowest": "#0e0e0f",
+                        "on-error": "#690005",
+                        "surface-container": "#201f20"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "max-width": "1440px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0B;
+            color: #e5e2e3;
+            overflow-x: hidden;
+        }
+        .max-w-max-width {
+            max-width: 1440px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100% !important;
+        }
+        .text-on-surface { color: #e5e2e3 !important; }
+        .text-on-surface-variant { color: #bec7d4 !important; }
+        .text-primary { color: #98cbff !important; }
+        .text-secondary { color: #ffb4a8 !important; }
+        .text-outline { color: #88919d !important; }
+        
+        .bg-secondary-container { background-color: #e60000 !important; }
+        .bg-surface-container-highest { background-color: #353436 !important; }
+        
+        .saber-glow-blue {
+            box-shadow: 0 0 15px 2px rgba(152, 203, 255, 0.4);
+        }
+        .saber-glow-red {
+            box-shadow: 0 0 15px 2px rgba(230, 0, 0, 0.4);
+        }
+        .glass-panel {
+            background: rgba(20, 20, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(136, 145, 157, 0.1);
+        }
+        .hud-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(152, 203, 255, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .force-split {
+            background: linear-gradient(90deg, rgba(0, 163, 255, 0.1) 0%, rgba(230, 0, 0, 0.1) 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface topo-bg overflow-x-hidden">
-  
-  <!-- Top Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-surface/40 backdrop-blur-xl border-b border-white/20 shadow-[0_20px_40px_rgba(45,90,39,0.08)]">
-    <div class="flex justify-between items-center px-gutter md:px-margin-desktop py-4 max-w-container-max mx-auto">
-      <div class="font-headline-lg text-headline-lg tracking-tight text-primary">MK Portfolio</div>
-      
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex gap-8 items-center">
-        <a href="#the-summit" class="font-label-sm text-label-sm text-primary border-b-2 border-primary pb-1">The Summit</a>
-        <a href="#fusion-net" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5">FusionNet</a>
-        <a href="#engineering-lab" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5">Engineering Lab</a>
-        <a href="#the-basecamp" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5">The Basecamp</a>
-      </div>
-      
-      <a href="#contact" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-sm text-label-sm inner-glow scale-95 active:scale-90 transition-transform hover:bg-primary-container hover:shadow-ambient">
-        Connect
-      </a>
-      
-      <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-toggle" class="md:hidden text-primary">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
-    </div>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-t border-white/20">
-      <div class="px-gutter py-4 space-y-3">
-        <a href="#the-summit" class="block font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 hover:bg-primary/5">The Summit</a>
-        <a href="#fusion-net" class="block font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 hover:bg-primary/5">FusionNet</a>
-        <a href="#engineering-lab" class="block font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 hover:bg-primary/5">Engineering Lab</a>
-        <a href="#the-basecamp" class="block font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 hover:bg-primary/5">The Basecamp</a>
-        <a href="#contact" class="block font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2 hover:bg-primary/5">Contact</a>
-      </div>
-    </div>
-  </nav>
+<body class="font-body-md text-body-md bg-[#0A0A0B]">
 
-  <!-- Side Navigation (Desktop Only) -->
-  <aside class="hidden lg:flex flex-col fixed left-0 top-0 h-screen sidebar-collapsed py-8 bg-white/30 backdrop-blur-xl border-r border-white/20 items-start overflow-hidden shadow-2xl shadow-primary/5 z-[60] transition-[width] duration-300 cubic-bezier(0.4, 0, 0.2, 1) group">
-    <div class="w-full px-4 flex justify-center group-hover:justify-start transition-all duration-300">
-      <div class="w-12 h-12 rounded-full bg-primary-container overflow-hidden shrink-0">
-        <img class="w-full h-full object-cover" alt="Profile" src="assets/image_1.jpg" width="48" height="48">
-      </div>
-      <div class="sidebar-nav-label ml-4 flex flex-col justify-center overflow-hidden">
-        <span class="font-headline-lg text-sm text-primary leading-tight">Medhansh K.</span>
-        <span class="text-[10px] text-on-surface-variant uppercase tracking-widest">Engineer</span>
-      </div>
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full bg-surface/80 backdrop-blur-md border-b border-secondary-container/50">
+    <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-4 max-w-max-width mx-auto">
+        <a href="#the-summit" class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(152,203,255,0.6)] cursor-pointer hover:opacity-90 transition-opacity">
+            MED ARCHIVE
+        </a>
+        <nav class="hidden md:flex gap-8 items-center">
+            <a class="font-label-mono text-label-mono text-primary border-b-2 border-primary pb-1" href="#theory">Theory</a>
+            <a class="font-label-mono text-label-mono text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#laboratory">Laboratory</a>
+            <a class="font-label-mono text-label-mono text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#artifacts">About</a>
+        </nav>
+        <a href="mailto:medhansh5@proton.me" class="bg-primary text-on-primary px-6 py-2 font-label-mono text-label-mono rounded-none tracking-widest active:scale-95 duration-200 saber-glow-blue font-bold uppercase text-center block">
+            INITIATE
+        </a>
     </div>
-    
-    <div class="flex flex-col gap-2 mt-12 w-full px-3">
-      <a href="#the-summit" class="flex items-center gap-4 p-3 text-primary bg-primary-container/20 rounded-xl transition-all" title="The Summit">
-        <span class="material-symbols-outlined shrink-0">landscape</span>
-        <span class="sidebar-nav-label font-label-sm">The Summit</span>
-      </a>
-      <a href="#fusion-net" class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl hover:text-primary transition-all" title="FusionNet">
-        <span class="material-symbols-outlined shrink-0">hub</span>
-        <span class="sidebar-nav-label font-label-sm">FusionNet</span>
-      </a>
-      <a href="#engineering-lab" class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl hover:text-primary transition-all" title="Engineering Lab">
-        <span class="material-symbols-outlined shrink-0">architecture</span>
-        <span class="sidebar-nav-label font-label-sm">Engineering Lab</span>
-      </a>
-      <a href="#the-basecamp" class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl hover:text-primary transition-all" title="The Basecamp">
-        <span class="material-symbols-outlined shrink-0">waves</span>
-        <span class="sidebar-nav-label font-label-sm">The Basecamp</span>
-      </a>
-      <a href="#contact" class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl hover:text-primary transition-all" title="Contact">
-        <span class="material-symbols-outlined shrink-0">mail</span>
-        <span class="sidebar-nav-label font-label-sm">Contact</span>
-      </a>
-    </div>
-    
-    <!-- Toggle button for persistent expansion -->
-    <div class="mt-auto w-full px-3">
-      <button class="w-full flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all">
-        <span class="material-symbols-outlined shrink-0 group-hover:rotate-180 transition-transform duration-500">chevron_right</span>
-        <span class="sidebar-nav-label font-label-sm">Collapse View</span>
-      </button>
-    </div>
-  </aside>
+</header>
 
-  <!-- Main Content -->
-  <main class="pt-24 space-y-32">
-    
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center px-gutter md:px-margin-desktop" id="the-summit">
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <img class="absolute inset-0 w-full h-full object-cover opacity-90" alt="Hero Background" src="assets/hero-biker.jpg">
-        <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/40 to-transparent"></div>
-      </div>
-      
-      <div class="relative z-10 max-w-3xl">
-        <span class="font-label-sm text-label-sm text-primary-container bg-primary/10 px-4 py-1 rounded-full mb-6 inline-block">Visionary Engineering</span>
-        
-        <h1 class="font-display-lg text-display-lg text-on-background mb-8 leading-tight">
-          MEDHANSH KABADWAL: Engineering Intelligent Safety Systems for the Developing World.
+<!-- The Summit (Hero) -->
+<section id="the-summit" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img alt="Hero Background" class="w-full h-full object-cover opacity-25 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmTfHWckZQMzC_pxnem1xAli9keaKJ7mO-64xylmWDhsB1O56RIxmBHo7FTOI9R1CCNHbAstMtLCQUm_vHoTtB2Oo6k5uJHJQTUwp555O5ESApCEH_XxcHr2TpAIngldqntvxDViyePZNzd7szIzb8rk5lCOxn7XFqHo7JH7rxn-2oBwOaqCzdsQAe7A-5_33SLNgrpf8XGUKQSHEg6VVQzkWyAFkeZUvkyIYNRIF5XJfCy5kuwKrVx_H-sJzbjziwsfYpGkchgi2b"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background"></div>
+    </div>
+    <div class="relative z-10 text-center px-6 md:px-margin-desktop max-w-4xl">
+        <div class="mb-6 inline-block">
+            <span class="font-label-mono text-label-mono px-4 py-1.5 border border-primary text-primary saber-glow-blue uppercase tracking-[0.3em] bg-background/90 backdrop-blur-sm">Sector 7-G // Equilibrium</span>
+        </div>
+        <h1 class="font-display-lg text-on-surface mb-8 tracking-tighter uppercase leading-[1.1] text-3xl md:text-5xl lg:text-[56px]">
+            MEDHANSH KABADWAL: <span class="text-primary drop-shadow-[0_0_10px_rgba(152,203,255,0.4)]">Engineering Intelligent Safety Systems</span> for the Developing World.
         </h1>
-        
-        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl mb-10">
-          Mission to protect the hundreds of millions of two-wheeler riders through biophilic design and high-performance neural architecture.
-        </p>
-        
-        <div class="flex gap-4 flex-wrap">
-          <a href="#engineering-lab" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-sm text-label-sm inner-glow hover:bg-primary-container transition-colors shadow-ambient hover:shadow-lg">
-            Explore Systems
-          </a>
-          <a href="#fusion-net" class="glass-module text-primary px-8 py-4 rounded-full font-label-sm text-label-sm inner-glow border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">
-            View Lab Data
-          </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+            <a class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-label-mono text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all saber-glow-blue text-center rounded-none" href="#laboratory">Open Laboratory</a>
+            <a class="w-full sm:w-auto px-8 py-4 border-2 border-on-surface text-on-surface font-label-mono text-xs uppercase tracking-widest hover:bg-on-surface hover:text-background transition-all text-center rounded-none bg-background/40 backdrop-blur-sm" href="#artifacts">View Archive</a>
         </div>
-      </div>
-    </section>
-
-    <!-- FusionNet Section -->
-    <section id="fusion-net" class="px-gutter md:px-margin-desktop">
-      <div class="relative rounded-[32px] overflow-hidden min-h-[600px] flex items-center justify-end p-8 md:p-16">
-        <div class="absolute inset-0 z-0">
-          <img class="w-full h-full object-cover opacity-15" alt="FusionNet Background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7c2v__Ic5J1jGyeBWXXOMIRCYkK2lNg1nkZ-h4rqbMfS0y7xCS8hVvjqj6xW_nBtXCqgRwo3TykVbccuYj2-8Y0HUNtTtCPI9PKT2oCr-_kuYWU-28WMYVVVcPxcYws6ah5Gypu9EQSwCN2DcQ-YHDNqRcVWfIiyXWsnQobQazql_UA7u09hyXDEPc-oDwXkMINHxPgmUL7URfb489JoBN66MRbL_gzmHnXSELcbjyRk1QAU6YTpGI8JykyB3WchDgdzYwloh846B">
-          
-          <!-- Mouse tracking gradient -->
-          <div id="fusion-net-gradient" class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 50% 50%, rgba(45, 90, 39, 0.3) 0%, transparent 50%);"></div>
-          
-          <!-- Topographical pattern -->
-          <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="topo-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                <path d="M0 50 Q 25 25 50 50 T 100 50" stroke="rgba(45, 90, 39, 0.2)" stroke-width="1" fill="none"></path>
-                <path d="M0 80 Q 30 60 60 80 T 120 80" stroke="rgba(45, 90, 39, 0.15)" stroke-width="1" fill="none"></path>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#topo-pattern)"></rect>
-          </svg>
-        </div>
-        
-        <div class="glass-module max-w-xl p-10 rounded-3xl shadow-ambient border border-white/40 relative z-10">
-          <h2 class="font-headline-lg text-headline-lg text-primary mb-6">FusionNet Deep-Dive</h2>
-          
-          <p class="text-on-surface-variant mb-8">
-            Implementing a robust 4th-order Butterworth Filter combined with a optimized YOLOv8n pipeline to handle complex environmental noise in real-time safety monitoring.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Left Column: Stats -->
-            <div class="space-y-6">
-              <div class="space-y-2">
-                <div class="font-display-lg text-headline-lg text-primary">0.87</div>
-                <div class="font-label-sm text-label-sm text-outline">F1-SCORE</div>
-                <div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
-                  <div class="h-full bg-primary-container" style="width: 87%"></div>
-                </div>
-              </div>
-              
-              <div class="space-y-2">
-                <div class="font-display-lg text-headline-lg text-primary">68.1%</div>
-                <div class="font-label-sm text-label-sm text-outline">FP REDUCTION</div>
-                <div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
-                  <div class="h-full bg-primary-container" style="width: 68%"></div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Right Column: Architecture -->
-            <div class="space-y-4 border-l border-primary/10 pl-8">
-              <h3 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4">System Architecture</h3>
-              <ul class="space-y-3 font-mono text-xs text-on-surface-variant">
-                <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 rounded-full bg-primary"></span>
-                  Latency: ~20.6 ms
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 rounded-full bg-primary"></span>
-                  Architecture: Multi-modal Edge AI
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 rounded-full bg-primary"></span>
-                  Inference: 30 FPS YOLOv8n
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="mt-10 flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
-            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">hub</span>
-            <span class="font-label-sm text-label-sm text-on-surface">Edge Processing Optimized for ARM-based Systems</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Engineering Lab Section -->
-    <section class="px-gutter md:px-margin-desktop py-12" id="engineering-lab">
-      <div class="mb-16">
-        <h2 class="font-headline-lg text-headline-lg text-primary">Engineering Lab</h2>
-        <div class="w-16 h-1 bg-primary-container mt-4 rounded-full"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <!-- ShadowMap Bento Card -->
-        <div class="md:col-span-7 glass-module p-8 rounded-3xl shadow-ambient border border-white/20 group hover:border-primary/20 transition-all">
-          <div class="flex justify-between items-start mb-12">
-            <div>
-              <h3 class="font-headline-lg text-headline-lg text-primary mb-2">ShadowMap</h3>
-              <p class="text-on-surface-variant font-body-md">Advanced topographical telemetry mapping for real-time spatial awareness.</p>
-            </div>
-            <span class="material-symbols-outlined text-primary text-4xl">landscape</span>
-          </div>
-          
-          <div class="relative h-64 rounded-2xl overflow-hidden border border-outline-variant/30 rounded-[16px] group-hover:scale-[1.02] transition-transform duration-500">
-            <img class="w-full h-full object-cover rounded-[16px]" alt="ShadowMap Visualization" src="assets/image_0.png">
-            <div class="absolute inset-0 bg-primary/20 mix-blend-color-dodge"></div>
-          </div>
-        </div>
-        
-        <!-- BikeGuard Bento Card -->
-        <div class="md:col-span-5 glass-module p-8 rounded-3xl shadow-ambient border border-white/20 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2 mb-6">
-              <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">motorcycle</span>
-              <h3 class="font-headline-lg text-headline-lg text-primary">BikeGuard</h3>
-            </div>
-            
-            <p class="text-on-surface-variant font-body-md mb-8">
-              Tuned specifically for Indian road variables, identifying helmet compliance and contextual traffic risks in chaotic urban environments.
-            </p>
-          </div>
-          
-          <div class="space-y-4">
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-sm text-label-sm text-on-surface">
-                <span>Helmet Detection</span>
-                <span>99.2%</span>
-              </div>
-              <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
-                <div class="h-full bg-primary" style="width: 99%"></div>
-              </div>
-            </div>
-            
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-sm text-label-sm text-on-surface mt-4">
-                <span>Contextual Risk AI</span>
-                <span>84.5%</span>
-              </div>
-              <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
-                <div class="h-full bg-primary" style="width: 84%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Basecamp Section -->
-    <section class="bg-primary/5 py-24 px-gutter md:px-margin-desktop border-y border-primary/5" id="the-basecamp">
-      <div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-20 items-center">
-        <div>
-          <h2 class="font-headline-lg text-headline-lg text-primary mb-8">The Basecamp</h2>
-          <p class="text-on-surface-variant font-body-md mb-12">Bridging the analytical with the auditory. A synthesis of visual storytelling through the lens of Adrian Vance and acoustic exploration through sonic architecture.</p>
-          
-          <div class="glass-module p-8 rounded-3xl border border-primary/10">
-            <div class="flex items-center gap-6 mb-8">
-              <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
-                <span class="material-symbols-outlined">waves</span>
-              </div>
-              <div>
-                <h4 class="font-headline-lg text-headline-lg text-primary">Ash Velde</h4>
-                <p class="font-label-sm text-label-sm text-on-surface-variant">Sonic Experiments</p>
-              </div>
-            </div>
-            
-            <div class="sonic-wave">
-              <div class="wave-bar h-[20%]"></div>
-              <div class="wave-bar h-[40%]"></div>
-              <div class="wave-bar h-[70%]"></div>
-              <div class="wave-bar h-[90%]"></div>
-              <div class="wave-bar h-[60%]"></div>
-              <div class="wave-bar h-[85%]"></div>
-              <div class="wave-bar h-[30%]"></div>
-              <div class="wave-bar h-[50%]"></div>
-              <div class="wave-bar h-[80%]"></div>
-              <div class="wave-bar h-[45%]"></div>
-              <div class="wave-bar h-[95%]"></div>
-              <div class="wave-bar h-[75%]"></div>
-              <div class="wave-bar h-[35%]"></div>
-              <div class="wave-bar h-[65%]"></div>
-            </div>
-            
-            <button id="audio-toggle" class="mt-8 w-full flex items-center justify-center gap-3 bg-primary text-on-primary px-6 py-4 rounded-full font-label-sm text-label-sm inner-glow hover:bg-primary-container transition-colors shadow-ambient hover:shadow-lg">
-              <span class="material-symbols-outlined" id="audio-icon">play_circle</span>
-              <span id="audio-text">Listen to Latest Session</span>
-            </button>
-          </div>
-        </div>
-        
-        <div class="relative group cursor-pointer overflow-hidden rounded-3xl shadow-ambient">
-          <img class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" alt="Ethereal Moss & Mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwD9uBZMDw4eycGGAKFYzsHtgAX3m4NvCqjgzXBrW7Mqhyqaek0rjuKEbZY2NupLuTpGjKDRu4YPL9MLz4XEnMspGUgMZU8PaoBatYDuuqpjOX3TgiXKu4qOfsw-VrVtjpPHGDoTc2FYpmGswuPeACOTiLK5-OTf-PiXDCMu6tXy3ySxDjsu0dqU6fggvLTOAGGW_5l6XIs-e3WJnsbRda6pvT8QDFSN2hGvntffCjUWfYE7Fl-VEh-BVAWCltPTtL7t4oz7HmNxte">
-          <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-primary/80 to-transparent">
-            <p class="text-white font-label-sm text-label-sm mb-2">Featured Series</p>
-            <h4 class="text-white font-headline-lg text-headline-lg">Ethereal Moss & Mist</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="bg-surface-container-low py-24 px-gutter md:px-margin-desktop" id="contact">
-      <div class="max-w-container-max mx-auto text-center">
-        <h2 class="font-headline-lg text-headline-lg text-primary mb-8">Get In Touch</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto mb-12">
-          Interested in collaborating on safety systems or discussing biophilic engineering? Let's connect and explore how we can make transportation safer together.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <a href="mailto:medhansh5@proton.me" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-sm text-label-sm inner-glow hover:bg-primary-container transition-colors shadow-ambient hover:shadow-lg">
-            Send Email
-          </a>
-          <a href="https://www.linkedin.com/in/medhansh-kabadwal-30197b374/" target="_blank" rel="noopener noreferrer" class="glass-module text-primary px-8 py-4 rounded-full font-label-sm text-label-sm inner-glow border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all">
-            Connect on LinkedIn
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-surface-container-lowest py-20 border-t border-outline-variant/10">
-    <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop gap-8 max-w-container-max mx-auto">
-      <div class="flex flex-col gap-4 text-center md:text-left">
-        <div class="font-headline-lg text-primary">M. Kabadwal</div>
-        <p class="font-label-sm text-label-sm text-on-surface-variant max-w-md">
-          © 2026 Medhansh Kabadwal. Designed at the intersection of nature and silicon.
-        </p>
-      </div>
-      
-      <div class="flex gap-8">
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity hover:underline underline-offset-4 opacity-80 hover:opacity-100" href="https://www.linkedin.com/in/medhansh-kabadwal-30197b374/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity hover:underline underline-offset-4 opacity-80 hover:opacity-100" href="https://github.com/medhansh5" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-opacity hover:underline underline-offset-4 opacity-80 hover:opacity-100" href="https://www.instagram.com/adrian.vance_" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </div>
     </div>
-  </footer>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
+        <span class="font-label-mono text-[10px] text-outline uppercase tracking-widest">Descent</span>
+        <span class="material-symbols-outlined text-primary">keyboard_double_arrow_down</span>
+    </div>
+</section>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+<!-- FusionNet Overlay -->
+<section class="py-24 relative overflow-hidden px-4 md:px-0" id="theory">
+    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+            <div class="lg:col-span-5">
+                <h2 class="font-headline-lg text-headline-lg mb-4 text-primary uppercase">FusionNet Protocol</h2>
+                <p class="text-on-surface-variant font-body-md mb-8 leading-relaxed">
+                    A neural architecture designed for high-stakes environmental perception. By synthesizing disparate sensor streams, FusionNet establishes a digital consciousness capable of predictive safety maneuvers in chaotic urban terrains.
+                </p>
+                <div class="space-y-6">
+                    <div class="glass-panel p-6 border-l-4 border-primary saber-glow-blue">
+                        <div class="flex justify-between items-end mb-2 gap-2">
+                            <span class="font-label-mono text-xs text-outline uppercase tracking-wider">F1-Score Reliability</span>
+                            <span class="font-headline-lg text-2xl md:text-3xl text-primary font-bold">0.87</span>
+                        </div>
+                        <div class="h-2 w-full bg-surface-container-highest">
+                            <div class="h-full bg-primary" style="width: 87%"></div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-6 border-l-4 border-secondary-container saber-glow-red">
+                        <div class="flex justify-between items-end mb-2 gap-2">
+                            <span class="font-label-mono text-xs text-outline uppercase tracking-wider">False Positive Mitigation</span>
+                            <span class="font-headline-lg text-2xl md:text-3xl text-secondary font-bold">-68.1%</span>
+                        </div>
+                        <div class="h-2 w-full bg-surface-container-highest">
+                            <div class="h-full bg-secondary-container" style="width: 68.1%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-7 flex justify-center relative mt-12 lg:mt-0">
+                <div class="w-full max-w-[460px] aspect-square glass-panel rounded-full flex items-center justify-center relative hud-scanline border-outline-variant/20">
+                    <div class="absolute inset-4 border border-primary/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                    <div class="absolute inset-12 border-dashed border border-secondary-container/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div class="z-10 text-center px-4">
+                        <span class="material-symbols-outlined text-[80px] text-primary mb-4" style="font-variation-settings: 'FILL' 1;">hub</span>
+                        <div class="font-label-mono text-label-mono text-on-surface font-bold tracking-wider">SYNAPTIC CORE ACTIVE</div>
+                    </div>
+                    <div class="absolute top-10 right-0 glass-panel p-3 text-[10px] font-label-mono border-r-4 border-primary bg-background/90 text-on-surface-variant">
+                        LATENCY: 12ms<br/>THREAD: 0x449F
+                    </div>
+                    <div class="absolute bottom-20 left-0 glass-panel p-3 text-[10px] font-label-mono border-l-4 border-secondary-container bg-background/90 text-on-surface-variant">
+                        BUFFER: STABLE<br/>SECTOR: QUADRANT_A
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Engineering Lab -->
+<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/15 px-4 md:px-0" id="laboratory">
+    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+            <div>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2 uppercase">Engineering Lab</h2>
+                <p class="font-label-mono text-xs text-outline uppercase tracking-wider">Active Projects & Technical Artifacts</p>
+            </div>
+            <div class="h-px flex-grow bg-outline-variant/30 mx-8 hidden md:block"></div>
+            <div class="flex gap-4">
+                <button class="p-2 border border-outline-variant hover:border-primary text-outline hover:text-primary transition-all">
+                    <span class="material-symbols-outlined">grid_view</span>
+                </button>
+                <button class="p-2 border border-outline-variant hover:border-primary text-outline hover:text-primary transition-all">
+                    <span class="material-symbols-outlined">view_list</span>
+                </button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+            <!-- ShadowMap Card -->
+            <div class="glass-panel group relative overflow-hidden border border-outline-variant/20">
+                <div class="absolute top-0 right-0 p-4 z-20">
+                    <span class="material-symbols-outlined text-secondary-container animate-pulse" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                </div>
+                <div class="h-64 overflow-hidden relative border-b border-outline-variant/20">
+                    <img alt="ShadowMap Interface" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV5SpS-ChZ81iG0XN6U9E33OL2bwF7KaxUOtmhV2CIY8RIHYhRpkPbNvwlJnGH73ujNwrCscZRRT67EAEbn8BwffShw5m33BRvh68PvgcYhvNM4DYPxRIMBIywr6qpWg_Hzn2ayzVqOVlMTe4X2lzaJJE-D9l4gW_j0WOgkffh22Sg8zSJqxHU8CDFqhOR35fM5SHJWE-E6moyHUoeYpzba7F3gCllimJ6aXiUMFmoWYa8Xq1yJFcT9uqVXdh0UYnhSllknPDEv0Xi"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-headline-lg text-[24px] text-on-surface uppercase group-hover:text-primary transition-colors">ShadowMap</h3>
+                        <div class="flex gap-1 pt-2">
+                            <div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+                            <div class="w-2 h-2 rounded-full bg-secondary-container/40"></div>
+                            <div class="w-2 h-2 rounded-full bg-secondary-container/20"></div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Real-time threat visualization for autonomous navigation in unpredictable environments. Utilizes temporal analysis to predict collision hotspots.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">PYTHON</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">TENSORFLOW</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">OPENCV</span>
+                    </div>
+                </div>
+            </div>
+            <!-- BikeGuard Card -->
+            <div class="glass-panel group relative overflow-hidden border border-outline-variant/20">
+                <div class="absolute top-0 right-0 p-4 z-20">
+                    <span class="material-symbols-outlined text-primary animate-pulse" style="font-variation-settings: 'FILL' 1;">security</span>
+                </div>
+                <div class="h-64 overflow-hidden relative border-b border-outline-variant/20">
+                    <img alt="BikeGuard Hardware" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPFaLOKWwYCpAlW5NsRaIIbuTZA9x84zPvD4aYpnwK7eiaEks7uZ_fe78xCb1BRej3CUWfJuvmPBHM3s2aBOJgh7lQ1wUaTEldm4rrMGTbbrxZ8FuqZrYgKw7JgcCwOZtKUBZxZPsH97YGs-H_k75HNM4HHqfAbeeY2HExyB1mnf6K_1VXJ5v4zm-QShc0q0OgKsw8k2sY__d1p7o4c-YuxD_fuhLRz85_ek-nto46TERTGqHbwz8qXWzX8JsuZsTTqP-ThNBxbeYJ"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-headline-lg text-[24px] text-on-surface uppercase group-hover:text-primary transition-colors">BikeGuard</h3>
+                        <div class="flex gap-1 pt-2">
+                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                            <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                            <div class="w-2 h-2 rounded-full bg-primary/20"></div>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">IoT-enabled protection suite for micro-mobility. Features edge-AI for obstacle detection and automated distress beacon signaling.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">C++</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">EMBEDDED</span>
+                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">MQTT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- The Basecamp -->
+<section class="py-24 relative overflow-hidden px-4 md:px-0" id="artifacts">
+    <div class="absolute inset-0 pointer-events-none force-split opacity-5"></div>
+    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
+        <div class="text-center mb-16">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2 uppercase">The Basecamp</h2>
+            <p class="font-label-mono text-label-mono text-outline uppercase tracking-widest">Sonic Explorations & Creative Ventures</p>
+        </div>
+        <div class="glass-panel p-6 md:p-12 relative overflow-hidden max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-48 h-48 flex-shrink-0 relative">
+                    <div class="absolute inset-0 border-2 border-primary rounded-full animate-ping opacity-20"></div>
+                    <img alt="Ash Velde Avatar" class="w-full h-full object-cover rounded-full border-4 border-surface shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbrmKEQBplJ7M5aZCgFk61LKEJbLFcUO6q587sJRysxW_wnraz_7jwscY1-nE0FbtoYb_2ye9Y1rvulzJMwvGypSrIxZ0zGjx7Y0Api1g86Jq420kiyIpfqBqyLnV2KbnmbhvV9xeJ8nx-b3dosVVrXXVjMq5JewcQZnXSNPXAWn82CrzTsv-MJFskwnS0DzoUheeLlwKx6JDtW2zHU95Wx94OfK2cTcTQs8BDEpJ0N_Sr3Pu08T1cru8EbIgXsQ4kyfG4B_1HdwST"/>
+                </div>
+                <div class="flex-grow w-full">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
+                        <div>
+                            <h4 class="font-headline-lg text-headline-lg text-on-surface">Ash Velde</h4>
+                            <span class="font-label-mono text-label-mono text-primary">PROJECT: RESONANCE</span>
+                        </div>
+                        <div class="flex gap-4 text-primary items-center">
+                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">shuffle</span>
+                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">skip_previous</span>
+                            <button id="audio-toggle" class="focus:outline-none transition-transform active:scale-95 hover:scale-105">
+                                <span id="audio-icon" class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                            </button>
+                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">skip_next</span>
+                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">repeat</span>
+                        </div>
+                    </div>
+                    <!-- Pulse Waveform -->
+                    <div class="h-32 w-full flex items-center justify-center gap-1 overflow-hidden bg-background/50 border border-outline-variant/10 px-2" id="waveform">
+                    </div>
+                    <div class="flex justify-between font-label-mono text-[10px] text-outline mt-2 tracking-wider uppercase">
+                        <span>CHANNEL_A: INDIE SATELLITE FEED</span>
+                        <span id="audio-text" class="text-primary font-bold">STATE: IDLE // READY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Anchor Entry Matrix Point -->
+<footer id="footer-anchor" class="bg-surface-container-lowest border-t border-outline-variant/30">
+    <div class="flex flex-col md:flex-row justify-between items-center w-full px-4 md:px-margin-desktop py-gutter max-w-max-width mx-auto gap-8">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <!-- Fixed text string to MED RESEARCH -->
+            <div class="font-headline-lg text-xl text-primary uppercase tracking-wider font-bold">MED RESEARCH</div>
+            <p class="font-label-mono text-[11px] text-outline mt-1 uppercase tracking-wider">
+                © 2026 MED RESEARCH // CORE WORLD SECTOR
+            </p>
+        </div>
+        <!-- Remapped technical nodes layout to explicit destination vector anchors -->
+        <div class="flex gap-8 font-label-mono text-xs">
+            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://www.linkedin.com/in/medhansh-kabadwal-30197b374/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://github.com/medhansh5" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://instagram.com/medhansh.5" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // System Telemetry Waveform Builder
+    const waveform = document.getElementById('waveform');
+    const barCount = 64;
+    const barsArray = [];
+
+    for (let i = 0; i < barCount; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'w-1 bg-primary style-transition';
+        bar.style.transition = 'height 0.15s ease-in-out';
+        
+        const ratio = i / barCount;
+        if (ratio < 0.5) {
+            bar.style.backgroundColor = '#98cbff';
+            bar.style.boxShadow = '0 0 10px rgba(152, 203, 255, 0.4)';
+        } else {
+            bar.style.backgroundColor = '#e60000';
+            bar.style.boxShadow = '0 0 10px rgba(230, 0, 0, 0.4)';
+        }
+        bar.style.height = '15%';
+        waveform.appendChild(bar);
+        barsArray.push(bar);
+    }
+
+    // Interactive Audio Stream Engine Controller
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioIcon = document.getElementById('audio-icon');
+    const audioText = document.getElementById('audio-text');
+    
+    const audioInstance = new Audio('audio/ash-velde-session.mp3');
+    let isPlaying = false;
+    let telemetryInterval = null;
+
+    function runWaveformAnimation() {
+        barsArray.forEach(bar => {
+            const height = Math.random() * 80 + 15;
+            bar.style.height = `${height}%`;
+        });
+    }
+
+    function toggleProcessingState(active) {
+        if (active) {
+            if (!telemetryInterval) {
+                telemetryInterval = setInterval(runWaveformAnimation, 130);
+            }
+            if (audioIcon && audioText) {
+                audioIcon.textContent = 'pause_circle';
+                audioText.textContent = 'STATE: ACTIVE // STREAMING';
+            }
+        } else {
+            if (telemetryInterval) {
+                clearInterval(telemetryInterval);
+                telemetryInterval = null;
+            }
+            barsArray.forEach(bar => bar.style.height = '15%');
+            if (audioIcon && audioText) {
+                audioIcon.textContent = 'play_circle';
+                audioText.textContent = 'STATE: IDLE // READY';
+            }
+        }
+    }
+
+    if (audioToggle) {
+        audioToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                audioInstance.pause();
+                toggleProcessingState(false);
+            } else {
+                audioInstance.play().catch(err => console.log("Stream initialize handled: ", err));
+                toggleProcessingState(true);
+            }
+            isPlaying = !isPlaying;
+        });
+    }
+
+    audioInstance.addEventListener('ended', () => {
+        isPlaying = false;
+        toggleProcessingState(false);
+    });
+
+    // Custom Easing Smooth Scroll Controller
+    document.querySelectorAll('header a, footer .flex.gap-8 a, .flex.max-w-md.mx-auto a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId.startsWith('#')) {
+                e.preventDefault();
+                
+                // Absolute structural layout check targeting page top coordinates directly via home header anchor
+                if (targetId === '#the-summit') {
+                    smoothScrollToPosition(0, 900);
+                    return;
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const targetY = targetElement.getBoundingClientRect().top + window.pageYOffset - 70; // 70px absolute spacing clear buffer offset for header tracking layout clearance
+                    smoothScrollToPosition(targetY, 900);
+                }
+            }
+        });
+    });
+
+    function smoothScrollToPosition(targetY, duration) {
+        const startPosition = window.pageYOffset;
+        const distance = targetY - startPosition;
+        let startTime = null;
+
+        function animationFrameStep(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            
+            // Quadratic Ease-Out execution curve translation: t * (2 - t)
+            const progressRatio = Math.min(timeElapsed / duration, 1);
+            const easeFactor = progressRatio * (2 - progressRatio);
+
+            window.scrollTo(0, startPosition + (distance * easeFactor));
+
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animationFrameStep);
+            }
+        }
+        requestAnimationFrame(animationFrameStep);
+    }
+</script>
 </body>
 </html>
