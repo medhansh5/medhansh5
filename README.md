@@ -9,7 +9,7 @@
 
 I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, safety, and absolute control to real-world infrastructure. Like tuning a hyperdrive, I bridge the gap between raw digital intelligence and physical reality on the roads of Ghaziabad and beyond. The goal isn't just to observe; it's to reshape.
 
-- 🛠️ **Forging in the Archives:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0-pwa](https://github.com/medhansh5/shadowmap), [BikeGuard (v0.2.0-alpha)](https://github.com/medhansh5/bikeguard)
+- 🛠️ **Forging in the Archives:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0-pwa](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.1.0 GA)](https://github.com/medhansh5/bikeguard)
 - 📚 **Mastering the Dark Arts:** Advanced Signal Processing, Zero-Allocation C++, Embedded AI, and ROS (Robot Operating System)
 - 🏍️ **The Imperial Starfighter:** Gathering real-time telemetry on The Baron (2025 Royal Enfield Classic 350)
 - 🎯 **The Ultimate Power:** Future Stanford Masters Candidate
@@ -44,10 +44,10 @@ A native C++ optimized road surface classifier analyzing high-frequency accelero
 - **Tech:** `FastAPI`, `PostgreSQL`, `Geospatial analysis`, `Sensor Fusion`
 - **Features:** Mapping the shadows to find the safest trajectory.
 
-### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v0.2.0-alpha*
-An unyielding computer vision enforcement model engineered for real-time helmet compliance detection at the edge.
-- **Tech:** `YOLOv8`, `TFLite`, `Edge Deployment`
-- **Mission:** Enforcing rider discipline and eradicating preventable fatalities.
+### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v1.1.0 GA*
+An Enterprise Physical AI Ecosystem engineered for high-density traffic enforcement, featuring real-time Indian ALPR, optical flow speed estimation, pediatric pillion detection, and cryptographic SHA-256 audit trails.
+- **Tech:** `YOLOv8`, `C++ / Winsock2`, `OpenCV Optical Flow`, `SHA-256 Cryptography`, `Edge Deployment`
+- **Mission:** Enforcing rider discipline, automated e-Challan generation, and eradicating preventable fatalities.
 
 ---
 
@@ -55,7 +55,7 @@ An unyielding computer vision enforcement model engineered for real-time helmet 
 
 Under the alias **Ash**, I explore the dark, moody side of human emotion and urban concrete through cinematic, retro-digital photography and introspective poetry. Every empire needs its art—a creative counterbalance to engineering absolute control.
  
-- 📸 **Cinematic Photography:** [@medhansh.5](https://instagram.com/medhansh.5)
+- 📸 **Cinematic Photography:** [@medhansh.66](https://instagram.com/medhansh.66)
 - ✍️ **Poetry & Writing:** [@ashvelde](https://instagram.com/ashvelde)
 - 📧 **Direct Transmissions:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
 - 💼 **Holonet LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b374/)
