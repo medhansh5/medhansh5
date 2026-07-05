@@ -9,7 +9,7 @@
 
 I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, safety, and absolute control to real-world infrastructure. Like tuning a hyperdrive, I bridge the gap between raw digital intelligence and physical reality on the roads of Ghaziabad and beyond. The goal isn't just to observe; it's to reshape.
 
-- 🛠️ **Forging in the Archives:** [PotholeNet v2.3](https://github.com/medhansh5/potholenet), [ShadowMap v1.3.0-pwa](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.1.0 GA)](https://github.com/medhansh5/bikeguard)
+- 🛠️ **Forging in the Archives:** [PotholeNet v3.0.0](https://github.com/medhansh5/potholenet), [ShadowMap v1.5.0](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.2.0 GA)](https://github.com/medhansh5/bikeguard)
 - 📚 **Mastering the Dark Arts:** Advanced Signal Processing, Zero-Allocation C++, Embedded AI, and ROS (Robot Operating System)
 - 🏍️ **The Imperial Starfighter:** Gathering real-time telemetry on The Baron (2025 Royal Enfield Classic 350)
 - 🎯 **The Ultimate Power:** Future Stanford Masters Candidate
@@ -34,19 +34,19 @@ I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, saf
 
 ## 🚀 The Projects (Weapons of Order)
 
-### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v2.3*
-A native C++ optimized road surface classifier analyzing high-frequency accelerometer telemetry to crush chaos on India's infrastructure.
-- **Tech:** `C++ Native Bridge`, `scikit-learn`, `SciPy`, `FFT Signal Processing`
-- **Impact:** Bringing absolute mathematical predictability to unpredictable terrain.
+### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v3.0.0*
+An enterprise-grade physical AI road anomaly classification platform featuring a native C++ Edge Core with Biquad SOS filtering, scikit-learn BallTree DBSCAN clustering, and PostGIS spatial ingestion.
+- **Tech:** `C++ Native Bridge`, `scikit-learn BallTree DBSCAN`, `PostGIS`, `FFT Signal Processing`
+- **Impact:** Bringing absolute mathematical predictability and real-time spatial intelligence to unpredictable terrain.
 
-### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.3.0-pwa*
-**Real-time motorcycle telemetry visualization.** A geospatial platform that tracks solar shading and road anomalies to blueprint urban sectors.
-- **Tech:** `FastAPI`, `PostgreSQL`, `Geospatial analysis`, `Sensor Fusion`
-- **Features:** Mapping the shadows to find the safest trajectory.
+### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.5.0*
+**Real-time motorcycle telemetry & cyberpunk rider HUD.** A geospatial platform featuring Web Audio API acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.
+- **Tech:** `Flask / SQLAlchemy 2.0`, `PostgreSQL / PostGIS`, `Web Audio API / Haptics`, `Sensor Fusion`
+- **Features:** Mapping anomalies and tracking collision hotspots with live telemetry export.
 
-### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v1.1.0 GA*
-An Enterprise Physical AI Ecosystem engineered for high-density traffic enforcement, featuring real-time Indian ALPR, optical flow speed estimation, pediatric pillion detection, and cryptographic SHA-256 audit trails.
-- **Tech:** `YOLOv8`, `C++ / Winsock2`, `OpenCV Optical Flow`, `SHA-256 Cryptography`, `Edge Deployment`
+### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v1.2.0 GA*
+A unified 9-stage Physical AI road engine engineered for high-density traffic enforcement, featuring real-time Indian ALPR, optical flow speed estimation, pediatric pillion sorting, cultural helmet classification, and cryptographic SHA-256 audit trails.
+- **Tech:** `C++ 9-Stage Road Engine`, `YOLOv8 / DirectML`, `OpenCV Optical Flow`, `SHA-256 Cryptography`, `Embedded MJPEG/REST Server`
 - **Mission:** Enforcing rider discipline, automated e-Challan generation, and eradicating preventable fatalities.
 
 ---
