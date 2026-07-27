@@ -1,520 +1,223 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medhansh Kabadwal — Physical AI Engineer</title>
+    <meta name="description" content="Medhansh Kabadwal: Engineering Intelligent Safety Systems for the Developing World. Physical AI Engineer specializing in Computer Vision, Edge AI, and Road Safety Infrastructure." />
+    <meta name="theme-color" content="#050507" />
 
-<html class="dark" lang="en"><head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "inverse-on-surface": "#313031",
-                        "on-primary-fixed-variant": "#004a77",
-                        "surface-variant": "#353436",
-                        "on-primary-fixed": "#001d33",
-                        "background": "#131314",
-                        "on-tertiary": "#303031",
-                        "on-primary": "#003354",
-                        "surface": "#131314",
-                        "error": "#ffb4ab",
-                        "on-secondary": "#690000",
-                        "primary-fixed": "#cfe5ff",
-                        "tertiary-fixed-dim": "#c7c6c6",
-                        "on-secondary-container": "#fff6f5",
-                        "on-error-container": "#ffdad6",
-                        "tertiary-container": "#9d9c9c",
-                        "secondary": "#ffb4a8",
-                        "outline": "#88919d",
-                        "on-tertiary-container": "#333434",
-                        "inverse-surface": "#e5e2e3",
-                        "surface-bright": "#3a393a",
-                        "tertiary": "#c7c6c6",
-                        "secondary-container": "#e60000",
-                        "on-primary-container": "#00375a",
-                        "secondary-fixed-dim": "#ffb4a8",
-                        "on-background": "#e5e2e3",
-                        "surface-tint": "#98cbff",
-                        "surface-container-low": "#1c1b1c",
-                        "surface-dim": "#131314",
-                        "primary-container": "#00a3ff",
-                        "primary": "#98cbff",
-                        "on-tertiary-fixed": "#1b1c1c",
-                        "on-tertiary-fixed-variant": "#464747",
-                        "surface-container-high": "#2a2a2b",
-                        "tertiary-fixed": "#e4e2e2",
-                        "primary-fixed-dim": "#98cbff",
-                        "secondary-fixed": "#ffdad4",
-                        "inverse-primary": "#00629d",
-                        "on-secondary-fixed-variant": "#930100",
-                        "on-surface": "#e5e2e3",
-                        "error-container": "#93000a",
-                        "surface-container-highest": "#353436",
-                        "on-surface-variant": "#bec7d4",
-                        "on-secondary-fixed": "#410000",
-                        "outline-variant": "#3f4852",
-                        "surface-container-lowest": "#0e0e0f",
-                        "on-error": "#690005",
-                        "surface-container": "#201f20"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "margin-desktop": "64px",
-                        "gutter": "24px",
-                        "max-width": "1440px",
-                        "margin-mobile": "20px",
-                        "unit": "8px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Sora"],
-                        "headline-lg-mobile": ["Sora"],
-                        "display-lg": ["Sora"],
-                        "body-md": ["Inter"],
-                        "label-mono": ["JetBrains Mono"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
-                    }
-                }
-            }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
         }
+    }
     </script>
-    <style>
-        body {
-            background-color: #0A0A0B;
-            color: #e5e2e3;
-            overflow-x: hidden;
-        }
-        .max-w-max-width {
-            max-width: 1440px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            width: 100% !important;
-        }
-        .text-on-surface { color: #e5e2e3 !important; }
-        .text-on-surface-variant { color: #bec7d4 !important; }
-        .text-primary { color: #98cbff !important; }
-        .text-secondary { color: #ffb4a8 !important; }
-        .text-outline { color: #88919d !important; }
-        
-        .bg-secondary-container { background-color: #e60000 !important; }
-        .bg-surface-container-highest { background-color: #353436 !important; }
-        
-        .saber-glow-blue {
-            box-shadow: 0 0 15px 2px rgba(152, 203, 255, 0.4);
-        }
-        .saber-glow-red {
-            box-shadow: 0 0 15px 2px rgba(230, 0, 0, 0.4);
-        }
-        .glass-panel {
-            background: rgba(20, 20, 21, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(136, 145, 157, 0.1);
-        }
-        .hud-scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(152, 203, 255, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .force-split {
-            background: linear-gradient(90deg, rgba(0, 163, 255, 0.1) 0%, rgba(230, 0, 0, 0.1) 100%);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body class="font-body-md text-body-md bg-[#0A0A0B]">
+<body>
 
-<!-- TopAppBar -->
-<header class="fixed top-0 z-50 w-full bg-surface/80 backdrop-blur-md border-b border-secondary-container/50">
-    <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop py-4 max-w-max-width mx-auto">
-        <a href="#the-summit" class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(152,203,255,0.6)] cursor-pointer hover:opacity-90 transition-opacity">
-            MED ARCHIVE
-        </a>
-        <nav class="hidden md:flex gap-8 items-center">
-            <a class="font-label-mono text-label-mono text-primary border-b-2 border-primary pb-1" href="#theory">Theory</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#laboratory">Laboratory</a>
-            <a class="font-label-mono text-label-mono text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#artifacts">About</a>
-        </nav>
-        <a href="mailto:medhansh5@proton.me" class="bg-primary text-on-primary px-6 py-2 font-label-mono text-label-mono rounded-none tracking-widest active:scale-95 duration-200 saber-glow-blue font-bold uppercase text-center block">
-            INITIATE
-        </a>
-    </div>
-</header>
-
-<!-- The Summit (Hero) -->
-<section id="the-summit" class="relative h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <img alt="Hero Background" class="w-full h-full object-cover opacity-25 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmTfHWckZQMzC_pxnem1xAli9keaKJ7mO-64xylmWDhsB1O56RIxmBHo7FTOI9R1CCNHbAstMtLCQUm_vHoTtB2Oo6k5uJHJQTUwp555O5ESApCEH_XxcHr2TpAIngldqntvxDViyePZNzd7szIzb8rk5lCOxn7XFqHo7JH7rxn-2oBwOaqCzdsQAe7A-5_33SLNgrpf8XGUKQSHEg6VVQzkWyAFkeZUvkyIYNRIF5XJfCy5kuwKrVx_H-sJzbjziwsfYpGkchgi2b"/>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background"></div>
-    </div>
-    <div class="relative z-10 text-center px-6 md:px-margin-desktop max-w-4xl">
-        <div class="mb-6 inline-block">
-            <span class="font-label-mono text-label-mono px-4 py-1.5 border border-primary text-primary saber-glow-blue uppercase tracking-[0.3em] bg-background/90 backdrop-blur-sm">Sector 7-G // Equilibrium</span>
-        </div>
-        <h1 class="font-display-lg text-on-surface mb-8 tracking-tighter uppercase leading-[1.1] text-3xl md:text-5xl lg:text-[56px]">
-            MEDHANSH KABADWAL: <span class="text-primary drop-shadow-[0_0_10px_rgba(152,203,255,0.4)]">Engineering Intelligent Safety Systems</span> for the Developing World.
-        </h1>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
-            <a class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-label-mono text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all saber-glow-blue text-center rounded-none" href="#laboratory">Open Laboratory</a>
-            <a class="w-full sm:w-auto px-8 py-4 border-2 border-on-surface text-on-surface font-label-mono text-xs uppercase tracking-widest hover:bg-on-surface hover:text-background transition-all text-center rounded-none bg-background/40 backdrop-blur-sm" href="#artifacts">View Archive</a>
-        </div>
-    </div>
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
-        <span class="font-label-mono text-[10px] text-outline uppercase tracking-widest">Descent</span>
-        <span class="material-symbols-outlined text-primary">keyboard_double_arrow_down</span>
-    </div>
-</section>
-
-<!-- FusionNet Overlay -->
-<section class="py-24 relative overflow-hidden px-4 md:px-0" id="theory">
-    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-            <div class="lg:col-span-5">
-                <h2 class="font-headline-lg text-headline-lg mb-4 text-primary uppercase">FusionNet Protocol</h2>
-                <p class="text-on-surface-variant font-body-md mb-8 leading-relaxed">
-                    A neural architecture designed for high-stakes environmental perception. By synthesizing disparate sensor streams, FusionNet establishes a digital consciousness capable of predictive safety maneuvers in chaotic urban terrains.
-                </p>
-                <div class="space-y-6">
-                    <div class="glass-panel p-6 border-l-4 border-primary saber-glow-blue">
-                        <div class="flex justify-between items-end mb-2 gap-2">
-                            <span class="font-label-mono text-xs text-outline uppercase tracking-wider">F1-Score Reliability</span>
-                            <span class="font-headline-lg text-2xl md:text-3xl text-primary font-bold">0.87</span>
-                        </div>
-                        <div class="h-2 w-full bg-surface-container-highest">
-                            <div class="h-full bg-primary" style="width: 87%"></div>
-                        </div>
-                    </div>
-                    <div class="glass-panel p-6 border-l-4 border-secondary-container saber-glow-red">
-                        <div class="flex justify-between items-end mb-2 gap-2">
-                            <span class="font-label-mono text-xs text-outline uppercase tracking-wider">False Positive Mitigation</span>
-                            <span class="font-headline-lg text-2xl md:text-3xl text-secondary font-bold">-68.1%</span>
-                        </div>
-                        <div class="h-2 w-full bg-surface-container-highest">
-                            <div class="h-full bg-secondary-container" style="width: 68.1%"></div>
-                        </div>
-                    </div>
-                </div>
+    <!-- ═══════════════════════════════════════════════════════
+         LOADING SCREEN
+         ═══════════════════════════════════════════════════════ -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo" aria-hidden="true">MED<span class="accent">.</span></div>
+            <div class="loader-bar-track">
+                <div id="loader-bar-fill"></div>
             </div>
-            <div class="lg:col-span-7 flex justify-center relative mt-12 lg:mt-0">
-                <div class="w-full max-w-[460px] aspect-square glass-panel rounded-full flex items-center justify-center relative hud-scanline border-outline-variant/20">
-                    <div class="absolute inset-4 border border-primary/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
-                    <div class="absolute inset-12 border-dashed border border-secondary-container/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div class="z-10 text-center px-4">
-                        <span class="material-symbols-outlined text-[80px] text-primary mb-4" style="font-variation-settings: 'FILL' 1;">hub</span>
-                        <div class="font-label-mono text-label-mono text-on-surface font-bold tracking-wider">SYNAPTIC CORE ACTIVE</div>
-                    </div>
-                    <div class="absolute top-10 right-0 glass-panel p-3 text-[10px] font-label-mono border-r-4 border-primary bg-background/90 text-on-surface-variant">
-                        LATENCY: 12ms<br/>THREAD: 0x449F
-                    </div>
-                    <div class="absolute bottom-20 left-0 glass-panel p-3 text-[10px] font-label-mono border-l-4 border-secondary-container bg-background/90 text-on-surface-variant">
-                        BUFFER: STABLE<br/>SECTOR: QUADRANT_A
-                    </div>
+            <div class="loader-info">
+                <span id="loader-percent">0%</span>
+                <span id="loader-status">INITIALIZING SYSTEMS...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         THREE.JS CANVAS
+         ═══════════════════════════════════════════════════════ -->
+    <canvas id="webgl" aria-hidden="true"></canvas>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SCROLL CONTAINER (drives GSAP camera + overlay triggers)
+         ═══════════════════════════════════════════════════════ -->
+    <div id="scroll-container">
+        <div class="scroll-spacer" id="spacer-hero"></div>
+        <div class="scroll-spacer" id="spacer-fusionnet"></div>
+        <div class="scroll-spacer spacer-tall" id="spacer-projects"></div>
+        <div class="scroll-spacer" id="spacer-contact"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO OVERLAY
+         ═══════════════════════════════════════════════════════ -->
+    <div id="hero-overlay" class="overlay">
+        <div class="overlay-inner hero-content">
+            <div class="hero-badge anim">
+                <span class="badge-dot"></span>
+                <span class="badge-text">Sector 7-G // Equilibrium</span>
+            </div>
+            <h1 class="hero-title anim">
+                MEDHANSH<br/><span class="hero-title-accent">KABADWAL</span>
+            </h1>
+            <p class="hero-subtitle anim">Engineering Intelligent Safety Systems<br/>for the Developing World.</p>
+            <div class="hero-role anim">Physical AI Engineer • Computer Vision • Edge Systems</div>
+            <div class="hero-cta anim">
+                <a href="mailto:medhansh5@proton.me" class="btn btn-primary" id="btn-contact-hero">
+                    <span class="material-symbols-outlined">rocket_launch</span>
+                    INITIATE CONTACT
+                </a>
+                <a href="#" class="btn btn-outline" id="btn-explore">
+                    <span class="material-symbols-outlined">explore</span>
+                    EXPLORE
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator anim">
+            <span class="scroll-text">Scroll to descend</span>
+            <span class="material-symbols-outlined scroll-arrow">keyboard_double_arrow_down</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FUSIONNET OVERLAY
+         ═══════════════════════════════════════════════════════ -->
+    <div id="fusionnet-overlay" class="overlay">
+        <div class="overlay-inner fusionnet-content">
+            <div class="section-label anim">
+                <span class="label-line"></span>
+                <span class="label-text">01 // Research</span>
+            </div>
+            <h2 class="section-title anim">FusionNet<br/><span class="title-accent">Protocol</span></h2>
+            <p class="section-desc anim">A multi-modal neural architecture designed for high-stakes environmental perception. Synthesizing disparate sensor streams to establish predictive safety maneuvers in chaotic urban terrains.</p>
+            <div class="stats-grid anim">
+                <div class="stat-card" id="stat-f1">
+                    <span class="stat-label">F1-Score Reliability</span>
+                    <span class="stat-value" id="stat-f1-value" data-target="0.87">0.00</span>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="stat-f1-bar" data-width="87"></div></div>
+                </div>
+                <div class="stat-card stat-card-red" id="stat-fp">
+                    <span class="stat-label">False Positive Mitigation</span>
+                    <span class="stat-value" id="stat-fp-value" data-target="-68.1">0.0</span>
+                    <div class="stat-bar"><div class="stat-bar-fill" id="stat-fp-bar" data-width="68"></div></div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- Engineering Lab -->
-<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/15 px-4 md:px-0" id="laboratory">
-    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
-            <div>
-                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2 uppercase">Engineering Lab</h2>
-                <p class="font-label-mono text-xs text-outline uppercase tracking-wider">Active Projects & Technical Artifacts</p>
+    <!-- ═══════════════════════════════════════════════════════
+         PROJECTS OVERLAY
+         ═══════════════════════════════════════════════════════ -->
+    <div id="projects-overlay" class="overlay">
+        <div class="overlay-inner projects-content">
+            <div class="section-label anim">
+                <span class="label-line"></span>
+                <span class="label-text">02 // Laboratory</span>
             </div>
-            <div class="h-px flex-grow bg-outline-variant/30 mx-8 hidden md:block"></div>
-            <div class="flex gap-4">
-                <button class="p-2 border border-outline-variant hover:border-primary text-outline hover:text-primary transition-all">
-                    <span class="material-symbols-outlined">grid_view</span>
-                </button>
-                <button class="p-2 border border-outline-variant hover:border-primary text-outline hover:text-primary transition-all">
-                    <span class="material-symbols-outlined">view_list</span>
-                </button>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            <!-- ShadowMap Card -->
-            <div class="glass-panel group relative overflow-hidden border border-outline-variant/20">
-                <div class="absolute top-0 right-0 p-4 z-20">
-                    <span class="material-symbols-outlined text-secondary-container animate-pulse" style="font-variation-settings: 'FILL' 1;">emergency</span>
-                </div>
-                <div class="h-64 overflow-hidden relative border-b border-outline-variant/20">
-                    <img alt="ShadowMap Interface" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV5SpS-ChZ81iG0XN6U9E33OL2bwF7KaxUOtmhV2CIY8RIHYhRpkPbNvwlJnGH73ujNwrCscZRRT67EAEbn8BwffShw5m33BRvh68PvgcYhvNM4DYPxRIMBIywr6qpWg_Hzn2ayzVqOVlMTe4X2lzaJJE-D9l4gW_j0WOgkffh22Sg8zSJqxHU8CDFqhOR35fM5SHJWE-E6moyHUoeYpzba7F3gCllimJ6aXiUMFmoWYa8Xq1yJFcT9uqVXdh0UYnhSllknPDEv0Xi"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
-                </div>
-                <div class="p-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-headline-lg text-[24px] text-on-surface uppercase group-hover:text-primary transition-colors">ShadowMap</h3>
-                        <div class="flex gap-1 pt-2">
-                            <div class="w-2 h-2 rounded-full bg-secondary-container"></div>
-                            <div class="w-2 h-2 rounded-full bg-secondary-container/40"></div>
-                            <div class="w-2 h-2 rounded-full bg-secondary-container/20"></div>
-                        </div>
+            <h2 class="section-title anim">Engineering<br/><span class="title-accent">Lab</span></h2>
+            <div class="project-cards">
+                <!-- ShadowMap -->
+                <article class="project-card anim" id="card-shadowmap">
+                    <div class="project-header">
+                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                        <h3 class="project-name">ShadowMap</h3>
                     </div>
-                    <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Real-time motorcycle telemetry visualization with a cyberpunk rider HUD. Features Web Audio API acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">PYTHON / FLASK</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">POSTGIS</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">WEB AUDIO / HAPTICS</span>
+                    <p class="project-desc">Real-time motorcycle telemetry visualization with cyberpunk rider HUD. Web Audio acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python / Flask</span>
+                        <span class="tag">PostGIS</span>
+                        <span class="tag">Web Audio / Haptics</span>
                     </div>
-                </div>
-            </div>
-            <!-- BikeGuard Card -->
-            <div class="glass-panel group relative overflow-hidden border border-outline-variant/20">
-                <div class="absolute top-0 right-0 p-4 z-20">
-                    <span class="material-symbols-outlined text-primary animate-pulse" style="font-variation-settings: 'FILL' 1;">security</span>
-                </div>
-                <div class="h-64 overflow-hidden relative border-b border-outline-variant/20">
-                    <img alt="BikeGuard Hardware" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPFaLOKWwYCpAlW5NsRaIIbuTZA9x84zPvD4aYpnwK7eiaEks7uZ_fe78xCb1BRej3CUWfJuvmPBHM3s2aBOJgh7lQ1wUaTEldm4rrMGTbbrxZ8FuqZrYgKw7JgcCwOZtKUBZxZPsH97YGs-H_k75HNM4HHqfAbeeY2HExyB1mnf6K_1VXJ5v4zm-QShc0q0OgKsw8k2sY__d1p7o4c-YuxD_fuhLRz85_ek-nto46TERTGqHbwz8qXWzX8JsuZsTTqP-ThNBxbeYJ"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
-                </div>
-                <div class="p-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-headline-lg text-[24px] text-on-surface uppercase group-hover:text-primary transition-colors">BikeGuard</h3>
-                        <div class="flex gap-1 pt-2">
-                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                            <div class="w-2 h-2 rounded-full bg-primary/40"></div>
-                            <div class="w-2 h-2 rounded-full bg-primary/20"></div>
-                        </div>
+                    <a href="https://github.com/medhansh5/shadowmap" target="_blank" rel="noopener noreferrer" class="project-link" id="link-shadowmap">
+                        View Source <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </article>
+
+                <!-- BikeGuard -->
+                <article class="project-card anim" id="card-bikeguard">
+                    <div class="project-header">
+                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">security</span>
+                        <h3 class="project-name">BikeGuard</h3>
                     </div>
-                    <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Unified 9-stage Physical AI road engine featuring Indian ALPR, optical flow speed estimation, pediatric pillion sorting, cultural helmet classification, and live MJPEG/REST streaming.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">C++ 9-STAGE ENGINE</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">YOLOV8 / DIRECTML</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">ALPR / SHA-256</span>
+                    <p class="project-desc">Unified 9-stage Physical AI road engine. Indian ALPR, optical flow speed estimation, pediatric pillion sorting, cultural helmet classification, and SHA-256 audit trails.</p>
+                    <div class="project-tags">
+                        <span class="tag">C++ 9-Stage Engine</span>
+                        <span class="tag">YOLOv8 / DirectML</span>
+                        <span class="tag">ALPR / SHA-256</span>
                     </div>
-                </div>
-            </div>
-            <!-- PotholeNet Card -->
-            <div class="glass-panel group relative overflow-hidden border border-outline-variant/20">
-                <div class="absolute top-0 right-0 p-4 z-20">
-                    <span class="material-symbols-outlined text-primary animate-pulse" style="font-variation-settings: 'FILL' 1;">add_road</span>
-                </div>
-                <div class="h-64 overflow-hidden relative border-b border-outline-variant/20">
-                    <img alt="PotholeNet Telemetry HUD" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100" src="assets/potholenet.png"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80"></div>
-                </div>
-                <div class="p-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-headline-lg text-[24px] text-on-surface uppercase group-hover:text-primary transition-colors">PotholeNet</h3>
-                        <div class="flex gap-1 pt-2">
-                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                            <div class="w-2 h-2 rounded-full bg-primary/40"></div>
-                            <div class="w-2 h-2 rounded-full bg-primary/20"></div>
-                        </div>
+                    <a href="https://github.com/medhansh5/bikeguard" target="_blank" rel="noopener noreferrer" class="project-link" id="link-bikeguard">
+                        View Source <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </article>
+
+                <!-- PotholeNet -->
+                <article class="project-card anim" id="card-potholenet">
+                    <div class="project-header">
+                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">add_road</span>
+                        <h3 class="project-name">PotholeNet</h3>
                     </div>
-                    <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Enterprise physical AI road anomaly classification platform featuring a native C++ Edge Core with Biquad SOS filtering, scikit-learn BallTree DBSCAN clustering, and PostGIS spatial ingestion.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">C++ EDGE CORE</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">BALLTREE DBSCAN</span>
-                        <span class="px-2.5 py-1 bg-surface-container-highest text-primary font-label-mono text-[11px] tracking-wider border border-primary/20">POSTGIS</span>
+                    <p class="project-desc">Enterprise physical AI road anomaly classification platform. Native C++ Edge Core with Biquad SOS filtering, BallTree DBSCAN clustering, and PostGIS spatial ingestion.</p>
+                    <div class="project-tags">
+                        <span class="tag">C++ Edge Core</span>
+                        <span class="tag">BallTree DBSCAN</span>
+                        <span class="tag">PostGIS</span>
                     </div>
-                </div>
+                    <a href="https://github.com/medhansh5/potholenet" target="_blank" rel="noopener noreferrer" class="project-link" id="link-potholenet">
+                        View Source <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </article>
             </div>
         </div>
     </div>
-</section>
 
-<!-- The Basecamp -->
-<section class="py-24 relative overflow-hidden px-4 md:px-0" id="artifacts">
-    <div class="absolute inset-0 pointer-events-none force-split opacity-5"></div>
-    <div class="max-w-max-width mx-auto px-2 md:px-margin-desktop">
-        <div class="text-center mb-16">
-            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2 uppercase">The Basecamp</h2>
-            <p class="font-label-mono text-label-mono text-outline uppercase tracking-widest">Sonic Explorations & Creative Ventures</p>
-        </div>
-        <div class="glass-panel p-6 md:p-12 relative overflow-hidden max-w-4xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-48 h-48 flex-shrink-0 relative">
-                    <div class="absolute inset-0 border-2 border-primary rounded-full animate-ping opacity-20"></div>
-                    <img alt="Ash Velde Avatar" class="w-full h-full object-cover rounded-full border-4 border-surface shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbrmKEQBplJ7M5aZCgFk61LKEJbLFcUO6q587sJRysxW_wnraz_7jwscY1-nE0FbtoYb_2ye9Y1rvulzJMwvGypSrIxZ0zGjx7Y0Api1g86Jq420kiyIpfqBqyLnV2KbnmbhvV9xeJ8nx-b3dosVVrXXVjMq5JewcQZnXSNPXAWn82CrzTsv-MJFskwnS0DzoUheeLlwKx6JDtW2zHU95Wx94OfK2cTcTQs8BDEpJ0N_Sr3Pu08T1cru8EbIgXsQ4kyfG4B_1HdwST"/>
-                </div>
-                <div class="flex-grow w-full">
-                    <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
-                        <div>
-                            <h4 class="font-headline-lg text-headline-lg text-on-surface">Ash Velde</h4>
-                            <span class="font-label-mono text-label-mono text-primary">PROJECT: RESONANCE</span>
-                        </div>
-                        <div class="flex gap-4 text-primary items-center">
-                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">shuffle</span>
-                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">skip_previous</span>
-                            <button id="audio-toggle" class="focus:outline-none transition-transform active:scale-95 hover:scale-105">
-                                <span id="audio-icon" class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-                            </button>
-                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">skip_next</span>
-                            <span class="material-symbols-outlined select-none opacity-30 cursor-not-allowed">repeat</span>
-                        </div>
-                    </div>
-                    <!-- Pulse Waveform -->
-                    <div class="h-32 w-full flex items-center justify-center gap-1 overflow-hidden bg-background/50 border border-outline-variant/10 px-2" id="waveform">
-                    </div>
-                    <div class="flex justify-between font-label-mono text-[10px] text-outline mt-2 tracking-wider uppercase">
-                        <span>CHANNEL_A: INDIE SATELLITE FEED</span>
-                        <span id="audio-text" class="text-primary font-bold">STATE: IDLE // READY</span>
-                    </div>
-                </div>
+    <!-- ═══════════════════════════════════════════════════════
+         CONTACT OVERLAY
+         ═══════════════════════════════════════════════════════ -->
+    <div id="contact-overlay" class="overlay">
+        <div class="overlay-inner contact-content">
+            <div class="section-label anim">
+                <span class="label-line"></span>
+                <span class="label-text">03 // Transmit</span>
             </div>
+            <h2 class="section-title anim">Initiate<br/><span class="title-accent">Contact</span></h2>
+            <p class="section-desc anim">Ready to discuss Physical AI, edge computing, or road safety systems? Open a channel.</p>
+            <a href="mailto:medhansh5@proton.me" class="btn btn-primary btn-lg anim" id="btn-contact-footer">
+                <span class="material-symbols-outlined">mail</span>
+                medhansh5@proton.me
+            </a>
+            <div class="social-links anim">
+                <a href="https://www.linkedin.com/in/medhansh-kabadwal-30197b374/" target="_blank" rel="noopener noreferrer" class="social-link" id="social-linkedin">
+                    LinkedIn <span class="material-symbols-outlined">arrow_outward</span>
+                </a>
+                <a href="https://github.com/medhansh5" target="_blank" rel="noopener noreferrer" class="social-link" id="social-github">
+                    GitHub <span class="material-symbols-outlined">arrow_outward</span>
+                </a>
+                <a href="https://instagram.com/medhansh.66" target="_blank" rel="noopener noreferrer" class="social-link" id="social-instagram">
+                    Instagram <span class="material-symbols-outlined">arrow_outward</span>
+                </a>
+            </div>
+            <div class="copyright anim">© 2026 Medhansh Kabadwal // All Systems Nominal</div>
         </div>
     </div>
-</section>
 
-<!-- Footer Anchor Entry Matrix Point -->
-<footer id="footer-anchor" class="bg-surface-container-lowest border-t border-outline-variant/30">
-    <div class="flex flex-col md:flex-row justify-between items-center w-full px-4 md:px-margin-desktop py-gutter max-w-max-width mx-auto gap-8">
-        <div class="flex flex-col items-center md:items-start text-center md:text-left">
-            <!-- Fixed text string to MED RESEARCH -->
-            <div class="font-headline-lg text-xl text-primary uppercase tracking-wider font-bold">MED RESEARCH</div>
-            <p class="font-label-mono text-[11px] text-outline mt-1 uppercase tracking-wider">
-                © 2026 MED RESEARCH // CORE WORLD SECTOR
-            </p>
-        </div>
-        <!-- Remapped technical nodes layout to explicit destination vector anchors -->
-        <div class="flex gap-8 font-label-mono text-xs">
-            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://www.linkedin.com/in/medhansh-kabadwal-30197b374/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://github.com/medhansh5" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="text-outline hover:text-primary transition-colors uppercase tracking-wider" href="https://instagram.com/medhansh.66" target="_blank" rel="noopener noreferrer">Instagram</a>
-        </div>
-    </div>
-</footer>
+    <!-- ═══════════════════════════════════════════════════════
+         3D ENGINE
+         ═══════════════════════════════════════════════════════ -->
+    <script type="module" src="main.js"></script>
 
-<script>
-    // System Telemetry Waveform Builder
-    const waveform = document.getElementById('waveform');
-    const barCount = 64;
-    const barsArray = [];
-
-    for (let i = 0; i < barCount; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'w-1 bg-primary style-transition';
-        bar.style.transition = 'height 0.15s ease-in-out';
-        
-        const ratio = i / barCount;
-        if (ratio < 0.5) {
-            bar.style.backgroundColor = '#98cbff';
-            bar.style.boxShadow = '0 0 10px rgba(152, 203, 255, 0.4)';
-        } else {
-            bar.style.backgroundColor = '#e60000';
-            bar.style.boxShadow = '0 0 10px rgba(230, 0, 0, 0.4)';
-        }
-        bar.style.height = '15%';
-        waveform.appendChild(bar);
-        barsArray.push(bar);
-    }
-
-    // Interactive Audio Stream Engine Controller
-    const audioToggle = document.getElementById('audio-toggle');
-    const audioIcon = document.getElementById('audio-icon');
-    const audioText = document.getElementById('audio-text');
-    
-    const audioInstance = new Audio('audio/ash-velde-session.mp3');
-    let isPlaying = false;
-    let telemetryInterval = null;
-
-    function runWaveformAnimation() {
-        barsArray.forEach(bar => {
-            const height = Math.random() * 80 + 15;
-            bar.style.height = `${height}%`;
-        });
-    }
-
-    function toggleProcessingState(active) {
-        if (active) {
-            if (!telemetryInterval) {
-                telemetryInterval = setInterval(runWaveformAnimation, 130);
-            }
-            if (audioIcon && audioText) {
-                audioIcon.textContent = 'pause_circle';
-                audioText.textContent = 'STATE: ACTIVE // STREAMING';
-            }
-        } else {
-            if (telemetryInterval) {
-                clearInterval(telemetryInterval);
-                telemetryInterval = null;
-            }
-            barsArray.forEach(bar => bar.style.height = '15%');
-            if (audioIcon && audioText) {
-                audioIcon.textContent = 'play_circle';
-                audioText.textContent = 'STATE: IDLE // READY';
-            }
-        }
-    }
-
-    if (audioToggle) {
-        audioToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                audioInstance.pause();
-                toggleProcessingState(false);
-            } else {
-                audioInstance.play().catch(err => console.log("Stream initialize handled: ", err));
-                toggleProcessingState(true);
-            }
-            isPlaying = !isPlaying;
-        });
-    }
-
-    audioInstance.addEventListener('ended', () => {
-        isPlaying = false;
-        toggleProcessingState(false);
-    });
-
-    // Custom Easing Smooth Scroll Controller
-    document.querySelectorAll('header a, footer .flex.gap-8 a, .flex.max-w-md.mx-auto a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId && targetId.startsWith('#')) {
-                e.preventDefault();
-                
-                // Absolute structural layout check targeting page top coordinates directly via home header anchor
-                if (targetId === '#the-summit') {
-                    smoothScrollToPosition(0, 900);
-                    return;
-                }
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const targetY = targetElement.getBoundingClientRect().top + window.pageYOffset - 70; // 70px absolute spacing clear buffer offset for header tracking layout clearance
-                    smoothScrollToPosition(targetY, 900);
-                }
-            }
-        });
-    });
-
-    function smoothScrollToPosition(targetY, duration) {
-        const startPosition = window.pageYOffset;
-        const distance = targetY - startPosition;
-        let startTime = null;
-
-        function animationFrameStep(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            
-            // Quadratic Ease-Out execution curve translation: t * (2 - t)
-            const progressRatio = Math.min(timeElapsed / duration, 1);
-            const easeFactor = progressRatio * (2 - progressRatio);
-
-            window.scrollTo(0, startPosition + (distance * easeFactor));
-
-            if (timeElapsed < duration) {
-                requestAnimationFrame(animationFrameStep);
-            }
-        }
-        requestAnimationFrame(animationFrameStep);
-    }
-</script>
 </body>
 </html>
