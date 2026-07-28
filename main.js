@@ -23,12 +23,7 @@ const COLORS = {
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const PARTICLE_COUNT = isMobile ? 350 : 850;
 
-// ── DOM References ──────────────────────────────────────────────────────────
-const canvas        = document.getElementById('webgl');
-const loadingScreen = document.getElementById('loading-screen');
-const loaderBarFill = document.getElementById('loader-bar-fill');
-const loaderPercent = document.getElementById('loader-percent');
-const loaderStatus  = document.getElementById('loader-status');
+const canvas = document.getElementById('webgl');
 
 // ── Scene ───────────────────────────────────────────────────────────────────
 const scene  = new THREE.Scene();
@@ -1506,72 +1501,6 @@ function startHeroAnimation() {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-//  LOADING SEQUENCE (FAIL-SAFE FAST ENGINE)
-// ════════════════════════════════════════════════════════════════════════════
-
-let isFinishedLoading = false;
-
-function finishLoading() {
-    if (isFinishedLoading) return;
-    isFinishedLoading = true;
-
-    if (!loadingScreen) return;
-
-    if (hasGSAP) {
-        gsap.to(loadingScreen, {
-            opacity: 0,
-            duration: 0.7,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                loadingScreen.style.display = 'none';
-                startHeroAnimation();
-            },
-        });
-    } else {
-        loadingScreen.style.transition = 'opacity 0.7s ease';
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            startHeroAnimation();
-        }, 700);
-    }
-}
-
-function simulateLoading() {
-    let progress = 0;
-    const statusMessages = [
-        { threshold: 0,  msg: 'INITIALIZING SYSTEMS...' },
-        { threshold: 20, msg: 'BUILDING GEOMETRY...' },
-        { threshold: 45, msg: 'GENERATING STAR FIELD...' },
-        { threshold: 65, msg: 'CALIBRATING CAMERA PATH...' },
-        { threshold: 80, msg: 'ACTIVATING BLOOM ENGINE...' },
-        { threshold: 95, msg: 'SYSTEMS ONLINE' },
-    ];
-
-    const interval = setInterval(() => {
-        progress += Math.random() * 18 + 8;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            finishLoading();
-        }
-
-        if (loaderBarFill) loaderBarFill.style.width = `${progress}%`;
-        if (loaderPercent) loaderPercent.textContent = `${Math.round(progress)}%`;
-
-        if (loaderStatus) {
-            for (let i = statusMessages.length - 1; i >= 0; i--) {
-                if (progress >= statusMessages[i].threshold) {
-                    loaderStatus.textContent = statusMessages[i].msg;
-                    break;
-                }
-            }
-        }
-    }, 120);
-
-    // Hard fail-safe auto dismiss after 1.8s max
-    setTimeout(finishLoading, 1800);
-}
 
 // ════════════════════════════════════════════════════════════════════════════
 //  RENDER LOOP
@@ -1734,5 +1663,5 @@ window.addEventListener('resize', () => {
 //  INITIALIZE
 // ════════════════════════════════════════════════════════════════════════════
 
-simulateLoading();
+startHeroAnimation();
 animate();
