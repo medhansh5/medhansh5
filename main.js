@@ -916,8 +916,6 @@ document.querySelectorAll('.helix-tab').forEach(tab => {
 
 document.getElementById('helix-prev')?.addEventListener('click', () => selectProjectNode(activeProjectIndex - 1));
 document.getElementById('helix-next')?.addEventListener('click', () => selectProjectNode(activeProjectIndex + 1));
-const redNebula = createRedNebula();
-const blueNebula = createBlueNebula();
 
 // ── Floating 3D Lightsabers (Sith Red on Right, Jedi Blue on Left) ─────────
 // Saber 1: Sith Red Lightsaber floating on the RIGHT side near Hero & Ship
