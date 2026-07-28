@@ -1178,7 +1178,7 @@ projectCards.forEach((card, i) => {
 });
 
 // ════════════════════════════════════════════════════════════════════════════
-//  AMBIENT SOUND (Web Audio API)
+//  AMBIENT & LIGHTSABER MOTION SOUND ENGINE (Web Audio API)
 // ════════════════════════════════════════════════════════════════════════════
 
 let audioCtx = null;
@@ -1186,7 +1186,11 @@ let ambientGain = null;
 let ambientOsc1 = null;
 let ambientOsc2 = null;
 let ambientLFO = null;
+let saberSwooshOsc = null;
+let saberSwooshFilter = null;
+let saberSwooshGain = null;
 let soundActive = false;
+let soundUnlocked = false;
 
 const soundToggle = document.getElementById('sound-toggle');
 const soundIcon = document.getElementById('sound-icon');
@@ -1195,22 +1199,22 @@ function initAmbientSound() {
     if (audioCtx) return;
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    // Master gain
+    // Master gain node
     ambientGain = audioCtx.createGain();
     ambientGain.gain.value = 0;
     ambientGain.connect(audioCtx.destination);
 
-    // Deep drone oscillator 1
+    // Deep drone oscillator 1 (Low A hum)
     ambientOsc1 = audioCtx.createOscillator();
     ambientOsc1.type = 'sine';
-    ambientOsc1.frequency.value = 55; // Low A
+    ambientOsc1.frequency.value = 55;
     const osc1Gain = audioCtx.createGain();
     osc1Gain.gain.value = 0.06;
     ambientOsc1.connect(osc1Gain);
     osc1Gain.connect(ambientGain);
     ambientOsc1.start();
 
-    // Higher harmonic
+    // Higher harmonic oscillator
     ambientOsc2 = audioCtx.createOscillator();
     ambientOsc2.type = 'sine';
     ambientOsc2.frequency.value = 110;
@@ -1220,7 +1224,7 @@ function initAmbientSound() {
     osc2Gain.connect(ambientGain);
     ambientOsc2.start();
 
-    // LFO for subtle modulation
+    // LFO for subtle hum modulation
     ambientLFO = audioCtx.createOscillator();
     ambientLFO.type = 'sine';
     ambientLFO.frequency.value = 0.15;
@@ -1229,7 +1233,72 @@ function initAmbientSound() {
     ambientLFO.connect(lfoGain);
     lfoGain.connect(ambientOsc1.frequency);
     ambientLFO.start();
+
+    // Initialize Lightsaber Motion Swoosh Engine
+    initSaberSwooshSound();
 }
+
+function initSaberSwooshSound() {
+    if (saberSwooshOsc || !audioCtx) return;
+
+    // Lightsaber motion swoosh oscillator (Sawtooth + Bandpass Filter Sweep)
+    saberSwooshOsc = audioCtx.createOscillator();
+    saberSwooshOsc.type = 'sawtooth';
+    saberSwooshOsc.frequency.value = 60; // Base idle frequency
+
+    saberSwooshFilter = audioCtx.createBiquadFilter();
+    saberSwooshFilter.type = 'bandpass';
+    saberSwooshFilter.frequency.value = 250;
+    saberSwooshFilter.Q.value = 3.5;
+
+    saberSwooshGain = audioCtx.createGain();
+    saberSwooshGain.gain.value = 0;
+
+    saberSwooshOsc.connect(saberSwooshFilter);
+    saberSwooshFilter.connect(saberSwooshGain);
+    saberSwooshGain.connect(ambientGain);
+    saberSwooshOsc.start();
+}
+
+// Mobile Audio Auto-Unlock Listener (iOS Safari / Android Chrome)
+function unlockAudioOnMobile() {
+    if (soundUnlocked) return;
+    soundUnlocked = true;
+    if (!audioCtx) initAmbientSound();
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+}
+window.addEventListener('touchstart', unlockAudioOnMobile, { passive: true, once: true });
+window.addEventListener('pointerdown', unlockAudioOnMobile, { passive: true, once: true });
+
+function triggerSaberSwoosh(velocity) {
+    if (!audioCtx || !saberSwooshOsc) return;
+
+    const normalizedVel = Math.min(1.0, velocity / 40);
+    if (normalizedVel > 0.04) {
+        const now = audioCtx.currentTime;
+        // Frequency rises from 60Hz to 160Hz on fast movement
+        saberSwooshOsc.frequency.setTargetAtTime(60 + normalizedVel * 100, now, 0.04);
+        // Filter sweeps up from 250Hz to 1400Hz (lightsaber motion whoosh!)
+        saberSwooshFilter.frequency.setTargetAtTime(250 + normalizedVel * 1150, now, 0.04);
+        // Volume swell
+        saberSwooshGain.gain.setTargetAtTime(0.08 + normalizedVel * 0.16, now, 0.03);
+    } else {
+        const now = audioCtx.currentTime;
+        saberSwooshOsc.frequency.setTargetAtTime(60, now, 0.2);
+        saberSwooshFilter.frequency.setTargetAtTime(250, now, 0.2);
+        saberSwooshGain.gain.setTargetAtTime(0, now, 0.25);
+    }
+}
+
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+    const scrollVel = Math.abs(currentY - lastScrollY);
+    lastScrollY = currentY;
+    if (soundActive) triggerSaberSwoosh(scrollVel);
+}, { passive: true });
 
 function toggleSound() {
     if (!audioCtx) initAmbientSound();

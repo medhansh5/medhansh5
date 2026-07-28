@@ -271,12 +271,63 @@ a {
 .overlay-inner {
   max-width: 1040px;
   width: 100%;
-  padding: 48px 40px;
-  margin: 0 auto;
+  padding: 36px 40px;
+  margin: 60px auto 0 auto;
   pointer-events: auto;
-  background: radial-gradient(ellipse at center, rgba(5, 5, 8, 0.92) 0%, rgba(5, 5, 8, 0.65) 50%, transparent 80%);
+  background: radial-gradient(ellipse at center, rgba(5, 5, 8, 0.94) 0%, rgba(5, 5, 8, 0.7) 50%, transparent 85%);
   border-radius: 20px;
   position: relative;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+/* Secondary Projects Bar */
+.secondary-projects-bar {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: rgba(10, 10, 15, 0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+}
+
+.bar-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+}
+
+.secondary-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  min-height: 44px;
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.secondary-pill:hover {
+  background: rgba(0, 240, 255, 0.14);
+  border-color: var(--lightsaber-blue);
+  color: var(--lightsaber-blue);
+  transform: translateY(-2px);
+}
+
+.secondary-pill .icon-sm {
+  font-size: 14px;
 }
 
 /* 8. Hero Section */
