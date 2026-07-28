@@ -461,6 +461,139 @@ function createAsteroidBelt() {
     return group;
 }
 
+// ── Star Destroyer ──────────────────────────────────────────────────────────
+function createStarDestroyer() {
+    const group = new THREE.Group();
+    group.position.set(18, 12, 0);
+    group.rotation.set(0.1, -0.8, 0.05);
+
+    // Main hull — triangular wedge using a flat cone with 3 radial segments
+    const hullGeo = new THREE.ConeGeometry(3.5, 10, 3, 1);
+    const hullMat = new THREE.MeshBasicMaterial({
+        color: COLORS.bg,
+        transparent: true,
+        opacity: 0.35,
+    });
+    const hull = new THREE.Mesh(hullGeo, hullMat);
+    hull.rotation.x = -Math.PI / 2;
+    hull.scale.set(1.2, 1, 0.12);
+    group.add(hull);
+
+    // Hull glowing edges
+    const hullEdges = new THREE.EdgesGeometry(hullGeo);
+    const hullLineMat = new THREE.LineBasicMaterial({
+        color: COLORS.secondary,
+        transparent: true,
+        opacity: 0.85,
+    });
+    const hullLines = new THREE.LineSegments(hullEdges, hullLineMat);
+    hullLines.rotation.copy(hull.rotation);
+    hullLines.scale.copy(hull.scale);
+    group.add(hullLines);
+
+    // Bridge tower
+    const bridgeGeo = new THREE.BoxGeometry(0.8, 1.2, 0.5);
+    const bridgeMat = new THREE.MeshBasicMaterial({
+        color: COLORS.bg,
+        transparent: true,
+        opacity: 0.4,
+    });
+    const bridge = new THREE.Mesh(bridgeGeo, bridgeMat);
+    bridge.position.set(0, 0.25, -2.5);
+    group.add(bridge);
+
+    const bridgeEdges = new THREE.EdgesGeometry(bridgeGeo);
+    const bridgeLines = new THREE.LineSegments(bridgeEdges, new THREE.LineBasicMaterial({
+        color: COLORS.primaryLight,
+        transparent: true,
+        opacity: 0.9,
+    }));
+    bridgeLines.position.copy(bridge.position);
+    group.add(bridgeLines);
+
+    // Shield generator domes
+    const domeGeo = new THREE.SphereGeometry(0.15, 8, 6);
+    const domeMat = new THREE.MeshBasicMaterial({
+        color: COLORS.primary, wireframe: true, transparent: true, opacity: 0.7,
+    });
+    const dome1 = new THREE.Mesh(domeGeo, domeMat);
+    dome1.position.set(-0.25, 0.85, -2.5);
+    group.add(dome1);
+    const dome2 = new THREE.Mesh(domeGeo, domeMat);
+    dome2.position.set(0.25, 0.85, -2.5);
+    group.add(dome2);
+
+    // Engine glow circles
+    const engineGeo = new THREE.CircleGeometry(0.18, 8);
+    const engineMat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.7, side: THREE.DoubleSide,
+    });
+    [-0.6, 0, 0.6].forEach(x => {
+        const engine = new THREE.Mesh(engineGeo, engineMat);
+        engine.position.set(x, 0, -5);
+        group.add(engine);
+    });
+
+    // Engine point light
+    const engineLight = new THREE.PointLight(COLORS.secondary, 2, 8);
+    engineLight.position.set(0, 0, -5.5);
+    group.add(engineLight);
+
+    // Hull underside strip
+    const stripGeo = new THREE.BoxGeometry(0.06, 0.02, 8);
+    const stripMat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.5,
+    });
+    const strip = new THREE.Mesh(stripGeo, stripMat);
+    strip.position.set(0, -0.15, -1);
+    group.add(strip);
+
+    scene.add(group);
+    return group;
+}
+
+// ── Red Nebula Cloud ────────────────────────────────────────────────────────
+function createRedNebula() {
+    const count = isMobile ? 200 : 500;
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+        const i3 = i * 3;
+        const radius = 30 + Math.random() * 100;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+
+        positions[i3]     = radius * Math.sin(phi) * Math.cos(theta) * 1.5;
+        positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.4;
+        positions[i3 + 2] = radius * Math.cos(phi);
+
+        const color = new THREE.Color();
+        color.setHSL(Math.random() * 0.06, 0.6 + Math.random() * 0.4, 0.3 + Math.random() * 0.3);
+        colors[i3] = color.r;
+        colors[i3 + 1] = color.g;
+        colors[i3 + 2] = color.b;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const mat = new THREE.PointsMaterial({
+        size: isMobile ? 2.5 : 3.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.15,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        sizeAttenuation: true,
+    });
+
+    const cloud = new THREE.Points(geo, mat);
+    scene.add(cloud);
+    return cloud;
+}
+
 // ════════════════════════════════════════════════════════════════════════════
 //  BUILD THE SCENE
 // ════════════════════════════════════════════════════════════════════════════
@@ -473,12 +606,26 @@ const grid      = createGridPlane();
 const contact   = createContactRing();
 const dnaHelix  = createDNAHelix();
 const asteroidBelt = createAsteroidBelt();
+const starDestroyer = createStarDestroyer();
+const redNebula = createRedNebula();
 
 // Ambient particle clusters near each zone
 const heroParticles    = createAmbientParticles(new THREE.Vector3(0, 3, 18),  isMobile ? 80 : 180,  16, COLORS.primaryLight);
 const fusionParticles  = createAmbientParticles(new THREE.Vector3(6, 5, -5),  isMobile ? 60 : 120,  12, COLORS.primary);
 const projectParticles = createAmbientParticles(new THREE.Vector3(0, 3, -27), isMobile ? 80 : 160,  22, COLORS.primaryLight);
 const contactParticles = createAmbientParticles(new THREE.Vector3(0, 2, -50), isMobile ? 50 : 100,  14, COLORS.primary);
+
+// Extra red particle clouds
+const redParticles1 = createAmbientParticles(new THREE.Vector3(15, 10, 0), isMobile ? 40 : 80, 10, COLORS.secondary);
+const redParticles2 = createAmbientParticles(new THREE.Vector3(-8, 4, -15), isMobile ? 40 : 80, 14, COLORS.secondary);
+
+// Red accent point lights in the scene
+const redLight1 = new THREE.PointLight(COLORS.secondary, 1.2, 25);
+redLight1.position.set(20, 10, 5);
+scene.add(redLight1);
+const redLight2 = new THREE.PointLight(COLORS.secondary, 0.8, 20);
+redLight2.position.set(-10, 5, -20);
+scene.add(redLight2);
 
 // Subtle ambient light
 scene.add(new THREE.AmbientLight(0xffffff, 0.08));
@@ -998,6 +1145,21 @@ function animate() {
         asteroid.rotation.x += 0.005 + i * 0.0001;
         asteroid.rotation.z += 0.003;
     });
+
+    // ── Animate Star Destroyer ──────────────────────────────────────────────
+    // Slow drift + gentle bobbing
+    starDestroyer.position.x = 18 + Math.sin(elapsed * 0.12) * 2;
+    starDestroyer.position.y = 12 + Math.sin(elapsed * 0.2) * 0.5;
+    starDestroyer.rotation.y = -0.8 + Math.sin(elapsed * 0.08) * 0.05;
+    starDestroyer.rotation.z = 0.05 + Math.cos(elapsed * 0.15) * 0.02;
+
+    // ── Animate Red Nebula ──────────────────────────────────────────────────
+    redNebula.rotation.y += 0.0001;
+    redNebula.rotation.x += 0.00005;
+
+    // ── Animate Red Particle Clouds ─────────────────────────────────────────
+    redParticles1.rotation.y += 0.0002;
+    redParticles2.rotation.y -= 0.00025;
 
     // ── Render ──────────────────────────────────────────────────────────────
     if (composer) {

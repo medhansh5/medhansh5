@@ -158,9 +158,11 @@ a {
 .overlay-inner {
   max-width: 1000px;
   width: 100%;
-  padding: 0 32px;
+  padding: 48px 40px;
   margin: 0 auto;
   pointer-events: auto;
+  background: radial-gradient(ellipse at center, rgba(5, 5, 7, 0.92) 0%, rgba(5, 5, 7, 0.6) 45%, transparent 72%);
+  border-radius: 20px;
 }
 
 /* 7. Section Shared */
@@ -194,6 +196,7 @@ a {
   letter-spacing: -0.03em;
   text-transform: uppercase;
   margin-bottom: 20px;
+  text-shadow: 0 2px 30px rgba(5, 5, 7, 0.95), 0 0 60px rgba(5, 5, 7, 0.7);
 }
 
 .title-accent {
@@ -207,6 +210,7 @@ a {
   max-width: 560px;
   line-height: 1.7;
   margin-bottom: 32px;
+  text-shadow: 0 1px 15px rgba(5, 5, 7, 0.9);
 }
 
 /* 8. Hero */
@@ -258,13 +262,14 @@ a {
   letter-spacing: -0.04em;
   text-transform: uppercase;
   margin-bottom: 24px;
+  text-shadow: 0 2px 40px rgba(5, 5, 7, 0.95), 0 0 80px rgba(5, 5, 7, 0.8);
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  background: linear-gradient(135deg, var(--secondary), var(--primary), var(--primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(0, 163, 255, 0.4));
+  filter: drop-shadow(0 0 25px rgba(230, 0, 0, 0.35)) drop-shadow(0 0 50px rgba(0, 163, 255, 0.25));
 }
 
 .hero-subtitle {
@@ -273,6 +278,7 @@ a {
   line-height: 1.6;
   margin-bottom: 16px;
   max-width: 600px;
+  text-shadow: 0 1px 20px rgba(5, 5, 7, 0.9);
 }
 
 .hero-role {
@@ -511,6 +517,7 @@ a {
   color: var(--on-surface-dim);
   line-height: 1.7;
   margin-bottom: 20px;
+  text-shadow: 0 1px 10px rgba(5, 5, 7, 0.8);
 }
 
 .project-tags {
