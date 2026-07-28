@@ -53,6 +53,24 @@
     <canvas id="webgl" aria-hidden="true"></canvas>
 
     <!-- ═══════════════════════════════════════════════════════
+         SIDE NAVIGATION DOTS
+         ═══════════════════════════════════════════════════════ -->
+    <nav id="nav-dots" aria-label="Section navigation">
+        <button class="nav-dot active" data-section="hero" data-label="Home" id="dot-hero"></button>
+        <div class="nav-dot-line"></div>
+        <button class="nav-dot" data-section="fusionnet" data-label="Research" id="dot-fusionnet"></button>
+        <div class="nav-dot-line"></div>
+        <button class="nav-dot" data-section="projects" data-label="Projects" id="dot-projects"></button>
+        <div class="nav-dot-line"></div>
+        <button class="nav-dot" data-section="contact" data-label="Contact" id="dot-contact"></button>
+    </nav>
+
+    <!-- AMBIENT SOUND TOGGLE -->
+    <button id="sound-toggle" aria-label="Toggle ambient sound">
+        <span class="material-symbols-outlined" id="sound-icon">volume_off</span>
+    </button>
+
+    <!-- ═══════════════════════════════════════════════════════
          SCROLL CONTAINER (drives GSAP camera + overlay triggers)
          ═══════════════════════════════════════════════════════ -->
     <div id="scroll-container">
@@ -102,7 +120,7 @@
                 <span class="label-line"></span>
                 <span class="label-text">01 // Research</span>
             </div>
-            <h2 class="section-title anim">FusionNet<br/><span class="title-accent">Protocol</span></h2>
+            <h2 class="section-title anim">FusionNet<br/><span class="title-accent typewriter" data-typewriter="Protocol"></span></h2>
             <p class="section-desc anim">A multi-modal neural architecture designed for high-stakes environmental perception. Synthesizing disparate sensor streams to establish predictive safety maneuvers in chaotic urban terrains.</p>
             <div class="stats-grid anim">
                 <div class="stat-card" id="stat-f1">
@@ -128,7 +146,7 @@
                 <span class="label-line"></span>
                 <span class="label-text">02 // Laboratory</span>
             </div>
-            <h2 class="section-title anim">Engineering<br/><span class="title-accent">Lab</span></h2>
+            <h2 class="section-title anim">Engineering<br/><span class="title-accent typewriter" data-typewriter="Lab"></span></h2>
             <div class="project-cards">
                 <!-- ShadowMap -->
                 <article class="project-card anim" id="card-shadowmap">
@@ -193,7 +211,7 @@
                 <span class="label-line"></span>
                 <span class="label-text">03 // Transmit</span>
             </div>
-            <h2 class="section-title anim">Initiate<br/><span class="title-accent">Contact</span></h2>
+            <h2 class="section-title anim">Initiate<br/><span class="title-accent typewriter" data-typewriter="Contact"></span></h2>
             <p class="section-desc anim">Ready to discuss Physical AI, edge computing, or road safety systems? Open a channel.</p>
             <a href="mailto:medhansh5@proton.me" class="btn btn-primary btn-lg anim" id="btn-contact-footer">
                 <span class="material-symbols-outlined">mail</span>

@@ -340,6 +340,127 @@ function createAmbientParticles(center, count, spread, color) {
     return points;
 }
 
+// ── DNA Double Helix ────────────────────────────────────────────────────────
+function createDNAHelix() {
+    const group = new THREE.Group();
+    group.position.set(-12, 0, 5);
+
+    const helixPoints1 = [];
+    const helixPoints2 = [];
+    const totalPoints = 200;
+    const height = 40;
+    const radius = 1.8;
+    const turns = 5;
+
+    for (let i = 0; i < totalPoints; i++) {
+        const t = i / totalPoints;
+        const y = t * height - height / 2;
+        const angle = t * Math.PI * 2 * turns;
+
+        helixPoints1.push(new THREE.Vector3(
+            Math.cos(angle) * radius,
+            y,
+            Math.sin(angle) * radius
+        ));
+        helixPoints2.push(new THREE.Vector3(
+            Math.cos(angle + Math.PI) * radius,
+            y,
+            Math.sin(angle + Math.PI) * radius
+        ));
+    }
+
+    // Strand 1
+    const curve1 = new THREE.CatmullRomCurve3(helixPoints1);
+    const tube1Geo = new THREE.TubeGeometry(curve1, 200, 0.04, 6, false);
+    const tube1Mat = new THREE.MeshBasicMaterial({
+        color: COLORS.primary,
+        transparent: true,
+        opacity: 0.6,
+    });
+    group.add(new THREE.Mesh(tube1Geo, tube1Mat));
+
+    // Strand 2
+    const curve2 = new THREE.CatmullRomCurve3(helixPoints2);
+    const tube2Geo = new THREE.TubeGeometry(curve2, 200, 0.04, 6, false);
+    const tube2Mat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary,
+        transparent: true,
+        opacity: 0.4,
+    });
+    group.add(new THREE.Mesh(tube2Geo, tube2Mat));
+
+    // Cross rungs (base pairs)
+    const rungCount = 40;
+    for (let i = 0; i < rungCount; i++) {
+        const t = i / rungCount;
+        const p1 = curve1.getPointAt(t);
+        const p2 = curve2.getPointAt(t);
+
+        const dir = new THREE.Vector3().subVectors(p2, p1);
+        const len = dir.length();
+        const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+
+        const rungGeo = new THREE.CylinderGeometry(0.015, 0.015, len, 4);
+        const rungMat = new THREE.MeshBasicMaterial({
+            color: i % 2 === 0 ? COLORS.primaryLight : COLORS.secondary,
+            transparent: true,
+            opacity: 0.3,
+        });
+        const rung = new THREE.Mesh(rungGeo, rungMat);
+        rung.position.copy(mid);
+
+        // Orient rung toward the other strand
+        rung.quaternion.setFromUnitVectors(
+            new THREE.Vector3(0, 1, 0),
+            dir.normalize()
+        );
+
+        group.add(rung);
+    }
+
+    scene.add(group);
+    return group;
+}
+
+// ── Asteroid Belt ───────────────────────────────────────────────────────────
+function createAsteroidBelt() {
+    const group = new THREE.Group();
+    group.position.set(0, 2, -50);
+
+    const asteroidCount = isMobile ? 30 : 60;
+    const beltRadius = 8;
+
+    for (let i = 0; i < asteroidCount; i++) {
+        const angle = (i / asteroidCount) * Math.PI * 2 + Math.random() * 0.3;
+        const r = beltRadius + (Math.random() - 0.5) * 3;
+        const y = (Math.random() - 0.5) * 1.5;
+
+        const size = 0.05 + Math.random() * 0.15;
+        const geo = new THREE.IcosahedronGeometry(size, 0);
+        const mat = new THREE.MeshBasicMaterial({
+            color: COLORS.primaryLight,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3 + Math.random() * 0.3,
+        });
+        const asteroid = new THREE.Mesh(geo, mat);
+        asteroid.position.set(
+            Math.cos(angle) * r,
+            y,
+            Math.sin(angle) * r
+        );
+        asteroid.rotation.set(
+            Math.random() * Math.PI,
+            Math.random() * Math.PI,
+            Math.random() * Math.PI
+        );
+        group.add(asteroid);
+    }
+
+    scene.add(group);
+    return group;
+}
+
 // ════════════════════════════════════════════════════════════════════════════
 //  BUILD THE SCENE
 // ════════════════════════════════════════════════════════════════════════════
@@ -350,6 +471,8 @@ const fusion    = createFusionCore();
 const monoliths = createProjectMonoliths();
 const grid      = createGridPlane();
 const contact   = createContactRing();
+const dnaHelix  = createDNAHelix();
+const asteroidBelt = createAsteroidBelt();
 
 // Ambient particle clusters near each zone
 const heroParticles    = createAmbientParticles(new THREE.Vector3(0, 3, 18),  isMobile ? 80 : 180,  16, COLORS.primaryLight);
@@ -453,6 +576,10 @@ function setupOverlayTrigger(overlayId, spacerId) {
                 { opacity: 0, y: 35 },
                 { opacity: 1, y: 0, stagger: 0.07, duration: 0.6, ease: 'power2.out' }
             );
+            // Trigger typewriter on section title
+            overlay.querySelectorAll('.typewriter').forEach(el => {
+                setTimeout(() => typewrite(el), 600);
+            });
         },
         onLeave: () => {
             gsap.to(overlay, {
@@ -524,14 +651,195 @@ const exploreBtn = document.getElementById('btn-explore');
 if (exploreBtn) {
     exploreBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        gsap.to(window, {
-            scrollTo: { y: window.innerHeight * 1.5 },
-            duration: 1.5,
-            ease: 'power2.inOut',
-        });
-        // Fallback if ScrollToPlugin not loaded
         window.scrollTo({ top: window.innerHeight * 1.5, behavior: 'smooth' });
     });
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+//  SIDE NAVIGATION DOTS
+// ════════════════════════════════════════════════════════════════════════════
+
+const navDots = document.querySelectorAll('.nav-dot');
+const sections = ['hero', 'fusionnet', 'projects', 'contact'];
+const spacerEls = sections.map(s => document.getElementById(`spacer-${s}`));
+
+// Click to navigate
+navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const section = dot.getAttribute('data-section');
+        const spacer = document.getElementById(`spacer-${section}`);
+        if (spacer) {
+            const top = section === 'hero' ? 0 : spacer.offsetTop;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    });
+});
+
+// Update active dot based on scroll
+function updateNavDots() {
+    const scrollY = window.scrollY;
+    let activeIndex = 0;
+
+    spacerEls.forEach((spacer, i) => {
+        if (spacer && scrollY >= spacer.offsetTop - window.innerHeight * 0.4) {
+            activeIndex = i;
+        }
+    });
+
+    navDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIndex);
+    });
+}
+
+window.addEventListener('scroll', updateNavDots, { passive: true });
+
+// ════════════════════════════════════════════════════════════════════════════
+//  TYPEWRITER EFFECT
+// ════════════════════════════════════════════════════════════════════════════
+
+const typewriterEls = document.querySelectorAll('.typewriter');
+const typewriterTriggered = new Set();
+
+function typewrite(el) {
+    const text = el.getAttribute('data-typewriter');
+    if (!text || typewriterTriggered.has(el)) return;
+    typewriterTriggered.add(el);
+
+    el.textContent = '';
+    // Add cursor
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    el.appendChild(cursor);
+
+    let charIndex = 0;
+    const speed = 80;
+
+    function typeNext() {
+        if (charIndex < text.length) {
+            el.insertBefore(
+                document.createTextNode(text[charIndex]),
+                cursor
+            );
+            charIndex++;
+            setTimeout(typeNext, speed + Math.random() * 40);
+        } else {
+            // Remove cursor after a delay
+            setTimeout(() => {
+                if (cursor.parentNode) cursor.remove();
+            }, 2000);
+        }
+    }
+    typeNext();
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+//  INTERACTIVE MONOLITH HOVER
+// ════════════════════════════════════════════════════════════════════════════
+
+const projectCards = [
+    document.getElementById('card-shadowmap'),
+    document.getElementById('card-bikeguard'),
+    document.getElementById('card-potholenet'),
+];
+const monolithOriginalOpacity = [0.85, 0.85, 0.85];
+const cardGlowClasses = ['card-glow', 'card-glow-red', 'card-glow'];
+
+projectCards.forEach((card, i) => {
+    if (!card) return;
+
+    card.addEventListener('mouseenter', () => {
+        // Brighten corresponding monolith
+        if (monoliths[i]) {
+            monoliths[i].edgeLines.material.opacity = 1.0;
+            monoliths[i].bar.scale.y = 2.5;
+        }
+        card.classList.add(cardGlowClasses[i]);
+    });
+
+    card.addEventListener('mouseleave', () => {
+        if (monoliths[i]) {
+            monoliths[i].edgeLines.material.opacity = monolithOriginalOpacity[i];
+            monoliths[i].bar.scale.y = 1.0;
+        }
+        card.classList.remove(cardGlowClasses[i]);
+    });
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+//  AMBIENT SOUND (Web Audio API)
+// ════════════════════════════════════════════════════════════════════════════
+
+let audioCtx = null;
+let ambientGain = null;
+let ambientOsc1 = null;
+let ambientOsc2 = null;
+let ambientLFO = null;
+let soundActive = false;
+
+const soundToggle = document.getElementById('sound-toggle');
+const soundIcon = document.getElementById('sound-icon');
+
+function initAmbientSound() {
+    if (audioCtx) return;
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Master gain
+    ambientGain = audioCtx.createGain();
+    ambientGain.gain.value = 0;
+    ambientGain.connect(audioCtx.destination);
+
+    // Deep drone oscillator 1
+    ambientOsc1 = audioCtx.createOscillator();
+    ambientOsc1.type = 'sine';
+    ambientOsc1.frequency.value = 55; // Low A
+    const osc1Gain = audioCtx.createGain();
+    osc1Gain.gain.value = 0.06;
+    ambientOsc1.connect(osc1Gain);
+    osc1Gain.connect(ambientGain);
+    ambientOsc1.start();
+
+    // Higher harmonic
+    ambientOsc2 = audioCtx.createOscillator();
+    ambientOsc2.type = 'sine';
+    ambientOsc2.frequency.value = 110;
+    const osc2Gain = audioCtx.createGain();
+    osc2Gain.gain.value = 0.03;
+    ambientOsc2.connect(osc2Gain);
+    osc2Gain.connect(ambientGain);
+    ambientOsc2.start();
+
+    // LFO for subtle modulation
+    ambientLFO = audioCtx.createOscillator();
+    ambientLFO.type = 'sine';
+    ambientLFO.frequency.value = 0.15;
+    const lfoGain = audioCtx.createGain();
+    lfoGain.gain.value = 3;
+    ambientLFO.connect(lfoGain);
+    lfoGain.connect(ambientOsc1.frequency);
+    ambientLFO.start();
+}
+
+function toggleSound() {
+    if (!audioCtx) initAmbientSound();
+
+    if (soundActive) {
+        // Fade out
+        ambientGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+        soundActive = false;
+        soundIcon.textContent = 'volume_off';
+        soundToggle.classList.remove('active');
+    } else {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        // Fade in
+        ambientGain.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.8);
+        soundActive = true;
+        soundIcon.textContent = 'volume_up';
+        soundToggle.classList.add('active');
+    }
+}
+
+if (soundToggle) {
+    soundToggle.addEventListener('click', toggleSound);
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -552,6 +860,17 @@ function startHeroAnimation() {
             delay: 0.3,
         }
     );
+
+    // Trigger typewriters on their respective section entries
+    typewriterEls.forEach(el => {
+        const overlay = el.closest('.overlay');
+        if (!overlay) return;
+
+        if (overlay.id === 'hero-overlay') {
+            // Hero typewriters fire immediately
+            setTimeout(() => typewrite(el), 1200);
+        }
+    });
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -669,6 +988,16 @@ function animate() {
     fusionParticles.rotation.y  -= 0.0004;
     projectParticles.rotation.y += 0.0002;
     contactParticles.rotation.y -= 0.0003;
+
+    // ── Animate DNA Helix ───────────────────────────────────────────────────
+    dnaHelix.rotation.y += 0.003;
+
+    // ── Animate Asteroid Belt ───────────────────────────────────────────────
+    asteroidBelt.rotation.y += 0.001;
+    asteroidBelt.children.forEach((asteroid, i) => {
+        asteroid.rotation.x += 0.005 + i * 0.0001;
+        asteroid.rotation.z += 0.003;
+    });
 
     // ── Render ──────────────────────────────────────────────────────────────
     if (composer) {
