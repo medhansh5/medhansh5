@@ -1037,17 +1037,21 @@ if (exploreBtn) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-//  SIDE NAVIGATION DOTS
+//  NAVIGATION SYSTEM (DESKTOP DOTS, HEADER LINKS, MOBILE DOCK)
 // ════════════════════════════════════════════════════════════════════════════
 
-const navDots = document.querySelectorAll('.nav-dot');
-const sections = ['hero', 'fusionnet', 'projects', 'contact'];
-const spacerEls = sections.map(s => document.getElementById(`spacer-${s}`));
+const navDots      = document.querySelectorAll('.nav-dot');
+const desktopLinks = document.querySelectorAll('.desktop-nav .nav-link');
+const dockItems    = document.querySelectorAll('.dock-item');
+const sections     = ['hero', 'fusionnet', 'projects', 'contact'];
+const spacerEls    = sections.map(s => document.getElementById(`spacer-${s}`));
 
-// Click to navigate
-navDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-        const section = dot.getAttribute('data-section');
+// Universal Click Handler for all navigation elements
+const allNavElements = [...navDots, ...desktopLinks, ...dockItems];
+allNavElements.forEach(elem => {
+    elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        const section = elem.getAttribute('data-section') || elem.getAttribute('data-target');
         const spacer = document.getElementById(`spacer-${section}`);
         if (spacer) {
             const top = section === 'hero' ? 0 : spacer.offsetTop;
@@ -1056,8 +1060,8 @@ navDots.forEach(dot => {
     });
 });
 
-// Update active dot based on scroll
-function updateNavDots() {
+// Sync active states across desktop dots, header links, and mobile dock
+function updateActiveNavs() {
     const scrollY = window.scrollY;
     let activeIndex = 0;
 
@@ -1067,12 +1071,43 @@ function updateNavDots() {
         }
     });
 
-    navDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === activeIndex);
-    });
+    navDots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+    desktopLinks.forEach((link, i) => link.classList.toggle('active', i === activeIndex));
+    dockItems.forEach((item, i) => item.classList.toggle('active', i === activeIndex));
 }
 
-window.addEventListener('scroll', updateNavDots, { passive: true });
+window.addEventListener('scroll', updateActiveNavs, { passive: true });
+
+// ════════════════════════════════════════════════════════════════════════════
+//  TOUCH & POINTER DRAG INTERACTION FOR 3D CANVAS
+// ════════════════════════════════════════════════════════════════════════════
+
+let isDragging = false;
+let previousPointerX = 0;
+let previousPointerY = 0;
+const dragOffset = { x: 0, y: 0 };
+
+window.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('.overlay-inner, .command-header, .mobile-nav-dock, #sound-toggle')) return;
+    isDragging = true;
+    previousPointerX = e.clientX;
+    previousPointerY = e.clientY;
+});
+
+window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - previousPointerX;
+    const deltaY = e.clientY - previousPointerY;
+
+    dragOffset.x += deltaX * 0.008;
+    dragOffset.y += deltaY * 0.008;
+
+    previousPointerX = e.clientX;
+    previousPointerY = e.clientY;
+});
+
+window.addEventListener('pointerup', () => { isDragging = false; });
+window.addEventListener('pointercancel', () => { isDragging = false; });
 
 // ════════════════════════════════════════════════════════════════════════════
 //  TYPEWRITER EFFECT
@@ -1324,8 +1359,14 @@ function animate() {
     currentPos.lerp(targetPos, lerpFactor);
     currentLook.lerp(targetLook, lerpFactor);
 
+    // Apply smooth pointer/touch drag offset
     camera.position.copy(currentPos);
+    camera.position.x += dragOffset.x;
+    camera.position.y -= dragOffset.y;
     camera.lookAt(currentLook);
+
+    dragOffset.x *= 0.95;
+    dragOffset.y *= 0.95;
 
     // ── Animate Hero Knot ───────────────────────────────────────────────────
     heroKnot.group.rotation.x += 0.002;

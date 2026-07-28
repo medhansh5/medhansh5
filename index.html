@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Medhansh Kabadwal — Physical AI Engineer</title>
-    <meta name="description" content="Medhansh Kabadwal: Engineering Intelligent Safety Systems for the Developing World. Physical AI Engineer specializing in Computer Vision, Edge AI, and Road Safety Infrastructure." />
-    <meta name="theme-color" content="#050507" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Medhansh Kabadwal — Physical AI Engineer | Venator Command</title>
+    <meta name="description" content="Medhansh Kabadwal: Physical AI Engineer specializing in Computer Vision, Embedded Edge Systems, and Road Safety Infrastructure." />
+    <meta name="theme-color" content="#050508" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,13 +36,13 @@
          ═══════════════════════════════════════════════════════ -->
     <div id="loading-screen">
         <div class="loader-content">
-            <div class="loader-logo" aria-hidden="true">MED<span class="accent">.</span></div>
+            <div class="loader-logo" aria-hidden="true">MED<span class="accent">.</span>AI</div>
             <div class="loader-bar-track">
                 <div id="loader-bar-fill"></div>
             </div>
             <div class="loader-info">
                 <span id="loader-percent">0%</span>
-                <span id="loader-status">INITIALIZING SYSTEMS...</span>
+                <span id="loader-status">INITIALIZING VENATOR CORE...</span>
             </div>
         </div>
     </div>
@@ -50,22 +50,49 @@
     <!-- ═══════════════════════════════════════════════════════
          THREE.JS CANVAS
          ═══════════════════════════════════════════════════════ -->
-    <canvas id="webgl" aria-hidden="true"></canvas>
+    <canvas id="webgl" aria-label="3D Interactive Starship Space Environment"></canvas>
 
-    <!-- STARSHIP HUD CORNER OVERLAYS -->
-    <div class="hud-corner hud-top-left">
+    <!-- ═══════════════════════════════════════════════════════
+         TOP COMMAND HEADER
+         ═══════════════════════════════════════════════════════ -->
+    <header class="command-header">
+        <div class="header-inner">
+            <div class="brand">
+                <span class="brand-title">MEDHANSH</span>
+                <span class="brand-tag">// PHYSICAL AI</span>
+            </div>
+            <div class="status-indicator desktop-only">
+                <span class="status-dot"></span>
+                <span>SYSTEMS NOMINAL</span>
+            </div>
+            <nav class="desktop-nav">
+                <a href="#spacer-hero" class="nav-link active" data-target="hero">HOME</a>
+                <a href="#spacer-fusionnet" class="nav-link" data-target="fusionnet">RESEARCH</a>
+                <a href="#spacer-projects" class="nav-link" data-target="projects">PROJECTS</a>
+                <a href="#spacer-contact" class="nav-link" data-target="contact">CONTACT</a>
+            </nav>
+            <button id="sound-toggle" aria-label="Toggle ambient sound">
+                <span class="material-symbols-outlined" id="sound-icon">volume_off</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STARSHIP HUD OVERLAYS (DESKTOP)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="hud-corner hud-top-left desktop-only">
         <span class="hud-indicator-dot"></span>
-        <span>VENATOR // DEEP SPACE CORE</span>
+        <span>VENATOR // DEEP SPACE COMMAND</span>
     </div>
-    <div class="hud-corner hud-top-right">
+    <div class="hud-corner hud-top-right desktop-only">
         <span class="hud-indicator-dot hud-indicator-blue"></span>
-        <span>FORCE MATRIX // ACTIVE</span>
+        <span>FORCE PLASMA // ACTIVE</span>
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
-         SIDE NAVIGATION DOTS
+         SIDE NAVIGATION DOTS (DESKTOP)
          ═══════════════════════════════════════════════════════ -->
-    <nav id="nav-dots" aria-label="Section navigation">
+    <nav id="nav-dots" class="desktop-only" aria-label="Section navigation">
         <button class="nav-dot active" data-section="hero" data-label="Home" id="dot-hero"></button>
         <div class="nav-dot-line"></div>
         <button class="nav-dot" data-section="fusionnet" data-label="Research" id="dot-fusionnet"></button>
@@ -75,10 +102,27 @@
         <button class="nav-dot" data-section="contact" data-label="Contact" id="dot-contact"></button>
     </nav>
 
-    <!-- AMBIENT SOUND TOGGLE -->
-    <button id="sound-toggle" aria-label="Toggle ambient sound">
-        <span class="material-symbols-outlined" id="sound-icon">volume_off</span>
-    </button>
+    <!-- ═══════════════════════════════════════════════════════
+         MOBILE FLOATING BOTTOM DOCK NAVIGATION
+         ═══════════════════════════════════════════════════════ -->
+    <nav class="mobile-nav-dock mobile-only" aria-label="Mobile Navigation">
+        <button class="dock-item active" data-section="hero">
+            <span class="material-symbols-outlined">rocket_launch</span>
+            <span class="dock-label">Home</span>
+        </button>
+        <button class="dock-item" data-section="fusionnet">
+            <span class="material-symbols-outlined">science</span>
+            <span class="dock-label">Research</span>
+        </button>
+        <button class="dock-item" data-section="projects">
+            <span class="material-symbols-outlined">dataset</span>
+            <span class="dock-label">Projects</span>
+        </button>
+        <button class="dock-item" data-section="contact">
+            <span class="material-symbols-outlined">send</span>
+            <span class="dock-label">Contact</span>
+        </button>
+    </nav>
 
     <!-- ═══════════════════════════════════════════════════════
          SCROLL CONTAINER (drives GSAP camera + overlay triggers)
@@ -95,25 +139,48 @@
          ═══════════════════════════════════════════════════════ -->
     <div id="hero-overlay" class="overlay">
         <div class="overlay-inner hero-content">
+            <!-- Lightsaber Plasma Balance Pills -->
             <div class="lightsaber-badge-container anim">
                 <span class="saber-pill saber-pill-blue">
-                    <span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
+                    <span class="material-symbols-outlined">bolt</span>
                     Jedi Plasma (Blue)
                 </span>
                 <span class="saber-pill saber-pill-red">
-                    <span class="material-symbols-outlined" style="font-size: 14px;">whatshot</span>
+                    <span class="material-symbols-outlined">whatshot</span>
                     Sith Plasma (Red)
                 </span>
             </div>
+
             <div class="hero-badge anim">
                 <span class="badge-dot"></span>
-                <span class="badge-text">Venator Command // Sector 7-G</span>
+                <span class="badge-text">Venator Bridge // Sector 7-G</span>
             </div>
+
             <h1 class="hero-title anim">
                 MEDHANSH<br/><span class="hero-title-accent">KABADWAL</span>
             </h1>
+
             <p class="hero-subtitle anim">Engineering Intelligent Safety Systems<br/>for the Developing World.</p>
-            <div class="hero-role anim">Physical AI Engineer • Computer Vision • Edge Systems</div>
+            <div class="hero-role anim">Physical AI Engineer • Computer Vision • Embedded Systems</div>
+
+            <!-- Telemetry Widget -->
+            <div class="telemetry-bar anim">
+                <div class="telemetry-item">
+                    <span class="telemetry-label">LOCATION</span>
+                    <span class="telemetry-val">Ghaziabad, IN</span>
+                </div>
+                <div class="telemetry-divider"></div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">HORIZON</span>
+                    <span class="telemetry-val">Stanford MS '27</span>
+                </div>
+                <div class="telemetry-divider"></div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">CORE STACK</span>
+                    <span class="telemetry-val">C++ / PyTorch / ROS</span>
+                </div>
+            </div>
+
             <div class="hero-cta anim">
                 <a href="mailto:medhansh5@proton.me" class="btn btn-primary" id="btn-contact-hero">
                     <span class="material-symbols-outlined">rocket_launch</span>
@@ -121,36 +188,43 @@
                 </a>
                 <a href="#" class="btn btn-outline" id="btn-explore">
                     <span class="material-symbols-outlined">explore</span>
-                    EXPLORE
+                    EXPLORE LAB
                 </a>
             </div>
         </div>
+
         <div class="scroll-indicator anim">
-            <span class="scroll-text">Scroll to descend</span>
+            <span class="scroll-text">Scroll to explore space</span>
             <span class="material-symbols-outlined scroll-arrow">keyboard_double_arrow_down</span>
         </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
-         FUSIONNET OVERLAY
+         FUSIONNET OVERLAY (RESEARCH)
          ═══════════════════════════════════════════════════════ -->
     <div id="fusionnet-overlay" class="overlay">
         <div class="overlay-inner fusionnet-content">
             <div class="section-label anim">
                 <span class="label-line"></span>
-                <span class="label-text">01 // Research</span>
+                <span class="label-text">01 // Research & Architecture</span>
             </div>
-            <h2 class="section-title anim">FusionNet<br/><span class="title-accent typewriter" data-typewriter="Protocol"></span></h2>
-            <p class="section-desc anim">A multi-modal neural architecture designed for high-stakes environmental perception. Synthesizing disparate sensor streams to establish predictive safety maneuvers in chaotic urban terrains.</p>
+            <h2 class="section-title anim">FusionNet<br/><span class="title-accent typewriter" data-typewriter="Protocol v2.4"></span></h2>
+            <p class="section-desc anim">A multi-modal edge neural architecture engineered for high-stakes environmental perception. Fusing vision & inertial sensor streams in real time to enable autonomous predictive safety maneuvers.</p>
+
             <div class="stats-grid anim">
                 <div class="stat-card" id="stat-f1">
+                    <div class="corner-bracket top-left"></div>
+                    <div class="corner-bracket bottom-right"></div>
                     <span class="stat-label">F1-Score Reliability</span>
                     <span class="stat-value" id="stat-f1-value" data-target="0.87">0.00</span>
                     <div class="stat-bar"><div class="stat-bar-fill" id="stat-f1-bar" data-width="87"></div></div>
                 </div>
+
                 <div class="stat-card stat-card-red" id="stat-fp">
+                    <div class="corner-bracket top-left"></div>
+                    <div class="corner-bracket bottom-right"></div>
                     <span class="stat-label">False Positive Mitigation</span>
-                    <span class="stat-value" id="stat-fp-value" data-target="-68.1">0.0</span>
+                    <span class="stat-value" id="stat-fp-value" data-target="-68.1">0.0%</span>
                     <div class="stat-bar"><div class="stat-bar-fill" id="stat-fp-bar" data-width="68"></div></div>
                 </div>
             </div>
@@ -158,18 +232,21 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
-         PROJECTS OVERLAY
+         PROJECTS OVERLAY (LABORATORY)
          ═══════════════════════════════════════════════════════ -->
     <div id="projects-overlay" class="overlay">
         <div class="overlay-inner projects-content">
             <div class="section-label anim">
                 <span class="label-line"></span>
-                <span class="label-text">02 // Laboratory</span>
+                <span class="label-text">02 // Laboratory Deployment</span>
             </div>
-            <h2 class="section-title anim">Engineering<br/><span class="title-accent typewriter" data-typewriter="Lab"></span></h2>
+            <h2 class="section-title anim">Engineering<br/><span class="title-accent typewriter" data-typewriter="Fleet"></span></h2>
+
             <div class="project-cards">
                 <!-- ShadowMap -->
                 <article class="project-card anim" id="card-shadowmap">
+                    <div class="corner-bracket top-left"></div>
+                    <div class="corner-bracket bottom-right"></div>
                     <div class="project-header">
                         <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">emergency</span>
                         <h3 class="project-name">ShadowMap</h3>
@@ -178,7 +255,7 @@
                     <div class="project-tags">
                         <span class="tag">Python / Flask</span>
                         <span class="tag">PostGIS</span>
-                        <span class="tag">Web Audio / Haptics</span>
+                        <span class="tag">Web Audio API</span>
                     </div>
                     <a href="https://github.com/medhansh5/shadowmap" target="_blank" rel="noopener noreferrer" class="project-link" id="link-shadowmap">
                         View Source <span class="material-symbols-outlined">arrow_outward</span>
@@ -187,6 +264,8 @@
 
                 <!-- BikeGuard -->
                 <article class="project-card anim" id="card-bikeguard">
+                    <div class="corner-bracket top-left"></div>
+                    <div class="corner-bracket bottom-right"></div>
                     <div class="project-header">
                         <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">security</span>
                         <h3 class="project-name">BikeGuard</h3>
@@ -204,6 +283,8 @@
 
                 <!-- PotholeNet -->
                 <article class="project-card anim" id="card-potholenet">
+                    <div class="corner-bracket top-left"></div>
+                    <div class="corner-bracket bottom-right"></div>
                     <div class="project-header">
                         <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">add_road</span>
                         <h3 class="project-name">PotholeNet</h3>
@@ -229,10 +310,10 @@
         <div class="overlay-inner contact-content">
             <div class="section-label anim">
                 <span class="label-line"></span>
-                <span class="label-text">03 // Transmit</span>
+                <span class="label-text">03 // Transmit Channel</span>
             </div>
-            <h2 class="section-title anim">Initiate<br/><span class="title-accent typewriter" data-typewriter="Contact"></span></h2>
-            <p class="section-desc anim">Ready to discuss Physical AI, edge computing, or road safety systems? Open a channel.</p>
+            <h2 class="section-title anim">Initiate<br/><span class="title-accent typewriter" data-typewriter="Transmission"></span></h2>
+            <p class="section-desc anim">Ready to discuss Physical AI, embedded edge computing, or intelligent safety systems? Open a channel.</p>
             <a href="mailto:medhansh5@proton.me" class="btn btn-primary btn-lg anim" id="btn-contact-footer">
                 <span class="material-symbols-outlined">mail</span>
                 medhansh5@proton.me
