@@ -461,92 +461,169 @@ function createAsteroidBelt() {
     return group;
 }
 
-// ── Star Destroyer ──────────────────────────────────────────────────────────
+// ── Venator-class Republic Star Destroyer ───────────────────────────────────
 function createStarDestroyer() {
     const group = new THREE.Group();
     group.position.set(18, 12, 0);
     group.rotation.set(0.1, -0.8, 0.05);
 
-    // Main hull — triangular wedge using a flat cone with 3 radial segments
-    const hullGeo = new THREE.ConeGeometry(3.5, 10, 3, 1);
-    const hullMat = new THREE.MeshBasicMaterial({
-        color: COLORS.bg,
-        transparent: true,
-        opacity: 0.35,
+    const redMat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.5,
     });
-    const hull = new THREE.Mesh(hullGeo, hullMat);
+    const redLineMat = new THREE.LineBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.85,
+    });
+    const greyLineMat = new THREE.LineBasicMaterial({
+        color: COLORS.primaryLight, transparent: true, opacity: 0.6,
+    });
+    const darkMat = new THREE.MeshBasicMaterial({
+        color: COLORS.bg, transparent: true, opacity: 0.4,
+    });
+
+    // ── Main hull (elongated narrow wedge — Venator is longer/narrower than ISD)
+    const hullGeo = new THREE.ConeGeometry(2.8, 14, 3, 1);
+    const hull = new THREE.Mesh(hullGeo, darkMat);
     hull.rotation.x = -Math.PI / 2;
-    hull.scale.set(1.2, 1, 0.12);
+    hull.scale.set(1.0, 1, 0.1);     // Very flat, narrower than ISD
     group.add(hull);
 
-    // Hull glowing edges
+    // Hull edges (grey/blue)
     const hullEdges = new THREE.EdgesGeometry(hullGeo);
-    const hullLineMat = new THREE.LineBasicMaterial({
-        color: COLORS.secondary,
-        transparent: true,
-        opacity: 0.85,
-    });
-    const hullLines = new THREE.LineSegments(hullEdges, hullLineMat);
+    const hullLines = new THREE.LineSegments(hullEdges, greyLineMat);
     hullLines.rotation.copy(hull.rotation);
     hullLines.scale.copy(hull.scale);
     group.add(hullLines);
 
-    // Bridge tower
-    const bridgeGeo = new THREE.BoxGeometry(0.8, 1.2, 0.5);
-    const bridgeMat = new THREE.MeshBasicMaterial({
-        color: COLORS.bg,
-        transparent: true,
-        opacity: 0.4,
+    // ── Iconic red dorsal racing stripe (runs full length of the hull)
+    const stripeGeo = new THREE.BoxGeometry(0.5, 0.03, 12);
+    const stripeMat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.7,
     });
-    const bridge = new THREE.Mesh(bridgeGeo, bridgeMat);
-    bridge.position.set(0, 0.25, -2.5);
-    group.add(bridge);
+    const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+    stripe.position.set(0, 0.15, 0.5);
+    group.add(stripe);
 
-    const bridgeEdges = new THREE.EdgesGeometry(bridgeGeo);
-    const bridgeLines = new THREE.LineSegments(bridgeEdges, new THREE.LineBasicMaterial({
-        color: COLORS.primaryLight,
-        transparent: true,
-        opacity: 0.9,
+    // Stripe glow edges
+    const stripeEdges = new THREE.EdgesGeometry(stripeGeo);
+    const stripeLines = new THREE.LineSegments(stripeEdges, redLineMat);
+    stripeLines.position.copy(stripe.position);
+    group.add(stripeLines);
+
+    // ── Split bow / hangar gap (two small wedge prongs at the front)
+    const prongGeo = new THREE.BoxGeometry(0.4, 0.08, 2.5);
+    const prongEdges = new THREE.EdgesGeometry(prongGeo);
+
+    const prongL = new THREE.LineSegments(prongEdges, greyLineMat);
+    prongL.position.set(-0.6, 0.04, 6.5);
+    group.add(prongL);
+
+    const prongR = new THREE.LineSegments(prongEdges, greyLineMat);
+    prongR.position.set(0.6, 0.04, 6.5);
+    group.add(prongR);
+
+    // Hangar opening (red glow in the gap between prongs)
+    const hangarGeo = new THREE.PlaneGeometry(0.6, 2.0);
+    const hangarMat = new THREE.MeshBasicMaterial({
+        color: COLORS.secondary, transparent: true, opacity: 0.2, side: THREE.DoubleSide,
+    });
+    const hangar = new THREE.Mesh(hangarGeo, hangarMat);
+    hangar.rotation.x = -Math.PI / 2;
+    hangar.position.set(0, 0.03, 6.5);
+    group.add(hangar);
+
+    // ── Tall bridge tower (set far back — the Venator signature)
+    const towerBaseGeo = new THREE.BoxGeometry(0.7, 1.8, 0.5);
+    const towerBase = new THREE.Mesh(towerBaseGeo, darkMat);
+    towerBase.position.set(0, 0.9, -4.5);
+    group.add(towerBase);
+
+    const towerBaseEdges = new THREE.EdgesGeometry(towerBaseGeo);
+    const towerBaseLines = new THREE.LineSegments(towerBaseEdges, redLineMat);
+    towerBaseLines.position.copy(towerBase.position);
+    group.add(towerBaseLines);
+
+    // Bridge T-top (horizontal crossbar)
+    const tTopGeo = new THREE.BoxGeometry(1.4, 0.3, 0.35);
+    const tTop = new THREE.Mesh(tTopGeo, darkMat);
+    tTop.position.set(0, 1.9, -4.5);
+    group.add(tTop);
+
+    const tTopEdges = new THREE.EdgesGeometry(tTopGeo);
+    const tTopLines = new THREE.LineSegments(tTopEdges, new THREE.LineBasicMaterial({
+        color: COLORS.primary, transparent: true, opacity: 0.9,
     }));
-    bridgeLines.position.copy(bridge.position);
-    group.add(bridgeLines);
+    tTopLines.position.copy(tTop.position);
+    group.add(tTopLines);
 
-    // Shield generator domes
-    const domeGeo = new THREE.SphereGeometry(0.15, 8, 6);
-    const domeMat = new THREE.MeshBasicMaterial({
-        color: COLORS.primary, wireframe: true, transparent: true, opacity: 0.7,
+    // Bridge viewport (small glowing slit)
+    const viewportGeo = new THREE.BoxGeometry(0.3, 0.06, 0.02);
+    const viewportMat = new THREE.MeshBasicMaterial({
+        color: COLORS.primary, transparent: true, opacity: 0.9,
     });
-    const dome1 = new THREE.Mesh(domeGeo, domeMat);
-    dome1.position.set(-0.25, 0.85, -2.5);
-    group.add(dome1);
-    const dome2 = new THREE.Mesh(domeGeo, domeMat);
-    dome2.position.set(0.25, 0.85, -2.5);
-    group.add(dome2);
+    const viewport = new THREE.Mesh(viewportGeo, viewportMat);
+    viewport.position.set(0, 1.95, -4.3);
+    group.add(viewport);
 
-    // Engine glow circles
-    const engineGeo = new THREE.CircleGeometry(0.18, 8);
+    // ── Dorsal turret emplacements (small octahedrons along the hull)
+    const turretGeo = new THREE.OctahedronGeometry(0.1, 0);
+    const turretMat = new THREE.MeshBasicMaterial({
+        color: COLORS.primary, wireframe: true, transparent: true, opacity: 0.6,
+    });
+    const turretPositions = [
+        [0.8, 0.12, 2], [-0.8, 0.12, 2],
+        [0.6, 0.12, 0], [-0.6, 0.12, 0],
+        [0.4, 0.12, -2], [-0.4, 0.12, -2],
+    ];
+    turretPositions.forEach(([x, y, z]) => {
+        const turret = new THREE.Mesh(turretGeo, turretMat);
+        turret.position.set(x, y, z);
+        group.add(turret);
+    });
+
+    // ── Engine cluster (4 large + 2 small engine glows)
+    const engineGeo = new THREE.CircleGeometry(0.22, 8);
     const engineMat = new THREE.MeshBasicMaterial({
-        color: COLORS.secondary, transparent: true, opacity: 0.7, side: THREE.DoubleSide,
+        color: COLORS.secondary, transparent: true, opacity: 0.75, side: THREE.DoubleSide,
     });
-    [-0.6, 0, 0.6].forEach(x => {
+    [-0.7, -0.25, 0.25, 0.7].forEach(x => {
         const engine = new THREE.Mesh(engineGeo, engineMat);
-        engine.position.set(x, 0, -5);
+        engine.position.set(x, 0, -7);
         group.add(engine);
     });
 
-    // Engine point light
-    const engineLight = new THREE.PointLight(COLORS.secondary, 2, 8);
-    engineLight.position.set(0, 0, -5.5);
+    // Small outer engines
+    const smEngineGeo = new THREE.CircleGeometry(0.12, 6);
+    [-1.0, 1.0].forEach(x => {
+        const eng = new THREE.Mesh(smEngineGeo, engineMat);
+        eng.position.set(x, 0, -6.8);
+        group.add(eng);
+    });
+
+    // Engine exhaust light
+    const engineLight = new THREE.PointLight(COLORS.secondary, 2.5, 10);
+    engineLight.position.set(0, 0, -7.5);
     group.add(engineLight);
 
-    // Hull underside strip
-    const stripGeo = new THREE.BoxGeometry(0.06, 0.02, 8);
-    const stripMat = new THREE.MeshBasicMaterial({
-        color: COLORS.secondary, transparent: true, opacity: 0.5,
+    // ── Secondary red accent stripes (flanking the main stripe)
+    const sideStripeGeo = new THREE.BoxGeometry(0.12, 0.025, 6);
+    [-0.4, 0.4].forEach(x => {
+        const ss = new THREE.Mesh(sideStripeGeo, new THREE.MeshBasicMaterial({
+            color: COLORS.secondary, transparent: true, opacity: 0.35,
+        }));
+        ss.position.set(x, 0.14, -0.5);
+        group.add(ss);
     });
-    const strip = new THREE.Mesh(stripGeo, stripMat);
-    strip.position.set(0, -0.15, -1);
-    group.add(strip);
+
+    // ── Ventral detail lines (bottom hull plating)
+    const ventralGeo = new THREE.BoxGeometry(1.8, 0.015, 0.015);
+    [-2, 0, 2, 4].forEach(z => {
+        const line = new THREE.Mesh(ventralGeo, new THREE.MeshBasicMaterial({
+            color: COLORS.primaryLight, transparent: true, opacity: 0.2,
+        }));
+        line.position.set(0, -0.08, z);
+        line.scale.x = 1 - Math.abs(z) * 0.08;
+        group.add(line);
+    });
 
     scene.add(group);
     return group;
