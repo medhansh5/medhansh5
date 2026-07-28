@@ -894,11 +894,17 @@ function selectProjectNode(index) {
 
     // Smoothly turn 3D DNA Project Helix to bring active node into view
     const targetAngle = -((activeProjectIndex / 5) * Math.PI * 2);
-    gsap.to(projectHelix.group.rotation, {
-        y: targetAngle,
-        duration: 0.8,
-        ease: 'power2.out',
-    });
+    if (typeof gsap !== 'undefined') {
+        gsap.to(projectHelix.group.rotation, {
+            y: targetAngle,
+            duration: 0.8,
+            ease: 'power2.out',
+        });
+    } else {
+        projectHelix.group.rotation.y = targetAngle;
+    }
+
+    if (soundActive) triggerSaberClash();
 }
 
 // Attach event listeners for tabs and prev/next buttons
@@ -1320,118 +1326,171 @@ projectCards.forEach((card, i) => {
 });
 
 // ════════════════════════════════════════════════════════════════════════════
-//  AMBIENT & LIGHTSABER MOTION SOUND ENGINE (Web Audio API)
+//  LIGHTSABER DUEL & SWOOSH SOUND ENGINE (Web Audio API Synthesizer)
 // ════════════════════════════════════════════════════════════════════════════
 
 let audioCtx = null;
-let ambientGain = null;
-let ambientOsc1 = null;
-let ambientOsc2 = null;
-let ambientLFO = null;
+let masterGain = null;
+let saberHumOsc1 = null;
+let saberHumOsc2 = null;
+let saberHumLFO = null;
 let saberSwooshOsc = null;
 let saberSwooshFilter = null;
 let saberSwooshGain = null;
+let noiseBuffer = null;
 let soundActive = false;
 let soundUnlocked = false;
 
 const soundToggle = document.getElementById('sound-toggle');
 const soundIcon = document.getElementById('sound-icon');
 
-function initAmbientSound() {
+function initAudioEngine() {
     if (audioCtx) return;
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    // Master gain node
-    ambientGain = audioCtx.createGain();
-    ambientGain.gain.value = 0;
-    ambientGain.connect(audioCtx.destination);
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(audioCtx.destination);
 
-    // Deep drone oscillator 1 (Low A hum)
-    ambientOsc1 = audioCtx.createOscillator();
-    ambientOsc1.type = 'sine';
-    ambientOsc1.frequency.value = 55;
-    const osc1Gain = audioCtx.createGain();
-    osc1Gain.gain.value = 0.06;
-    ambientOsc1.connect(osc1Gain);
-    osc1Gain.connect(ambientGain);
-    ambientOsc1.start();
+    // Deep Plasma Blade Hum (Low A 55Hz + Sub-harmonic 41Hz)
+    saberHumOsc1 = audioCtx.createOscillator();
+    saberHumOsc1.type = 'sawtooth';
+    saberHumOsc1.frequency.value = 55;
+    const humFilter = audioCtx.createBiquadFilter();
+    humFilter.type = 'lowpass';
+    humFilter.frequency.value = 180;
 
-    // Higher harmonic oscillator
-    ambientOsc2 = audioCtx.createOscillator();
-    ambientOsc2.type = 'sine';
-    ambientOsc2.frequency.value = 110;
-    const osc2Gain = audioCtx.createGain();
-    osc2Gain.gain.value = 0.03;
-    ambientOsc2.connect(osc2Gain);
-    osc2Gain.connect(ambientGain);
-    ambientOsc2.start();
+    const hum1Gain = audioCtx.createGain();
+    hum1Gain.gain.value = 0.05;
+    saberHumOsc1.connect(humFilter);
+    humFilter.connect(hum1Gain);
+    hum1Gain.connect(masterGain);
+    saberHumOsc1.start();
 
-    // LFO for subtle hum modulation
-    ambientLFO = audioCtx.createOscillator();
-    ambientLFO.type = 'sine';
-    ambientLFO.frequency.value = 0.15;
+    saberHumOsc2 = audioCtx.createOscillator();
+    saberHumOsc2.type = 'sine';
+    saberHumOsc2.frequency.value = 110;
+    const hum2Gain = audioCtx.createGain();
+    hum2Gain.gain.value = 0.03;
+    saberHumOsc2.connect(hum2Gain);
+    hum2Gain.connect(masterGain);
+    saberHumOsc2.start();
+
+    // Subtle plasma hum LFO pitch modulation
+    saberHumLFO = audioCtx.createOscillator();
+    saberHumLFO.type = 'sine';
+    saberHumLFO.frequency.value = 0.25;
     const lfoGain = audioCtx.createGain();
-    lfoGain.gain.value = 3;
-    ambientLFO.connect(lfoGain);
-    lfoGain.connect(ambientOsc1.frequency);
-    ambientLFO.start();
+    lfoGain.gain.value = 4;
+    saberHumLFO.connect(lfoGain);
+    lfoGain.connect(saberHumOsc1.frequency);
+    saberHumLFO.start();
 
-    // Initialize Lightsaber Motion Swoosh Engine
-    initSaberSwooshSound();
-}
-
-function initSaberSwooshSound() {
-    if (saberSwooshOsc || !audioCtx) return;
-
-    // Lightsaber motion swoosh oscillator (Sawtooth + Bandpass Filter Sweep)
+    // High-Resonant Swoosh Generator (Sawtooth + Resonant Bandpass Sweep)
     saberSwooshOsc = audioCtx.createOscillator();
     saberSwooshOsc.type = 'sawtooth';
-    saberSwooshOsc.frequency.value = 60; // Base idle frequency
+    saberSwooshOsc.frequency.value = 70;
 
     saberSwooshFilter = audioCtx.createBiquadFilter();
     saberSwooshFilter.type = 'bandpass';
-    saberSwooshFilter.frequency.value = 250;
-    saberSwooshFilter.Q.value = 3.5;
+    saberSwooshFilter.frequency.value = 300;
+    saberSwooshFilter.Q.value = 6.5; // Resonant lightsaber blade hum
 
     saberSwooshGain = audioCtx.createGain();
     saberSwooshGain.gain.value = 0;
 
     saberSwooshOsc.connect(saberSwooshFilter);
     saberSwooshFilter.connect(saberSwooshGain);
-    saberSwooshGain.connect(ambientGain);
+    saberSwooshGain.connect(masterGain);
     saberSwooshOsc.start();
+
+    // Pre-generate noise buffer for Plasma Clash SFX
+    const bufferSize = audioCtx.sampleRate * 0.15;
+    noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
 }
 
-// Mobile Audio Auto-Unlock Listener (iOS Safari / Android Chrome)
-function unlockAudioOnMobile() {
+// Mobile Audio Auto-Unlock Listener
+function unlockAudio() {
     if (soundUnlocked) return;
     soundUnlocked = true;
-    if (!audioCtx) initAmbientSound();
+    if (!audioCtx) initAudioEngine();
     if (audioCtx && audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
 }
-window.addEventListener('touchstart', unlockAudioOnMobile, { passive: true, once: true });
-window.addEventListener('pointerdown', unlockAudioOnMobile, { passive: true, once: true });
+window.addEventListener('touchstart', unlockAudio, { passive: true, once: true });
+window.addEventListener('pointerdown', unlockAudio, { passive: true, once: true });
 
+// ── Lightsaber Swoosh Generator ─────────────────────────────────────────────
 function triggerSaberSwoosh(velocity) {
     if (!audioCtx || !saberSwooshOsc) return;
 
-    const normalizedVel = Math.min(1.0, velocity / 40);
+    const normalizedVel = Math.min(1.0, velocity / 35);
     if (normalizedVel > 0.04) {
         const now = audioCtx.currentTime;
-        // Frequency rises from 60Hz to 160Hz on fast movement
-        saberSwooshOsc.frequency.setTargetAtTime(60 + normalizedVel * 100, now, 0.04);
-        // Filter sweeps up from 250Hz to 1400Hz (lightsaber motion whoosh!)
-        saberSwooshFilter.frequency.setTargetAtTime(250 + normalizedVel * 1150, now, 0.04);
+        // Pitch sweeps from 70Hz to 260Hz on fast movement (VSHHH!)
+        saberSwooshOsc.frequency.setTargetAtTime(70 + normalizedVel * 190, now, 0.03);
+        // Filter sweeps up from 300Hz to 2200Hz
+        saberSwooshFilter.frequency.setTargetAtTime(300 + normalizedVel * 1900, now, 0.03);
         // Volume swell
-        saberSwooshGain.gain.setTargetAtTime(0.08 + normalizedVel * 0.16, now, 0.03);
+        saberSwooshGain.gain.setTargetAtTime(0.12 + normalizedVel * 0.22, now, 0.03);
+
+        // Trigger plasma clash if velocity is extremely high (rapid scroll/swipe)
+        if (normalizedVel > 0.7 && Math.random() > 0.65) {
+            triggerSaberClash();
+        }
     } else {
         const now = audioCtx.currentTime;
-        saberSwooshOsc.frequency.setTargetAtTime(60, now, 0.2);
-        saberSwooshFilter.frequency.setTargetAtTime(250, now, 0.2);
-        saberSwooshGain.gain.setTargetAtTime(0, now, 0.25);
+        saberSwooshOsc.frequency.setTargetAtTime(70, now, 0.18);
+        saberSwooshFilter.frequency.setTargetAtTime(300, now, 0.18);
+        saberSwooshGain.gain.setTargetAtTime(0, now, 0.22);
     }
+}
+
+// ── Lightsaber Blade Clash SFX (Plasma Energy Strike) ───────────────────────
+let lastClashTime = 0;
+function triggerSaberClash() {
+    if (!soundActive || !audioCtx || !noiseBuffer) return;
+    const now = audioCtx.currentTime;
+    if (now - lastClashTime < 0.25) return; // Debounce clash sounds
+    lastClashTime = now;
+
+    // White Noise Burst
+    const whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+
+    const clashFilter = audioCtx.createBiquadFilter();
+    clashFilter.type = 'highpass';
+    clashFilter.frequency.value = 1400;
+
+    const clashGain = audioCtx.createGain();
+    clashGain.gain.setValueAtTime(0.3, now);
+    clashGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+    whiteNoise.connect(clashFilter);
+    clashFilter.connect(clashGain);
+    clashGain.connect(masterGain);
+    whiteNoise.start(now);
+    whiteNoise.stop(now + 0.12);
+
+    // Dual Square Wave Ring Modulation Strike (KSHHH!)
+    const strikeOsc = audioCtx.createOscillator();
+    strikeOsc.type = 'square';
+    strikeOsc.frequency.setValueAtTime(880, now);
+    strikeOsc.frequency.exponentialRampToValueAtTime(220, now + 0.1);
+
+    const strikeGain = audioCtx.createGain();
+    strikeGain.gain.setValueAtTime(0.18, now);
+    strikeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+
+    strikeOsc.connect(strikeGain);
+    strikeGain.connect(masterGain);
+    strikeOsc.start(now);
+    strikeOsc.stop(now + 0.1);
 }
 
 let lastScrollY = window.scrollY;
@@ -1443,21 +1502,20 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 function toggleSound() {
-    if (!audioCtx) initAmbientSound();
+    if (!audioCtx) initAudioEngine();
 
     if (soundActive) {
-        // Fade out
-        ambientGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+        masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
         soundActive = false;
         soundIcon.textContent = 'volume_off';
         soundToggle.classList.remove('active');
     } else {
         if (audioCtx.state === 'suspended') audioCtx.resume();
-        // Fade in
-        ambientGain.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.8);
+        masterGain.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.6);
         soundActive = true;
         soundIcon.textContent = 'volume_up';
         soundToggle.classList.add('active');
+        triggerSaberClash(); // Play inaugural clash SFX when sound is enabled
     }
 }
 
