@@ -162,28 +162,6 @@ a {
   border-bottom-color: var(--lightsaber-blue);
 }
 
-/* Sound Toggle */
-#sound-toggle {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--outline);
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  color: var(--on-surface-variant);
-  cursor: pointer;
-  transition: all 0.3s var(--ease-out);
-  border-radius: 50%;
-}
-
-#sound-toggle:hover, #sound-toggle.active {
-  border-color: var(--lightsaber-blue);
-  color: var(--lightsaber-blue);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-}
-
 /* 6. Scroll Container */
 #scroll-container {
   position: relative;
