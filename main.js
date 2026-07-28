@@ -671,6 +671,136 @@ function createRedNebula() {
     return cloud;
 }
 
+// ── Blue Nebula Cloud ───────────────────────────────────────────────────────
+function createBlueNebula() {
+    const count = isMobile ? 200 : 500;
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+        const i3 = i * 3;
+        const radius = 35 + Math.random() * 90;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+
+        positions[i3]     = radius * Math.sin(phi) * Math.cos(theta) * 1.4;
+        positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.5;
+        positions[i3 + 2] = radius * Math.cos(phi);
+
+        const color = new THREE.Color();
+        color.setHSL(0.52 + Math.random() * 0.1, 0.8 + Math.random() * 0.2, 0.4 + Math.random() * 0.3);
+        colors[i3] = color.r;
+        colors[i3 + 1] = color.g;
+        colors[i3 + 2] = color.b;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const mat = new THREE.PointsMaterial({
+        size: isMobile ? 2.5 : 3.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.18,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        sizeAttenuation: true,
+    });
+
+    const cloud = new THREE.Points(geo, mat);
+    scene.add(cloud);
+    return cloud;
+}
+
+// ── 3D Floating Lightsabers (Red Sith & Blue Jedi) ──────────────────────────
+function createLightsaber(bladeColorHex, isSith = false) {
+    const saberGroup = new THREE.Group();
+
+    // Hilt Assembly
+    const hiltGroup = new THREE.Group();
+
+    // Main grip body
+    const bodyGeo = new THREE.CylinderGeometry(0.12, 0.12, 1.2, 16);
+    const hiltMat = new THREE.MeshStandardMaterial({
+        color: isSith ? 0x22222b : 0xa0a5b5,
+        metalness: 0.9,
+        roughness: 0.2,
+    });
+    const mainBody = new THREE.Mesh(bodyGeo, hiltMat);
+    mainBody.position.y = -0.6;
+    hiltGroup.add(mainBody);
+
+    // Dark ridged grips
+    const gripGeo = new THREE.CylinderGeometry(0.13, 0.13, 0.45, 16);
+    const gripMat = new THREE.MeshBasicMaterial({ color: 0x111116 });
+    const grip = new THREE.Mesh(gripGeo, gripMat);
+    grip.position.y = -0.65;
+    hiltGroup.add(grip);
+
+    // Emitter shroud
+    const emitterGeo = new THREE.CylinderGeometry(0.15, 0.12, 0.3, 16);
+    const emitterMat = new THREE.MeshBasicMaterial({ color: isSith ? 0x441111 : 0x445577 });
+    const emitter = new THREE.Mesh(emitterGeo, emitterMat);
+    emitter.position.y = -0.05;
+    hiltGroup.add(emitter);
+
+    // Activation switch / button
+    const btnGeo = new THREE.BoxGeometry(0.06, 0.12, 0.06);
+    const btnMat = new THREE.MeshBasicMaterial({ color: bladeColorHex });
+    const btn = new THREE.Mesh(btnGeo, btnMat);
+    btn.position.set(0.13, -0.4, 0);
+    hiltGroup.add(btn);
+
+    // Pommel cap
+    const pommelGeo = new THREE.CylinderGeometry(0.14, 0.1, 0.15, 16);
+    const pommel = new THREE.Mesh(pommelGeo, hiltMat);
+    pommel.position.y = -1.25;
+    hiltGroup.add(pommel);
+
+    saberGroup.add(hiltGroup);
+
+    // Plasma Blade Assembly
+    const bladeGroup = new THREE.Group();
+    bladeGroup.position.y = 0.1;
+
+    // Core white plasma beam
+    const coreGeo = new THREE.CylinderGeometry(0.06, 0.06, 4.2, 16);
+    const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    coreMesh.position.y = 2.1;
+    bladeGroup.add(coreMesh);
+
+    // Outer vibrant plasma glow
+    const glowGeo = new THREE.CylinderGeometry(0.18, 0.18, 4.3, 16);
+    const glowMat = new THREE.MeshBasicMaterial({
+        color: bladeColorHex,
+        transparent: true,
+        opacity: 0.75,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+    const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+    glowMesh.position.y = 2.15;
+    bladeGroup.add(glowMesh);
+
+    // Blade tip glow
+    const tipGeo = new THREE.SphereGeometry(0.18, 16, 8, 0, Math.PI * 2, 0, Math.PI * 0.5);
+    const tipMesh = new THREE.Mesh(tipGeo, glowMat);
+    tipMesh.position.y = 4.3;
+    bladeGroup.add(tipMesh);
+
+    // Dedicated Point Light illuminating space
+    const bladeLight = new THREE.PointLight(bladeColorHex, 4.0, 18);
+    bladeLight.position.y = 2.1;
+    bladeGroup.add(bladeLight);
+
+    saberGroup.add(bladeGroup);
+
+    scene.add(saberGroup);
+    return { group: saberGroup, hilt: hiltGroup, blade: bladeGroup, glowMesh, bladeLight };
+}
+
 // ════════════════════════════════════════════════════════════════════════════
 //  BUILD THE SCENE
 // ════════════════════════════════════════════════════════════════════════════
@@ -685,6 +815,29 @@ const dnaHelix  = createDNAHelix();
 const asteroidBelt = createAsteroidBelt();
 const starDestroyer = createStarDestroyer();
 const redNebula = createRedNebula();
+const blueNebula = createBlueNebula();
+
+// ── Floating 3D Lightsabers (Sith Red & Jedi Blue) ─────────────────────────
+// Saber 1: Sith Red Lightsaber floating near hero camera view
+const saberRed = createLightsaber(0xff0033, true);
+saberRed.group.position.set(6.5, 4.5, 20);
+saberRed.group.rotation.set(0.4, -0.6, 0.8);
+
+// Saber 2: Jedi Blue Lightsaber floating on opposite side
+const saberBlue = createLightsaber(0x00f0ff, false);
+saberBlue.group.position.set(-7.0, 5.0, 16);
+saberBlue.group.rotation.set(-0.3, 0.5, -0.7);
+
+// Saber 3 & 4: Deep space crossed lightsabers near the Venator Ship
+const saberRedSpace = createLightsaber(0xff0033, true);
+saberRedSpace.group.position.set(13.0, 14.0, -3.0);
+saberRedSpace.group.rotation.set(0.2, 0.8, -0.5);
+saberRedSpace.group.scale.setScalar(0.75);
+
+const saberBlueSpace = createLightsaber(0x00f0ff, false);
+saberBlueSpace.group.position.set(15.0, 10.0, -2.0);
+saberBlueSpace.group.rotation.set(-0.5, -0.3, 0.6);
+saberBlueSpace.group.scale.setScalar(0.75);
 
 // Ambient particle clusters near each zone
 const heroParticles    = createAmbientParticles(new THREE.Vector3(0, 3, 18),  isMobile ? 80 : 180,  16, COLORS.primaryLight);
@@ -692,14 +845,18 @@ const fusionParticles  = createAmbientParticles(new THREE.Vector3(6, 5, -5),  is
 const projectParticles = createAmbientParticles(new THREE.Vector3(0, 3, -27), isMobile ? 80 : 160,  22, COLORS.primaryLight);
 const contactParticles = createAmbientParticles(new THREE.Vector3(0, 2, -50), isMobile ? 50 : 100,  14, COLORS.primary);
 
-// Extra red particle clouds
+// Extra red & blue particle clouds
 const redParticles1 = createAmbientParticles(new THREE.Vector3(15, 10, 0), isMobile ? 40 : 80, 10, COLORS.secondary);
 const redParticles2 = createAmbientParticles(new THREE.Vector3(-8, 4, -15), isMobile ? 40 : 80, 14, COLORS.secondary);
+const blueParticles1 = createAmbientParticles(new THREE.Vector3(-12, 8, 5), isMobile ? 40 : 80, 12, 0x00f0ff);
 
-// Red accent point lights in the scene
+// Red & Blue accent point lights in the scene
 const redLight1 = new THREE.PointLight(COLORS.secondary, 1.2, 25);
 redLight1.position.set(20, 10, 5);
 scene.add(redLight1);
+const blueLight1 = new THREE.PointLight(0x00f0ff, 1.5, 25);
+blueLight1.position.set(-15, 8, 10);
+scene.add(blueLight1);
 const redLight2 = new THREE.PointLight(COLORS.secondary, 0.8, 20);
 redLight2.position.set(-10, 5, -20);
 scene.add(redLight2);
@@ -1230,13 +1387,39 @@ function animate() {
     starDestroyer.rotation.y = -0.8 + Math.sin(elapsed * 0.08) * 0.05;
     starDestroyer.rotation.z = 0.05 + Math.cos(elapsed * 0.15) * 0.02;
 
-    // ── Animate Red Nebula ──────────────────────────────────────────────────
+    // ── Animate Red & Blue Nebulas ──────────────────────────────────────────
     redNebula.rotation.y += 0.0001;
     redNebula.rotation.x += 0.00005;
+    blueNebula.rotation.y -= 0.00012;
+    blueNebula.rotation.z += 0.00004;
 
-    // ── Animate Red Particle Clouds ─────────────────────────────────────────
+    // ── Animate Particle Clouds ─────────────────────────────────────────────
     redParticles1.rotation.y += 0.0002;
     redParticles2.rotation.y -= 0.00025;
+    blueParticles1.rotation.y += 0.0003;
+
+    // ── Animate Floating 3D Lightsabers ─────────────────────────────────────
+    // Sith Red Lightsaber 1 (floating drift + blade hum pulse)
+    saberRed.group.position.y = 4.5 + Math.sin(elapsed * 0.8) * 0.35;
+    saberRed.group.rotation.z = 0.8 + Math.cos(elapsed * 0.5) * 0.06;
+    saberRed.group.rotation.y += 0.003;
+    const redPulse = 0.7 + Math.sin(elapsed * 4.0) * 0.12;
+    saberRed.glowMesh.material.opacity = redPulse;
+    saberRed.bladeLight.intensity = 3.5 + Math.sin(elapsed * 6.0) * 0.8;
+
+    // Jedi Blue Lightsaber 2 (floating drift + blade hum pulse)
+    saberBlue.group.position.y = 5.0 + Math.sin(elapsed * 0.7 + 1.2) * 0.35;
+    saberBlue.group.rotation.z = -0.7 + Math.sin(elapsed * 0.6) * 0.06;
+    saberBlue.group.rotation.y -= 0.0025;
+    const bluePulse = 0.75 + Math.cos(elapsed * 3.5) * 0.1;
+    saberBlue.glowMesh.material.opacity = bluePulse;
+    saberBlue.bladeLight.intensity = 3.8 + Math.cos(elapsed * 5.5) * 0.7;
+
+    // Space Lightsabers near Star Destroyer
+    saberRedSpace.group.position.y = 14.0 + Math.sin(elapsed * 0.4) * 0.5;
+    saberRedSpace.group.rotation.y += 0.002;
+    saberBlueSpace.group.position.y = 10.0 + Math.cos(elapsed * 0.45) * 0.5;
+    saberBlueSpace.group.rotation.y -= 0.002;
 
     // ── Render ──────────────────────────────────────────────────────────────
     if (composer) {

@@ -12,6 +12,10 @@
   --primary-dim: #004a77;
   --secondary: #e60000;
   --secondary-light: #ff4444;
+  --lightsaber-red: #ff0033;
+  --lightsaber-blue: #00f0ff;
+  --lightsaber-red-glow: rgba(255, 0, 51, 0.5);
+  --lightsaber-blue-glow: rgba(0, 240, 255, 0.5);
   --outline: #2a2a2e;
   --outline-variant: #1e1e21;
   --glass-bg: rgba(10, 10, 11, 0.75);
@@ -799,3 +803,92 @@ a {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   user-select: none;
 }
+
+/* 16. Starship HUD & Lightsaber UI Redesign */
+.hud-corner {
+  position: fixed;
+  z-index: 45;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-top-left {
+  top: 24px;
+  left: 28px;
+}
+
+.hud-top-right {
+  top: 24px;
+  right: 28px;
+}
+
+.hud-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lightsaber-red);
+  box-shadow: 0 0 10px var(--lightsaber-red);
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+.hud-indicator-blue {
+  background: var(--lightsaber-blue);
+  box-shadow: 0 0 10px var(--lightsaber-blue);
+}
+
+.lightsaber-badge-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.saber-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.saber-pill-blue {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: var(--lightsaber-blue);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+}
+
+.saber-pill-red {
+  background: rgba(255, 0, 51, 0.1);
+  border: 1px solid rgba(255, 0, 51, 0.4);
+  color: var(--lightsaber-red);
+  box-shadow: 0 0 12px rgba(255, 0, 51, 0.25);
+}
+
+.ship-hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px dashed rgba(0, 163, 255, 0.4);
+  background: rgba(5, 5, 7, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary-light);
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+

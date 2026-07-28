@@ -52,6 +52,16 @@
          ═══════════════════════════════════════════════════════ -->
     <canvas id="webgl" aria-hidden="true"></canvas>
 
+    <!-- STARSHIP HUD CORNER OVERLAYS -->
+    <div class="hud-corner hud-top-left">
+        <span class="hud-indicator-dot"></span>
+        <span>VENATOR // DEEP SPACE CORE</span>
+    </div>
+    <div class="hud-corner hud-top-right">
+        <span class="hud-indicator-dot hud-indicator-blue"></span>
+        <span>FORCE MATRIX // ACTIVE</span>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════════
          SIDE NAVIGATION DOTS
          ═══════════════════════════════════════════════════════ -->
@@ -85,9 +95,19 @@
          ═══════════════════════════════════════════════════════ -->
     <div id="hero-overlay" class="overlay">
         <div class="overlay-inner hero-content">
+            <div class="lightsaber-badge-container anim">
+                <span class="saber-pill saber-pill-blue">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
+                    Jedi Plasma (Blue)
+                </span>
+                <span class="saber-pill saber-pill-red">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">whatshot</span>
+                    Sith Plasma (Red)
+                </span>
+            </div>
             <div class="hero-badge anim">
                 <span class="badge-dot"></span>
-                <span class="badge-text">Sector 7-G // Equilibrium</span>
+                <span class="badge-text">Venator Command // Sector 7-G</span>
             </div>
             <h1 class="hero-title anim">
                 MEDHANSH<br/><span class="hero-title-accent">KABADWAL</span>
