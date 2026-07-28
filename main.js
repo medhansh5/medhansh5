@@ -21,7 +21,7 @@ const COLORS = {
 };
 
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const PARTICLE_COUNT = isMobile ? 2500 : 5500;
+const PARTICLE_COUNT = isMobile ? 350 : 850;
 
 // ── DOM References ──────────────────────────────────────────────────────────
 const canvas        = document.getElementById('webgl');
@@ -629,24 +629,24 @@ function createStarDestroyer() {
     return group;
 }
 
-// ── Red Nebula Cloud ────────────────────────────────────────────────────────
+// ── Red Nebula Cloud (Positioned Right: x > 0) ─────────────────────────────
 function createRedNebula() {
-    const count = isMobile ? 200 : 500;
+    const count = isMobile ? 70 : 160;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i++) {
         const i3 = i * 3;
-        const radius = 30 + Math.random() * 100;
-        const theta = Math.random() * Math.PI * 2;
+        const radius = 20 + Math.random() * 45;
+        const theta = Math.random() * Math.PI * 0.8 - Math.PI * 0.4;
         const phi = Math.acos(2 * Math.random() - 1);
 
-        positions[i3]     = radius * Math.sin(phi) * Math.cos(theta) * 1.5;
-        positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.4;
+        positions[i3]     = 22 + radius * Math.sin(phi) * Math.cos(theta); // Right side
+        positions[i3 + 1] = 6 + radius * Math.sin(phi) * Math.sin(theta) * 0.5;
         positions[i3 + 2] = radius * Math.cos(phi);
 
         const color = new THREE.Color();
-        color.setHSL(Math.random() * 0.06, 0.6 + Math.random() * 0.4, 0.3 + Math.random() * 0.3);
+        color.setHSL(Math.random() * 0.05, 0.85 + Math.random() * 0.15, 0.4 + Math.random() * 0.2);
         colors[i3] = color.r;
         colors[i3 + 1] = color.g;
         colors[i3 + 2] = color.b;
@@ -657,10 +657,10 @@ function createRedNebula() {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const mat = new THREE.PointsMaterial({
-        size: isMobile ? 2.5 : 3.5,
+        size: isMobile ? 2.2 : 3.2,
         vertexColors: true,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.22,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         sizeAttenuation: true,
@@ -671,24 +671,24 @@ function createRedNebula() {
     return cloud;
 }
 
-// ── Blue Nebula Cloud ───────────────────────────────────────────────────────
+// ── Blue Nebula Cloud (Positioned Left: x < 0) ──────────────────────────────
 function createBlueNebula() {
-    const count = isMobile ? 200 : 500;
+    const count = isMobile ? 70 : 160;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i++) {
         const i3 = i * 3;
-        const radius = 35 + Math.random() * 90;
-        const theta = Math.random() * Math.PI * 2;
+        const radius = 20 + Math.random() * 45;
+        const theta = Math.PI + (Math.random() * Math.PI * 0.8 - Math.PI * 0.4);
         const phi = Math.acos(2 * Math.random() - 1);
 
-        positions[i3]     = radius * Math.sin(phi) * Math.cos(theta) * 1.4;
-        positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.5;
-        positions[i3 + 2] = radius * Math.cos(phi);
+        positions[i3]     = -22 + radius * Math.sin(phi) * Math.cos(theta); // Left side
+        positions[i3 + 1] = -4 + radius * Math.sin(phi) * Math.sin(theta) * 0.5;
+        positions[i3 + 2] = -20 + radius * Math.cos(phi);
 
         const color = new THREE.Color();
-        color.setHSL(0.52 + Math.random() * 0.1, 0.8 + Math.random() * 0.2, 0.4 + Math.random() * 0.3);
+        color.setHSL(0.54 + Math.random() * 0.08, 0.9 + Math.random() * 0.1, 0.45 + Math.random() * 0.2);
         colors[i3] = color.r;
         colors[i3 + 1] = color.g;
         colors[i3 + 2] = color.b;
@@ -699,10 +699,10 @@ function createBlueNebula() {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const mat = new THREE.PointsMaterial({
-        size: isMobile ? 2.5 : 3.5,
+        size: isMobile ? 2.2 : 3.2,
         vertexColors: true,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.24,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         sizeAttenuation: true,
@@ -817,79 +817,75 @@ const starDestroyer = createStarDestroyer();
 const redNebula = createRedNebula();
 const blueNebula = createBlueNebula();
 
-// ── Floating 3D Lightsabers (Sith Red & Jedi Blue) ─────────────────────────
-// Saber 1: Sith Red Lightsaber floating near hero camera view
+// ── Floating 3D Lightsabers (Sith Red on Right, Jedi Blue on Left) ─────────
+// Saber 1: Sith Red Lightsaber floating on the RIGHT side near Hero & Ship
 const saberRed = createLightsaber(0xff0033, true);
-saberRed.group.position.set(6.5, 4.5, 20);
+saberRed.group.position.set(7.5, 4.5, 20);
 saberRed.group.rotation.set(0.4, -0.6, 0.8);
 
-// Saber 2: Jedi Blue Lightsaber floating on opposite side
+// Saber 2: Jedi Blue Lightsaber floating on the LEFT side near Research/Projects
 const saberBlue = createLightsaber(0x00f0ff, false);
-saberBlue.group.position.set(-7.0, 5.0, 16);
+saberBlue.group.position.set(-8.0, 4.0, -18);
 saberBlue.group.rotation.set(-0.3, 0.5, -0.7);
 
-// Saber 3 & 4: Deep space crossed lightsabers near the Venator Ship
+// Saber 3: Secondary Sith Red Lightsaber in Deep Space Right
 const saberRedSpace = createLightsaber(0xff0033, true);
-saberRedSpace.group.position.set(13.0, 14.0, -3.0);
+saberRedSpace.group.position.set(16.0, 12.0, 2.0);
 saberRedSpace.group.rotation.set(0.2, 0.8, -0.5);
 saberRedSpace.group.scale.setScalar(0.75);
 
+// Saber 4: Secondary Jedi Blue Lightsaber in Deep Space Left
 const saberBlueSpace = createLightsaber(0x00f0ff, false);
-saberBlueSpace.group.position.set(15.0, 10.0, -2.0);
+saberBlueSpace.group.position.set(-16.0, 8.0, -32.0);
 saberBlueSpace.group.rotation.set(-0.5, -0.3, 0.6);
 saberBlueSpace.group.scale.setScalar(0.75);
 
-// Ambient particle clusters near each zone
-const heroParticles    = createAmbientParticles(new THREE.Vector3(0, 3, 18),  isMobile ? 80 : 180,  16, COLORS.primaryLight);
-const fusionParticles  = createAmbientParticles(new THREE.Vector3(6, 5, -5),  isMobile ? 60 : 120,  12, COLORS.primary);
-const projectParticles = createAmbientParticles(new THREE.Vector3(0, 3, -27), isMobile ? 80 : 160,  22, COLORS.primaryLight);
-const contactParticles = createAmbientParticles(new THREE.Vector3(0, 2, -50), isMobile ? 50 : 100,  14, COLORS.primary);
+// Ambient particle clusters (Trimmed count for ultra-clean space aesthetic)
+const heroParticles    = createAmbientParticles(new THREE.Vector3(6, 4, 18),   isMobile ? 25 : 55, 14, COLORS.secondary);
+const fusionParticles  = createAmbientParticles(new THREE.Vector3(2, 4, -4),   isMobile ? 20 : 45, 12, COLORS.primary);
+const projectParticles = createAmbientParticles(new THREE.Vector3(-4, 3, -24), isMobile ? 25 : 55, 18, 0x00f0ff);
+const contactParticles = createAmbientParticles(new THREE.Vector3(-8, 2, -48), isMobile ? 20 : 40, 14, 0x00f0ff);
 
-// Extra red & blue particle clouds
-const redParticles1 = createAmbientParticles(new THREE.Vector3(15, 10, 0), isMobile ? 40 : 80, 10, COLORS.secondary);
-const redParticles2 = createAmbientParticles(new THREE.Vector3(-8, 4, -15), isMobile ? 40 : 80, 14, COLORS.secondary);
-const blueParticles1 = createAmbientParticles(new THREE.Vector3(-12, 8, 5), isMobile ? 40 : 80, 12, 0x00f0ff);
+// Extra spatially segregated particle clouds
+const redParticles1 = createAmbientParticles(new THREE.Vector3(20, 8, 8),    isMobile ? 15 : 35, 10, COLORS.secondary);
+const redParticles2 = createAmbientParticles(new THREE.Vector3(14, 2, -10),  isMobile ? 15 : 35, 12, COLORS.secondary);
+const blueParticles1 = createAmbientParticles(new THREE.Vector3(-18, 6, -15), isMobile ? 15 : 35, 10, 0x00f0ff);
+const blueParticles2 = createAmbientParticles(new THREE.Vector3(-24, 2, -35), isMobile ? 15 : 35, 12, 0x00f0ff);
 
-// Red & Blue accent point lights in the scene
-const redLight1 = new THREE.PointLight(COLORS.secondary, 1.2, 25);
-redLight1.position.set(20, 10, 5);
+// Point lights in spatial zones
+const redLight1 = new THREE.PointLight(COLORS.secondary, 1.8, 25);
+redLight1.position.set(22, 8, 10);
 scene.add(redLight1);
-const blueLight1 = new THREE.PointLight(0x00f0ff, 1.5, 25);
-blueLight1.position.set(-15, 8, 10);
+
+const blueLight1 = new THREE.PointLight(0x00f0ff, 2.0, 25);
+blueLight1.position.set(-22, 6, -25);
 scene.add(blueLight1);
-const redLight2 = new THREE.PointLight(COLORS.secondary, 0.8, 20);
-redLight2.position.set(-10, 5, -20);
-scene.add(redLight2);
 
 // Subtle ambient light
-scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+scene.add(new THREE.AmbientLight(0xffffff, 0.09));
 
 // ════════════════════════════════════════════════════════════════════════════
-//  CAMERA PATH SYSTEM
+//  CAMERA PATH SYSTEM (VERTICAL SCROLL: SWEEPS FROM RED RIGHT -> BLUE LEFT)
 // ════════════════════════════════════════════════════════════════════════════
 
 const cameraPath = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0,   6,  40),    // 0 — Far out (hero view)
-    new THREE.Vector3(1,   5,  30),    // 1 — Drifting in
-    new THREE.Vector3(4,   6,  14),    // 2 — Sweeping toward fusionnet
-    new THREE.Vector3(8,   6.5, 2),    // 3 — Arriving at fusionnet
-    new THREE.Vector3(5,   5.5,-6),    // 4 — Passing fusionnet
-    new THREE.Vector3(-1,  4, -14),    // 5 — Transitioning to projects
-    new THREE.Vector3(-4,  3.5,-23),   // 6 — In the projects corridor
-    new THREE.Vector3(0,   3, -34),    // 7 — Moving toward contact
-    new THREE.Vector3(0,   3, -44),    // 8 — Arriving at contact ring
+    new THREE.Vector3(7,   6,  36),    // 0 — HERO (TOP): Framed on RED / RIGHT side
+    new THREE.Vector3(5,   5.5, 26),   // 1 — Sweeping along right
+    new THREE.Vector3(3,   6,  12),    // 2 — Transitioning through center
+    new THREE.Vector3(0,   5.5,  0),   // 3 — Center space
+    new THREE.Vector3(-3,  4.5,-12),   // 4 — Sweeping toward left
+    new THREE.Vector3(-6,  4.0,-24),   // 5 — Deep in BLUE / LEFT side
+    new THREE.Vector3(-8,  3.5,-36),   // 6 — CONTACT (BOTTOM): Framed on BLUE / LEFT side
 ], false, 'centripetal');
 
 const lookAtPath = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0,   3,   18),   // 0 — Looking at hero knot
-    new THREE.Vector3(0,   3,   15),   // 1
-    new THREE.Vector3(5,   5,   -3),   // 2 — Turning toward fusionnet
-    new THREE.Vector3(6,   5,   -5),   // 3 — Looking at fusionnet core
-    new THREE.Vector3(4,   4,   -8),   // 4
-    new THREE.Vector3(0,   2,  -22),   // 5 — Looking at monoliths
-    new THREE.Vector3(0,   2,  -27),   // 6 — Center of monoliths
-    new THREE.Vector3(0,   2,  -48),   // 7 — Looking at contact ring
-    new THREE.Vector3(0,   2,  -52),   // 8
+    new THREE.Vector3(10,  3,  16),    // 0 — TOP: Looking at RED Sith objects on right
+    new THREE.Vector3(7,   3,  12),    // 1
+    new THREE.Vector3(3,   4,  -2),    // 2
+    new THREE.Vector3(0,   3, -10),    // 3 — Looking at center core
+    new THREE.Vector3(-4,  2, -22),    // 4
+    new THREE.Vector3(-8,  2, -30),    // 5 — Looking at BLUE Jedi objects on left
+    new THREE.Vector3(-10, 2, -45),    // 6 — BOTTOM
 ], false, 'centripetal');
 
 // Lerp targets
@@ -1438,6 +1434,7 @@ function animate() {
     redParticles1.rotation.y += 0.0002;
     redParticles2.rotation.y -= 0.00025;
     blueParticles1.rotation.y += 0.0003;
+    blueParticles2.rotation.y -= 0.0003;
 
     // ── Animate Floating 3D Lightsabers ─────────────────────────────────────
     // Sith Red Lightsaber 1 (floating drift + blade hum pulse)
