@@ -726,11 +726,89 @@ a {
   box-shadow: 0 0 10px var(--lightsaber-red);
 }
 
-/* 11. Project Cards Grid */
-.project-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+/* 11. 3D Helix Project Deck & Card Styling */
+.helix-tab-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.helix-tab {
+  padding: 8px 16px;
+  min-height: 44px;
+  background: rgba(10, 10, 15, 0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--on-surface-dim);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+}
+
+.helix-tab:hover, .helix-tab.active {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--lightsaber-blue);
+  color: var(--lightsaber-blue);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+}
+
+.helix-card-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.helix-nav-btn {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  color: var(--on-surface);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+  touch-action: manipulation;
+}
+
+.helix-nav-btn:hover, .helix-nav-btn:active {
+  border-color: var(--lightsaber-blue);
+  color: var(--lightsaber-blue);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+.helix-card-active {
+  flex-grow: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.card-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.helix-counter-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--on-surface-variant);
 }
 
 .project-card {

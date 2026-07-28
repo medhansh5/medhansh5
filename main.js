@@ -212,59 +212,113 @@ function createFusionCore() {
 }
 
 // ── Project Monoliths ───────────────────────────────────────────────────────
-function createProjectMonoliths() {
-    const monoliths = [];
-    const configs = [
-        { pos: new THREE.Vector3(-7, 0, -22), color: COLORS.primary },
-        { pos: new THREE.Vector3(0, 0, -27),  color: COLORS.secondary },
-        { pos: new THREE.Vector3(7, 0, -32),  color: COLORS.primaryLight },
-    ];
+// ── 3D DNA Project Helix Data & Factory ─────────────────────────────────────
+const projectsData = [
+    {
+        name: 'ShadowMap',
+        icon: 'emergency',
+        desc: 'Real-time motorcycle telemetry visualization with cyberpunk rider HUD. Web Audio acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.',
+        tags: ['Python / Flask', 'PostGIS', 'Web Audio API'],
+        link: 'https://github.com/medhansh5/shadowmap',
+    },
+    {
+        name: 'BikeGuard',
+        icon: 'security',
+        desc: 'Unified 9-stage Physical AI road engine. Indian ALPR, optical flow speed estimation, pediatric pillion sorting, cultural helmet classification, and SHA-256 audit trails.',
+        tags: ['C++ 9-Stage Engine', 'YOLOv8 / DirectML', 'ALPR / SHA-256'],
+        link: 'https://github.com/medhansh5/bikeguard',
+    },
+    {
+        name: 'PotholeNet',
+        icon: 'add_road',
+        desc: 'Enterprise physical AI road anomaly classification platform. Native C++ Edge Core with Biquad SOS filtering, BallTree DBSCAN clustering, and PostGIS spatial ingestion.',
+        tags: ['C++ Edge Core', 'BallTree DBSCAN', 'PostGIS'],
+        link: 'https://github.com/medhansh5/potholenet',
+    },
+    {
+        name: 'Spectre',
+        icon: 'visibility',
+        desc: 'Privacy-first AI screen assistant for Linux powered by Gemini 2.0 Flash vision. Minimal X11 dark glassmorphism overlay with zero local storage of captured screenshots.',
+        tags: ['Gemini 2.0 Flash', 'PyQt6 / X11', 'Linux HUD'],
+        link: 'https://github.com/medhansh5/spectre',
+    },
+    {
+        name: 'Sprout & Flourish',
+        icon: 'park',
+        desc: 'Interactive 3D Habit Tracker Garden web application built with Next.js 14, TypeScript, React Three Fiber, Drei, Zustand, and Tailwind CSS, optimized for Vercel.',
+        tags: ['Next.js 14', 'React Three Fiber', 'Zustand'],
+        link: 'https://github.com/medhansh5/sprout-flourish-3d-garden',
+    },
+];
 
-    configs.forEach(({ pos, color }) => {
-        const group = new THREE.Group();
-        group.position.copy(pos);
+function createProjectHelix() {
+    const helixGroup = new THREE.Group();
+    helixGroup.position.set(-2, 2, -24);
 
-        // Tall rectangular slab
-        const boxGeo = new THREE.BoxGeometry(2.2, 7, 0.4);
+    const nodeCount = 5;
+    const radius = 6.0;
+    const heightStep = 3.2;
+    const nodes = [];
 
-        // Semi-transparent fill
-        const boxMat = new THREE.MeshBasicMaterial({
-            color: COLORS.bg,
-            transparent: true,
-            opacity: 0.5,
-        });
+    // Build 5 Holographic Nodes along 3D Spiral
+    projectsData.forEach((proj, i) => {
+        const angle = (i / nodeCount) * Math.PI * 2;
+        const y = (i - 2) * heightStep;
+        const x = Math.cos(angle) * radius;
+        const z = Math.sin(angle) * radius;
+
+        const nodeGroup = new THREE.Group();
+        nodeGroup.position.set(x, y, z);
+
+        // Glass Box
+        const boxGeo = new THREE.BoxGeometry(1.8, 4.5, 0.3);
+        const boxMat = new THREE.MeshBasicMaterial({ color: COLORS.bg, transparent: true, opacity: 0.6 });
         const box = new THREE.Mesh(boxGeo, boxMat);
-        box.position.y = 3.5;
-        group.add(box);
+        nodeGroup.add(box);
 
-        // Glowing edge wireframe
-        const edgeGeo  = new THREE.EdgesGeometry(boxGeo);
-        const edgeMat  = new THREE.LineBasicMaterial({
-            color,
-            transparent: true,
-            opacity: 0.85,
-        });
+        // Glowing Wireframe Edge
+        const edgeGeo = new THREE.EdgesGeometry(boxGeo);
+        const color = i % 2 === 0 ? 0x00f0ff : 0xff0033;
+        const edgeMat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.8 });
         const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
-        edgeLines.position.y = 3.5;
-        group.add(edgeLines);
+        nodeGroup.add(edgeLines);
 
-        // Accent bar on top
-        const barGeo = new THREE.BoxGeometry(2.4, 0.06, 0.06);
-        const barMat = new THREE.MeshBasicMaterial({ color });
-        const bar = new THREE.Mesh(barGeo, barMat);
-        bar.position.y = 7.15;
-        group.add(bar);
+        // Point Light
+        const light = new THREE.PointLight(color, 1.2, 10);
+        nodeGroup.add(light);
 
-        // Small point light at each monolith
-        const light = new THREE.PointLight(color, 0.8, 8);
-        light.position.y = 4;
-        group.add(light);
-
-        scene.add(group);
-        monoliths.push({ group, box, edgeLines, bar });
+        helixGroup.add(nodeGroup);
+        nodes.push({ group: nodeGroup, edgeLines, light, angle, y });
     });
 
-    return monoliths;
+    // Build DNA Double Helix Strands wrapping around nodes
+    const strandPoints1 = [];
+    const strandPoints2 = [];
+    const totalPts = 120;
+    const helixTurns = 2.5;
+    const totalHeight = 18;
+
+    for (let i = 0; i < totalPts; i++) {
+        const t = i / totalPts;
+        const y = t * totalHeight - totalHeight / 2;
+        const angle = t * Math.PI * 2 * helixTurns;
+
+        strandPoints1.push(new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius));
+        strandPoints2.push(new THREE.Vector3(Math.cos(angle + Math.PI) * radius, y, Math.sin(angle + Math.PI) * radius));
+    }
+
+    const curve1 = new THREE.CatmullRomCurve3(strandPoints1);
+    const tube1Geo = new THREE.TubeGeometry(curve1, 100, 0.035, 6, false);
+    const tube1Mat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.65 });
+    helixGroup.add(new THREE.Mesh(tube1Geo, tube1Mat));
+
+    const curve2 = new THREE.CatmullRomCurve3(strandPoints2);
+    const tube2Geo = new THREE.TubeGeometry(curve2, 100, 0.035, 6, false);
+    const tube2Mat = new THREE.MeshBasicMaterial({ color: 0xff0033, transparent: true, opacity: 0.65 });
+    helixGroup.add(new THREE.Mesh(tube2Geo, tube2Mat));
+
+    scene.add(helixGroup);
+    return { group: helixGroup, nodes };
 }
 
 // ── Grid Plane ──────────────────────────────────────────────────────────────
@@ -805,15 +859,63 @@ function createLightsaber(bladeColorHex, isSith = false) {
 //  BUILD THE SCENE
 // ════════════════════════════════════════════════════════════════════════════
 
-const stars     = createStarField();
-const heroKnot  = createHeroKnot();
-const fusion    = createFusionCore();
-const monoliths = createProjectMonoliths();
-const grid      = createGridPlane();
-const contact   = createContactRing();
-const dnaHelix  = createDNAHelix();
+const stars        = createStarField();
+const heroKnot     = createHeroKnot();
+const fusion       = createFusionCore();
+const projectHelix = createProjectHelix();
+const grid         = createGridPlane();
+const contact      = createContactRing();
+const dnaHelix     = createDNAHelix();
 const asteroidBelt = createAsteroidBelt();
 const starDestroyer = createStarDestroyer();
+const redNebula    = createRedNebula();
+const blueNebula   = createBlueNebula();
+
+// ── 3D Helix Project Deck & Card Switcher Logic ──────────────────────────────
+let activeProjectIndex = 0;
+
+function selectProjectNode(index) {
+    activeProjectIndex = (index + projectsData.length) % projectsData.length;
+    const data = projectsData[activeProjectIndex];
+
+    const titleEl = document.getElementById('helix-title');
+    const iconEl = document.getElementById('helix-icon');
+    const descEl = document.getElementById('helix-desc');
+    const linkEl = document.getElementById('helix-link');
+    const counterEl = document.getElementById('helix-counter');
+    const tagsEl = document.getElementById('helix-tags');
+
+    if (titleEl) titleEl.textContent = data.name;
+    if (iconEl) iconEl.textContent = data.icon;
+    if (descEl) descEl.textContent = data.desc;
+    if (linkEl) linkEl.href = data.link;
+    if (counterEl) counterEl.textContent = `NODES ${activeProjectIndex + 1} / 5`;
+    if (tagsEl) tagsEl.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    // Active tab styling
+    document.querySelectorAll('.helix-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === activeProjectIndex);
+    });
+
+    // Smoothly turn 3D DNA Project Helix to bring active node into view
+    const targetAngle = -((activeProjectIndex / 5) * Math.PI * 2);
+    gsap.to(projectHelix.group.rotation, {
+        y: targetAngle,
+        duration: 0.8,
+        ease: 'power2.out',
+    });
+}
+
+// Attach event listeners for tabs and prev/next buttons
+document.querySelectorAll('.helix-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const idx = parseInt(tab.getAttribute('data-project'), 10);
+        selectProjectNode(idx);
+    });
+});
+
+document.getElementById('helix-prev')?.addEventListener('click', () => selectProjectNode(activeProjectIndex - 1));
+document.getElementById('helix-next')?.addEventListener('click', () => selectProjectNode(activeProjectIndex + 1));
 const redNebula = createRedNebula();
 const blueNebula = createBlueNebula();
 
@@ -1452,12 +1554,12 @@ function animate() {
     const fusionPulse = Math.sin(elapsed * 1.5) * 0.08 + 1.0;
     fusion.outer.scale.setScalar(fusionPulse);
 
-    // ── Animate Project Monoliths ───────────────────────────────────────────
-    monoliths.forEach((m, i) => {
-        // Floating hover
-        m.group.position.y = Math.sin(elapsed * 0.7 + i * 1.8) * 0.4;
-        // Subtle rotation
-        m.group.rotation.y = Math.sin(elapsed * 0.3 + i * 2.0) * 0.08;
+    // ── Animate 3D Project DNA Helix ─────────────────────────────────────────
+    // Continuously turns in space + gentle floating bobbing
+    projectHelix.group.position.y = 2.0 + Math.sin(elapsed * 0.6) * 0.3;
+    projectHelix.group.rotation.y += 0.0012;
+    projectHelix.nodes.forEach((n, i) => {
+        n.group.position.y = n.y + Math.sin(elapsed * 0.8 + i * 1.5) * 0.25;
     });
 
     // ── Animate Contact Ring ────────────────────────────────────────────────

@@ -242,78 +242,46 @@
             </div>
             <h2 class="section-title anim">Engineering<br/><span class="title-accent typewriter" data-typewriter="Fleet"></span></h2>
 
-            <div class="project-cards">
-                <!-- ShadowMap -->
-                <article class="project-card anim" id="card-shadowmap">
+            <!-- 3D Helix Project Selector Tabs -->
+            <div class="helix-tab-bar anim">
+                <button class="helix-tab active" data-project="0">01 // SHADOWMAP</button>
+                <button class="helix-tab" data-project="1">02 // BIKEGUARD</button>
+                <button class="helix-tab" data-project="2">03 // POTHOLENET</button>
+                <button class="helix-tab" data-project="3">04 // SPECTRE</button>
+                <button class="helix-tab" data-project="4">05 // SPROUT</button>
+            </div>
+
+            <!-- Focused Project Display Card (Synced with 3D Helix Spiral) -->
+            <div class="helix-card-container anim">
+                <button class="helix-nav-btn prev-btn" id="helix-prev" aria-label="Previous Project">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+
+                <!-- Active Project Card (Dynamically updated via JS) -->
+                <article class="project-card helix-card-active" id="active-helix-card">
                     <div class="corner-bracket top-left"></div>
                     <div class="corner-bracket bottom-right"></div>
                     <div class="project-header">
-                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">emergency</span>
-                        <h3 class="project-name">ShadowMap</h3>
+                        <span class="material-symbols-outlined project-icon" id="helix-icon" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                        <h3 class="project-name" id="helix-title">ShadowMap</h3>
                     </div>
-                    <p class="project-desc">Real-time motorcycle telemetry visualization with cyberpunk rider HUD. Web Audio acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.</p>
-                    <div class="project-tags">
+                    <p class="project-desc" id="helix-desc">Real-time motorcycle telemetry visualization with cyberpunk rider HUD. Web Audio acoustic synthesis, haptic feedback, Mission Control analytics, and live GeoJSON export.</p>
+                    <div class="project-tags" id="helix-tags">
                         <span class="tag">Python / Flask</span>
                         <span class="tag">PostGIS</span>
                         <span class="tag">Web Audio API</span>
                     </div>
-                    <a href="https://github.com/medhansh5/shadowmap" target="_blank" rel="noopener noreferrer" class="project-link" id="link-shadowmap">
-                        View Source <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
+                    <div class="card-footer-row">
+                        <a href="https://github.com/medhansh5/shadowmap" target="_blank" rel="noopener noreferrer" class="project-link" id="helix-link">
+                            View Source <span class="material-symbols-outlined">arrow_outward</span>
+                        </a>
+                        <span class="helix-counter-badge" id="helix-counter">NODES 1 / 5</span>
+                    </div>
                 </article>
 
-                <!-- BikeGuard -->
-                <article class="project-card anim" id="card-bikeguard">
-                    <div class="corner-bracket top-left"></div>
-                    <div class="corner-bracket bottom-right"></div>
-                    <div class="project-header">
-                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">security</span>
-                        <h3 class="project-name">BikeGuard</h3>
-                    </div>
-                    <p class="project-desc">Unified 9-stage Physical AI road engine. Indian ALPR, optical flow speed estimation, pediatric pillion sorting, cultural helmet classification, and SHA-256 audit trails.</p>
-                    <div class="project-tags">
-                        <span class="tag">C++ 9-Stage Engine</span>
-                        <span class="tag">YOLOv8 / DirectML</span>
-                        <span class="tag">ALPR / SHA-256</span>
-                    </div>
-                    <a href="https://github.com/medhansh5/bikeguard" target="_blank" rel="noopener noreferrer" class="project-link" id="link-bikeguard">
-                        View Source <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
-                </article>
-
-                <!-- PotholeNet -->
-                <article class="project-card anim" id="card-potholenet">
-                    <div class="corner-bracket top-left"></div>
-                    <div class="corner-bracket bottom-right"></div>
-                    <div class="project-header">
-                        <span class="material-symbols-outlined project-icon" style="font-variation-settings: 'FILL' 1;">add_road</span>
-                        <h3 class="project-name">PotholeNet</h3>
-                    </div>
-                    <p class="project-desc">Enterprise physical AI road anomaly classification platform. Native C++ Edge Core with Biquad SOS filtering, BallTree DBSCAN clustering, and PostGIS spatial ingestion.</p>
-                    <div class="project-tags">
-                        <span class="tag">C++ Edge Core</span>
-                        <span class="tag">BallTree DBSCAN</span>
-                        <span class="tag">PostGIS</span>
-                    </div>
-                    <a href="https://github.com/medhansh5/potholenet" target="_blank" rel="noopener noreferrer" class="project-link" id="link-potholenet">
-                        View Source <span class="material-symbols-outlined">arrow_outward</span>
-                    </a>
-                </article>
-            </div>
-
-            <!-- Secondary Systems Showcase Bar -->
-            <div class="secondary-projects-bar anim">
-                <span class="bar-title">EXTENDED ARCHIVES:</span>
-                <a href="https://github.com/medhansh5/spectre" target="_blank" rel="noopener noreferrer" class="secondary-pill">
-                    <span class="material-symbols-outlined">visibility</span>
-                    Spectre (Gemini Vision HUD)
-                    <span class="material-symbols-outlined icon-sm">arrow_outward</span>
-                </a>
-                <a href="https://github.com/medhansh5/sprout-flourish-3d-garden" target="_blank" rel="noopener noreferrer" class="secondary-pill">
-                    <span class="material-symbols-outlined">park</span>
-                    Sprout & Flourish (Next.js 3D Garden)
-                    <span class="material-symbols-outlined icon-sm">arrow_outward</span>
-                </a>
+                <button class="helix-nav-btn next-btn" id="helix-next" aria-label="Next Project">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
             </div>
         </div>
     </div>
