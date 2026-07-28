@@ -1004,83 +1004,130 @@ camera.lookAt(currentLook);
 //  GSAP SCROLL INTEGRATION
 // ════════════════════════════════════════════════════════════════════════════
 
-/* global gsap, ScrollTrigger */
-gsap.registerPlugin(ScrollTrigger);
+// ════════════════════════════════════════════════════════════════════════════
+//  GSAP SCROLL INTEGRATION & NATIVE FALLBACK ENGINE
+// ════════════════════════════════════════════════════════════════════════════
+
+const hasGSAP = typeof window.gsap !== 'undefined';
+const hasScrollTrigger = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
+
+if (hasScrollTrigger) {
+    try {
+        gsap.registerPlugin(ScrollTrigger);
+    } catch (e) {
+        console.warn('ScrollTrigger register warning:', e);
+    }
+}
 
 // ── Camera Scroll Proxy ─────────────────────────────────────────────────────
 const scrollProxy = { progress: 0 };
 
-gsap.to(scrollProxy, {
-    progress: 1,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '#scroll-container',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.5,
-    },
-});
+function updateScrollProgressNative() {
+    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalScroll > 0) {
+        scrollProxy.progress = Math.max(0, Math.min(1, window.scrollY / totalScroll));
+    }
+}
+
+if (hasScrollTrigger) {
+    gsap.to(scrollProxy, {
+        progress: 1,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '#scroll-container',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.5,
+        },
+    });
+} else {
+    window.addEventListener('scroll', updateScrollProgressNative, { passive: true });
+    updateScrollProgressNative();
+}
 
 // ── Hero Overlay (visible by default, fades on scroll) ──────────────────────
 const heroOverlay = document.getElementById('hero-overlay');
-gsap.set(heroOverlay, { opacity: 1, visibility: 'visible' });
+if (heroOverlay) {
+    heroOverlay.style.opacity = '1';
+    heroOverlay.style.visibility = 'visible';
 
-gsap.to(heroOverlay, {
-    opacity: 0,
-    scrollTrigger: {
-        trigger: '#spacer-hero',
-        start: '55% top',
-        end: '90% top',
-        scrub: true,
-        onLeave:     () => gsap.set(heroOverlay, { visibility: 'hidden' }),
-        onEnterBack: () => gsap.set(heroOverlay, { visibility: 'visible', opacity: 1 }),
-    },
-});
+    if (hasScrollTrigger) {
+        gsap.to(heroOverlay, {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '#spacer-hero',
+                start: '55% top',
+                end: '90% top',
+                scrub: true,
+                onLeave:     () => gsap.set(heroOverlay, { visibility: 'hidden' }),
+                onEnterBack: () => gsap.set(heroOverlay, { visibility: 'visible', opacity: 1 }),
+            },
+        });
+    }
+}
 
-// ── Section Overlay Trigger Factory ─────────────────────────────────────────
+// ── Section Overlay Trigger Factory (GSAP + Native Fallback) ────────────────
 function setupOverlayTrigger(overlayId, spacerId) {
     const overlay  = document.querySelector(overlayId);
+    if (!overlay) return;
     const children = overlay.querySelectorAll('.anim');
 
-    ScrollTrigger.create({
-        trigger: spacerId,
-        start: 'top 65%',
-        end: 'bottom 35%',
-        onEnter: () => {
-            gsap.set(overlay, { visibility: 'visible' });
-            gsap.to(overlay, { opacity: 1, duration: 0.7, ease: 'power2.out' });
-            gsap.fromTo(children,
-                { opacity: 0, y: 35 },
-                { opacity: 1, y: 0, stagger: 0.07, duration: 0.6, ease: 'power2.out' }
-            );
-            // Trigger typewriter on section title
-            overlay.querySelectorAll('.typewriter').forEach(el => {
-                setTimeout(() => typewrite(el), 600);
-            });
-        },
-        onLeave: () => {
-            gsap.to(overlay, {
-                opacity: 0,
-                duration: 0.45,
-                onComplete: () => gsap.set(overlay, { visibility: 'hidden' }),
-            });
-        },
-        onEnterBack: () => {
-            gsap.set(overlay, { visibility: 'visible' });
-            gsap.to(overlay, { opacity: 1, duration: 0.7, ease: 'power2.out' });
-            gsap.fromTo(children,
-                { opacity: 0, y: -20 },
-                { opacity: 1, y: 0, stagger: 0.05, duration: 0.5, ease: 'power2.out' }
-            );
-        },
-        onLeaveBack: () => {
-            gsap.to(overlay, {
-                opacity: 0,
-                duration: 0.45,
-                onComplete: () => gsap.set(overlay, { visibility: 'hidden' }),
-            });
-        },
-    });
+    if (hasScrollTrigger) {
+        ScrollTrigger.create({
+            trigger: spacerId,
+            start: 'top 65%',
+            end: 'bottom 35%',
+            onEnter: () => {
+                gsap.set(overlay, { visibility: 'visible' });
+                gsap.to(overlay, { opacity: 1, duration: 0.7, ease: 'power2.out' });
+                gsap.fromTo(children,
+                    { opacity: 0, y: 35 },
+                    { opacity: 1, y: 0, stagger: 0.07, duration: 0.6, ease: 'power2.out' }
+                );
+                overlay.querySelectorAll('.typewriter').forEach(el => {
+                    setTimeout(() => typewrite(el), 600);
+                });
+            },
+            onLeave: () => {
+                gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 0.45,
+                    onComplete: () => gsap.set(overlay, { visibility: 'hidden' }),
+                });
+            },
+            onEnterBack: () => {
+                gsap.set(overlay, { visibility: 'visible' });
+                gsap.to(overlay, { opacity: 1, duration: 0.7, ease: 'power2.out' });
+                gsap.fromTo(children,
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, stagger: 0.05, duration: 0.5, ease: 'power2.out' }
+                );
+            },
+            onLeaveBack: () => {
+                gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 0.45,
+                    onComplete: () => gsap.set(overlay, { visibility: 'hidden' }),
+                });
+            },
+        });
+    } else {
+        // Native Scroll Fallback for overlays
+        window.addEventListener('scroll', () => {
+            const spacer = document.querySelector(spacerId);
+            if (!spacer) return;
+            const rect = spacer.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight * 0.65 && rect.bottom > window.innerHeight * 0.35;
+            if (inView) {
+                overlay.style.visibility = 'visible';
+                overlay.style.opacity = '1';
+                children.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+            }
+        }, { passive: true });
+    }
 }
 
 setupOverlayTrigger('#fusionnet-overlay', '#spacer-fusionnet');
@@ -1429,34 +1476,66 @@ if (soundToggle) {
 
 function startHeroAnimation() {
     const heroChildren = document.querySelectorAll('#hero-overlay .anim');
-    gsap.fromTo(heroChildren,
-        { opacity: 0, y: 50, filter: 'blur(8px)' },
-        {
-            opacity: 1,
-            y: 0,
-            filter: 'blur(0px)',
-            stagger: 0.14,
-            duration: 1.0,
-            ease: 'power3.out',
-            delay: 0.3,
-        }
-    );
+    if (hasGSAP) {
+        gsap.fromTo(heroChildren,
+            { opacity: 0, y: 50, filter: 'blur(8px)' },
+            {
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)',
+                stagger: 0.14,
+                duration: 1.0,
+                ease: 'power3.out',
+                delay: 0.3,
+            }
+        );
+    } else {
+        heroChildren.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+    }
 
-    // Trigger typewriters on their respective section entries
     typewriterEls.forEach(el => {
         const overlay = el.closest('.overlay');
         if (!overlay) return;
-
         if (overlay.id === 'hero-overlay') {
-            // Hero typewriters fire immediately
             setTimeout(() => typewrite(el), 1200);
         }
     });
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-//  LOADING SEQUENCE
+//  LOADING SEQUENCE (FAIL-SAFE FAST ENGINE)
 // ════════════════════════════════════════════════════════════════════════════
+
+let isFinishedLoading = false;
+
+function finishLoading() {
+    if (isFinishedLoading) return;
+    isFinishedLoading = true;
+
+    if (!loadingScreen) return;
+
+    if (hasGSAP) {
+        gsap.to(loadingScreen, {
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                loadingScreen.style.display = 'none';
+                startHeroAnimation();
+            },
+        });
+    } else {
+        loadingScreen.style.transition = 'opacity 0.7s ease';
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            startHeroAnimation();
+        }, 700);
+    }
+}
 
 function simulateLoading() {
     let progress = 0;
@@ -1470,38 +1549,28 @@ function simulateLoading() {
     ];
 
     const interval = setInterval(() => {
-        progress += Math.random() * 12 + 4;
+        progress += Math.random() * 18 + 8;
         if (progress >= 100) {
             progress = 100;
             clearInterval(interval);
             finishLoading();
         }
 
-        loaderBarFill.style.width = `${progress}%`;
-        loaderPercent.textContent = `${Math.round(progress)}%`;
+        if (loaderBarFill) loaderBarFill.style.width = `${progress}%`;
+        if (loaderPercent) loaderPercent.textContent = `${Math.round(progress)}%`;
 
-        // Update status text
-        for (let i = statusMessages.length - 1; i >= 0; i--) {
-            if (progress >= statusMessages[i].threshold) {
-                loaderStatus.textContent = statusMessages[i].msg;
-                break;
+        if (loaderStatus) {
+            for (let i = statusMessages.length - 1; i >= 0; i--) {
+                if (progress >= statusMessages[i].threshold) {
+                    loaderStatus.textContent = statusMessages[i].msg;
+                    break;
+                }
             }
         }
-    }, 180);
-}
+    }, 120);
 
-function finishLoading() {
-    setTimeout(() => {
-        gsap.to(loadingScreen, {
-            opacity: 0,
-            duration: 1.0,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                loadingScreen.style.display = 'none';
-                startHeroAnimation();
-            },
-        });
-    }, 400);
+    // Hard fail-safe auto dismiss after 1.8s max
+    setTimeout(finishLoading, 1800);
 }
 
 // ════════════════════════════════════════════════════════════════════════════
