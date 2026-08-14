@@ -56,6 +56,9 @@ A heads-up AI screen analysis overlay for Linux powered by Gemini 2.0 Flash visi
 A 3D Habit Tracker web app built with Next.js 14, TypeScript, React Three Fiber, Drei, Zustand, and Tailwind CSS.
 - **3D Garden Mechanics:** Daily streak progression dynamically advances 3D plant growth stages (`SEED` → `SPROUT` → `SAPLING` → `MATURE` → `BLOOMING`) on an interactive 3D floating island.
 
+### 🏛️ [AshcrestHQ](https://github.com/AshcrestHQ) | *Open Source Collective*
+An open-source collective exploring security, systems, AI, developer tools, and creative technology. Building the next generation of foundational tools.
+
 ---
 
 ## 🖋️ Behind the Mask (Beyond the Code)
