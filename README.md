@@ -10,7 +10,7 @@
 
 I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, safety, and absolute control to real-world infrastructure. Like tuning a hyperdrive, I bridge the gap between raw digital intelligence and physical reality on the roads of Ghaziabad and beyond. The goal isn't just to observe; it's to reshape.
 
-- 🛠️ **Forging in the Archives:** [PotholeNet v3.0.0](https://github.com/medhansh5/potholenet), [ShadowMap v1.5.0](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.2.0 GA)](https://github.com/medhansh5/bikeguard), [Spectre](https://github.com/medhansh5/spectre), [Sprout & Flourish](https://github.com/medhansh5/sprout-flourish-3d-garden)
+- 🛠️ **Forging in the Archives:** [PotholeNet v3.0.0](https://github.com/medhansh5/potholenet), [ShadowMap v1.5.0](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.2.0 GA)](https://github.com/medhansh5/bikeguard)
 - 📚 **Mastering the Core:** Embedded Edge C++20/C++17, DirectML Neural Inference, Signal Processing (4th-order Butterworth SOS Biquad), PostGIS Spatial Ingestion, ROS, and WebGL/Three.js
 - 🏍️ **The Imperial Starfighter:** Real-time telemetry on The Baron (2025 Royal Enfield Classic 350 J-series)
 - 🎯 **The Ultimate Power:** Future Stanford Masters Candidate
@@ -48,13 +48,7 @@ Real-time motorcycle telemetry & road quality mapping platform tuned to filter o
 Enterprise-grade physical AI road anomaly classification platform.
 - **Native Edge Core:** C++17 core with 4th-order Butterworth Biquad SOS high-pass filtering (12Hz cutoff), zero-allocation circular ring buffers (~0.15ms/sample), 7-feature Random Forest ML model, scikit-learn BallTree DBSCAN spatial clustering ($O(N \log N)$), and PostGIS spatial ingestion.
 
-### 🔮 [Spectre](https://github.com/medhansh5/spectre) | *Privacy-First AI Screen Assistant*
-A heads-up AI screen analysis overlay for Linux powered by Gemini 2.0 Flash vision.
-- **Stealth HUD:** Minimal X11 dark glassmorphism overlay with global hotkeys (`Ctrl+Shift+Space`), zero local storage of screenshots, and instant multi-turn screen analysis.
 
-### 🌱 [Sprout & Flourish](https://github.com/medhansh5/sprout-flourish-3d-garden) | *3D Habit Tracker Garden*
-A 3D Habit Tracker web app built with Next.js 14, TypeScript, React Three Fiber, Drei, Zustand, and Tailwind CSS.
-- **3D Garden Mechanics:** Daily streak progression dynamically advances 3D plant growth stages (`SEED` → `SPROUT` → `SAPLING` → `MATURE` → `BLOOMING`) on an interactive 3D floating island.
 
 ### 🏛️ [AshcrestHQ](https://github.com/AshcrestHQ) | *Open Source Collective*
 An open-source collective exploring security, systems, AI, developer tools, and creative technology. Building the next generation of foundational tools.
@@ -63,12 +57,11 @@ An open-source collective exploring security, systems, AI, developer tools, and 
 
 ## 🖋️ Behind the Mask (Beyond the Code)
 
-Under the alias **Ash**, I explore the dark, moody side of human emotion and urban concrete through cinematic, retro-digital photography and introspective poetry. Every empire needs its art—a creative counterbalance to engineering absolute control.
+I explore the dark, moody side of human emotion and urban concrete through cinematic, retro-digital photography. Every empire needs its art—a creative counterbalance to engineering absolute control.
  
-- 📸 **Cinematic Photography:** [@medhansh.66](https://instagram.com/medhansh.66)
-- ✍️ **Poetry & Writing:** [@ashvelde](https://instagram.com/ashvelde)
+- 📸 **Cinematic Photography:** [@medhansh.hq](https://instagram.com/medhansh.hq)
 - 📧 **Direct Transmissions:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
-- 💼 **Holonet LinkedIn:** [in/Medhansh-Kabadwal](https://www.linkedin.com/in/medhansh-kabadwal-30197b374/)
+- 💼 **Holonet LinkedIn:** [in/medhansh5](https://www.linkedin.com/in/medhansh5)
 - 🌐 **Data Hub:** [medhansh5.github.io](https://medhansh5.github.io)
 
 ---
