@@ -20,8 +20,8 @@ I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, saf
 ## 📊 Technical Landscape (The Imperial Fleet)
 
 <p align="center">
-  <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=medhansh5&layout=compact&theme=vision-friendly-dark&hide_border=true" />
-  <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=medhansh5&show_icons=true&theme=vision-friendly-dark&hide_border=true" />
+  <img src="https://github-readme-stats-extended.vercel.app/api/top-langs/?username=medhansh5&layout=compact&theme=vision-friendly-dark&hide_border=true" />
+  <img src="https://github-readme-stats-extended.vercel.app/api?username=medhansh5&show_icons=true&theme=vision-friendly-dark&hide_border=true" />
 </p>
 
 ### 🛠 Core Stack
