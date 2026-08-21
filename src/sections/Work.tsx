@@ -14,7 +14,7 @@ const projects = [
       "YOLOv8 + IMU",
       "C++ filtering + quaternion motion tracking"
     ],
-    link: "#",
+    link: "https://doi.org/10.5281/zenodo.20971224",
     cta: "READ THE RESEARCH"
   },
   {
