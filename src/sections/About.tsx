@@ -2,55 +2,69 @@ import { motion } from 'framer-motion';
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24">
-        <div className="w-full md:w-1/2 flex flex-col justify-center">
+    <section id="about" className="py-32 px-6 md:px-12 bg-[#070708]">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
-            <h2 className="text-sm font-mono tracking-widest text-muted mb-8">SECTION 06</h2>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">BEYOND THE CODE</h3>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-xs font-mono tracking-widest text-accent uppercase">SECTION 06</span>
+              <span className="w-12 h-[1px] bg-accent/40"></span>
+            </div>
             
-            <div className="prose prose-invert prose-lg text-muted font-light mb-12">
-              <p className="mb-6">
-                Medhansh explores dark, moody urban photography and retro-digital visual styles.
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+              CINEMATIC PHOTOGRAPHY & VISUAL ARTS
+            </h2>
+            
+            <div className="text-muted text-base font-light leading-relaxed space-y-4 mb-8">
+              <p>
+                Beyond physical AI and low-level C++ systems, I document urban architecture, high-contrast night streetscapes, and moody concrete infrastructure through cinematic digital photography.
               </p>
               <p>
-                Every empire needs its art—a creative counterbalance to engineering absolute control. 
-                The visual language is an extension of the technical philosophy: finding clarity in the noise, 
-                and extracting signal from the dark.
+                Visual observation shares the same core discipline as computer vision: capturing raw light, finding geometric structure within environmental noise, and highlighting fine detail across dark contrast ratios.
               </p>
             </div>
 
-            <a 
-              href="https://instagram.com/medhansh.hq"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 text-sm font-mono tracking-widest text-white hover:text-accent transition-colors group"
-            >
-              INSTAGRAM: @MEDHANSH.HQ
-              <span className="w-6 h-[1px] bg-white group-hover:bg-accent group-hover:w-10 transition-all duration-300"></span>
-            </a>
+            <div className="flex flex-wrap gap-4 items-center">
+              <a 
+                href="https://instagram.com/medhansh.hq"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/15 text-xs font-mono tracking-widest text-white hover:text-accent hover:border-accent transition-all duration-300"
+              >
+                <span>INSTAGRAM ARCHIVE // @MEDHANSH.HQ</span>
+                <span>→</span>
+              </a>
+            </div>
           </motion.div>
         </div>
 
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="aspect-[4/5] bg-[#050505] relative overflow-hidden flex items-center justify-center group"
+            transition={{ duration: 0.8 }}
+            className="aspect-[4/3] glass-panel border border-white/10 p-3 relative overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none"></div>
-            
-            <img src="./about.jpg" alt="Urban Photography" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0 mix-blend-luminosity group-hover:mix-blend-normal" />
+            <div className="w-full h-full relative overflow-hidden bg-[#040405]">
+              <img 
+                src="./about.jpg" 
+                alt="Medhansh Urban Photography Archive" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" 
+              />
+              <div className="absolute bottom-4 left-4 font-mono text-[10px] tracking-widest px-2.5 py-1 bg-black/80 border border-white/10 text-muted">
+                URBAN ARCHITECTURE ARCHIVE // GHAZIABAD
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
+

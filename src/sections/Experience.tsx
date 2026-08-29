@@ -1,70 +1,67 @@
 import { motion } from 'framer-motion';
 
-const timeline = [
+const milestones = [
   {
-    year: "2020 → Present",
-    role: "Chief Technology Evangelist",
-    organization: "CyberHeaven",
-    type: "PROFESSIONAL"
+    period: "2025 — PRESENT",
+    title: "FOUNDER & SYSTEMS ARCHITECT",
+    org: "AshcrestHQ Collective",
+    details: "Architecting open-source security tools, privacy daemons, and microkernels (Janus OS, Blindside, Aegis, Spectre, Terra, Holocron)."
   },
   {
-    year: "2026 → Present",
-    role: "Founder",
-    organization: "AshcrestHQ",
-    type: "COLLECTIVE"
+    period: "2025",
+    title: "AUTHOR & RESEARCHER",
+    org: "FusionNet Paper (DOI: 10.5281/zenodo.20971224)",
+    details: "Published multimodal computer vision + 6-DOF IMU sensor fusion framework for single-track vehicle road anomaly isolation (0.91 F1 score)."
   },
   {
-    year: "2026",
-    role: "Independent Researcher",
-    organization: "FusionNet / PotholeNet / ShadowMap / BikeGuard",
-    type: "RESEARCH"
-  },
-  {
-    year: "2026 → 2030",
-    role: "Computer Science",
-    organization: "Bennett University",
-    type: "ACADEMIC"
-  },
-  {
-    year: "2026 → 2030",
-    role: "Computer Science",
-    organization: "University of the People",
-    type: "ACADEMIC"
+    period: "PRESENT & BEYOND",
+    title: "EXPANDING REACH",
+    org: "Global Research & Open-Source Community",
+    details: "Expanding open-source systems architecture, edge computer vision research, and technical collaboration across global engineering communities."
   }
 ];
 
 export default function Experience() {
   return (
-    <section className="py-32 px-6 md:px-12 relative bg-[#050505]">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-mono tracking-widest text-muted mb-16">SECTION 08 — TIMELINE</h2>
-        
-        <div className="relative border-l border-white/10 ml-4 md:ml-0">
-          {timeline.map((item, idx) => (
-            <motion.div 
-              key={idx}
+    <section id="experience" className="py-32 px-6 md:px-12 bg-[#070708]">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-xs font-mono tracking-widest text-accent uppercase">SECTION 08</span>
+          <span className="w-12 h-[1px] bg-accent/40"></span>
+        </div>
+
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-16">
+          ENGINEERING TIMELINE
+        </h2>
+
+        <div className="relative border-l border-white/10 pl-8 md:pl-12 flex flex-col gap-12">
+          {milestones.map((m, idx) => (
+            <motion.div
+              key={m.title}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="mb-16 last:mb-0 relative pl-8 md:pl-16 group"
+              className="relative group"
             >
-              {/* Timeline dot */}
-              <div className="absolute -left-[5px] top-2 w-[9px] h-[9px] bg-[#050505] border border-white/40 group-hover:bg-accent group-hover:border-accent transition-colors duration-300"></div>
-              
-              {/* Content */}
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-2">
-                <span className="font-mono text-sm text-accent shrink-0 md:w-32">{item.year}</span>
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:translate-x-2 transition-transform duration-300">{item.role}</h4>
+              {/* Timeline Bullet */}
+              <div className="absolute -left-[37px] md:-left-[53px] top-1.5 w-3 h-3 rounded-full bg-[#070708] border-2 border-accent group-hover:bg-accent group-hover:scale-125 transition-all duration-300"></div>
+
+              <div className="font-mono text-xs text-accent tracking-widest uppercase mb-1">
+                {m.period}
               </div>
-              
-              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
-                <div className="hidden md:block w-32 shrink-0"></div>
-                <div className="flex items-center gap-4">
-                  <span className="text-lg text-muted">{item.organization}</span>
-                  <span className="font-mono text-[10px] tracking-widest px-2 py-1 bg-white/5 text-white/40 border border-white/5">{item.type}</span>
-                </div>
+
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                {m.title}
+              </h3>
+
+              <div className="font-mono text-xs text-muted/80 mb-3">
+                {m.org}
               </div>
+
+              <p className="text-muted text-sm leading-relaxed max-w-2xl font-light">
+                {m.details}
+              </p>
             </motion.div>
           ))}
         </div>
