@@ -8,10 +8,10 @@ function NodeGraph() {
   const groupRef = useRef<THREE.Group>(null);
   
   const nodes = useMemo(() => {
-    return Array.from({ length: 18 }).map(() => [
-      (Math.random() - 0.5) * 9,
-      (Math.random() - 0.5) * 9,
-      (Math.random() - 0.5) * 9
+    return Array.from({ length: 18 }).map((_, i) => [
+      ((i * 3.7) % 9) - 4.5,
+      ((i * 5.3) % 9) - 4.5,
+      ((i * 7.1) % 9) - 4.5
     ] as [number, number, number]);
   }, []);
 

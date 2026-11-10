@@ -1,40 +1,44 @@
-import { useEffect, useState } from 'react';
+import { SOCIAL_LINKS } from '../data/portfolio';
 
 export default function Footer() {
-  const [istTime, setIstTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      };
-      setIstTime(new Date().toLocaleTimeString('en-US', options) + ' IST');
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <footer className="py-12 px-6 md:px-12 bg-[#040405] border-t border-white/10 text-xs font-mono text-muted">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="flex items-center gap-4">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-          <span className="text-white">MEDHANSH KABADWAL © {new Date().getFullYear()}</span>
-          <span className="hidden sm:inline text-white/20">|</span>
-          <span className="hidden sm:inline text-white/70">PHYSICAL AI & SYSTEMS</span>
+    <footer className="py-10 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-border bg-navy-deep text-xs font-mono text-silver/70 w-full min-w-0 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 min-w-0">
+        <div className="min-w-0 break-words">
+          <span className="text-white font-semibold">Medhansh Kabadwal</span>
+          <span className="mx-2 text-border">•</span>
+          <span className="break-words">Systems Programming, Microkernels & Computer Vision</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-6 text-white/60">
-          <span>GHAZIABAD {istTime && `[ ${istTime} ]`}</span>
-          <a href="https://www.linkedin.com/in/medhansh.5" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">LINKEDIN: @MEDHANSH.5</a>
-          <a href="https://github.com/medhansh5" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">GITHUB</a>
-          <a href="https://github.com/AshcrestHQ" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">ASHCRESTHQ</a>
-          <a href="#" className="hover:text-accent transition-colors">BACK TO TOP ↑</a>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 shrink-0">
+          <a
+            href={SOCIAL_LINKS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-pink transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href={SOCIAL_LINKS.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-pink transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={`mailto:${SOCIAL_LINKS.email}`}
+            className="hover:text-pink transition-colors"
+          >
+            Email
+          </a>
+          <a
+            href="#main-content"
+            className="text-silver hover:text-white transition-colors"
+          >
+            Top ↑
+          </a>
         </div>
       </div>
     </footer>

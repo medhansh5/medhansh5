@@ -1,80 +1,78 @@
 # Medhansh Kabadwal
 
-> "The force is with you, young Skywalker, but you are not a Jedi yet." — Preparing for the ultimate transition to Master's at Stanford. &nbsp;Ghaziabad, India • Physical AI Engineer • Future Masters Candidate
+> *I build software to understand how systems work beneath the surface.*
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=ff0033&width=435&lines=Physical+AI+Engineer;Computer+Vision+Specialist;Building+PotholeNet,+BikeGuard,+ShadowMap;Lord+of+the+Edge+AI)](https://git.io/typing-svg)
+Student engineer in India focused on microkernel isolation boundaries, deterministic computer vision in C++20, and native desktop tooling.
 
----
-
-## ⚡ The Chosen One's Mission
-
-I'm focused on **Physical AI**—moving beyond abstract LLMs to bring order, safety, and absolute control to real-world infrastructure. Like tuning a hyperdrive, I bridge the gap between raw digital intelligence and physical reality on the roads of Ghaziabad and beyond. The goal isn't just to observe; it's to reshape.
-
-- 🛠️ **Forging in the Archives:** [PotholeNet v3.0.0](https://github.com/medhansh5/potholenet), [ShadowMap v1.5.0](https://github.com/medhansh5/shadowmap), [BikeGuard (v1.2.0 GA)](https://github.com/medhansh5/bikeguard)
-- 📚 **Mastering the Core:** Embedded Edge C++20/C++17, DirectML Neural Inference, Signal Processing (4th-order Butterworth SOS Biquad), PostGIS Spatial Ingestion, ROS, and WebGL/Three.js
-- 🏍️ **The Imperial Starfighter:** Real-time telemetry on The Baron (2025 Royal Enfield Classic 350 J-series)
-- 🎯 **The Ultimate Power:** Future Stanford Masters Candidate
+🌐 **Portfolio:** [medhansh5.github.io/medhansh5](https://medhansh5.github.io/medhansh5/)  
+💼 **LinkedIn:** [linkedin.com/in/medhansh80](https://www.linkedin.com/in/medhansh80/)  
+📫 **Email:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
 
 ---
 
-## 📊 Technical Landscape (The Imperial Fleet)
+## Technical Focus
+
+* **Operating Systems & Microkernels:** Capability spaces (`CSpace`), zero ambient authority, synchronous IPC, preemptive IRQ0 timers, and Ring 3 userspace drivers.
+* **Low-Level Systems:** Zero-allocation loops, fixed-capacity ring buffers, memory layouts, and safe FFI boundaries in C++20 and Rust.
+* **Computer Vision & Edge AI:** On-device 6D head pose estimation (`cv::solvePnP`), facial landmarking, and spatial gaze geometry running locally with zero cloud round-trips.
+* **Desktop Architecture:** Window managers, compositors, and OS integrations across Win32, X11, and Wayland.
+* **Signal Processing:** Butterworth SOS biquad filters, Kalman state estimation, and spatial clustering for physical sensor data.
+
+---
+
+## Flagship Systems
+
+### [Blindside](https://github.com/medhansh5/Blindside)
+**C++20 · OpenCV YuNet · Win32 / X11 · Active Development**  
+Local-first privacy daemon that detects shoulder surfers.
+* Uses OpenCV YuNet face detection and 6D head-pose estimation (`cv::solvePnP`) to track observer gaze vectors.
+* Filters out passersby with ±30° yaw and ±25° pitch bounds and a 1.0s dwell hysteresis.
+* Redacts the display via a Win32 click-through overlay, Linux X11 override-redirect mask, or Wayland session lock.
+* Air-gapped: Opens zero network sockets and saves no biometric data.
+
+### [Janus](https://github.com/medhansh5/Janus)
+**Rust · x86_64 · Microkernel Architecture · Active Development**  
+x86_64 microkernel operating system with kernel-enforced capabilities.
+* Zero ambient authority: Memory frames, interrupts, and IPC channels require typed capability handles in a process CSpace.
+* Preemptive hardware timer scheduler (IRQ0) with an idle task for quiescent runqueues.
+* Synchronous IPC for rendezvous message passing between user processes.
+* Ring 3 Virtio-Blk driver runs in unprivileged userspace, communicating via restricted IOPort bitmasks and interrupt handles.
+* Targets `x86_64-unknown-none` with UEFI boot support under QEMU.
+
+### [Rove](https://github.com/medhansh5/Rove)
+**TypeScript · React · Electron · Vite · Public Alpha (v0.1.0-alpha.1)**  
+Keyboard-first Windows file manager with Finder-style Miller columns.
+* 4 view modes: Cascading Miller columns, scalable Icons grid, sortable List, and media Gallery.
+* Spacebar Quick Look previews for images, video, audio, Markdown, JSON, and source code.
+* Deletes files safely to the Windows Recycle Bin via PowerShell.
+* Filters hidden and system files (`attrib.exe` and `lstat`) with persistent user settings.
+
+---
+
+## Active Experiments
+
+* **[spectre](https://github.com/medhansh5/spectre)** — Borderless X11 HUD in Python and PyQt. `Ctrl+Shift+Space` captures the display with `mss`, queries Gemini 2.0 Flash, and shows answers in a floating panel.
+* **[90s-nostalgia](https://github.com/medhansh5/90s-nostalgia)** — Windows 95 desktop in a single dependency-free HTML file. Features Web Audio API chiptune synthesis, draggable windows, and a Winamp visualizer. [Live Demo](https://medhansh5.github.io/90s-nostalgia/).
+
+---
+
+## Archived Research & Prior Work
+
+* **[FusionNet](https://github.com/medhansh5/FusionNet-Multi-Modal-Edge-AI)** — Road hazard detection combining smartphone camera vision (YOLOv8) with 100Hz IMU telemetry and a C++ Butterworth filter to isolate engine vibration (25–41 Hz). Research archive: [DOI: 10.5281/zenodo.20971224](https://doi.org/10.5281/zenodo.20971224).
+* **[PotholeNet](https://github.com/medhansh5/PotholeNet)** — Road anomaly classifier using a 4th-order Butterworth filter (12Hz cutoff) and ring buffers (~0.15ms/sample), clustered with BallTree DBSCAN and PostGIS.
+* **[ShadowMap](https://github.com/medhansh5/ShadowMap)** — Road mapping interface with suspension displacement tracking, Kalman-filtered GPS coordinates, and GeoJSON export built on Leaflet.js and Flask.
+* **[Aegis](https://github.com/medhansh5/Aegis)** — Discord moderation bot on Java 26 and Virtual Threads with permission audits, DNSSEC inspection, Certificate Transparency queries, and anti-raid heuristics.
+
+---
+
+## On the Workbench
+
+* **Janus OS:** Building userspace capability delegation and Virtio request buffers for the Ring 3 storage driver.
+* **Blindside:** Testing multi-monitor coordinates and click passthrough across Linux window managers.
+* **Rove:** Optimizing background directory scanning and handling long NTFS paths.
+
+---
 
 <p align="center">
-  <img src="https://github-readme-stats-extended.vercel.app/api/top-langs/?username=medhansh5&layout=compact&theme=vision-friendly-dark&hide_border=true" />
-  <img src="https://github-readme-stats-extended.vercel.app/api?username=medhansh5&show_icons=true&theme=vision-friendly-dark&hide_border=true" />
-</p>
-
-### 🛠 Core Stack
-- **Languages:** `C++20 / C++17 (Embedded Zero-Allocation)`, `Python (Expert)`, `JavaScript / TypeScript (Fullstack/3D)`
-- **AI & Vision:** `PyTorch`, `ONNX Runtime / DirectML`, `OpenCV 4.x`, `YOLOv8`, `TFLite`, `Gemini 2.0 Flash`
-- **Signal & Kinematics:** `4th-order Butterworth Biquad SOS`, `Kalman Filter`, `Optical Flow`, `FFT Spectrum Analysis`
-- **Backend & Spatial:** `FastAPI`, `Flask`, `PostgreSQL / PostGIS`, `scikit-learn BallTree DBSCAN`, `SQLAlchemy 2.0`
-- **3D & Web Systems:** `Three.js`, `React Three Fiber`, `Next.js App Router`, `Web Audio API`, `Winsock2 / REST`
-
----
-
-## 🚀 Deployed Enterprise Fleet & Archives
-
-### 🛡️ [BikeGuard](https://github.com/medhansh5/bikeguard) | *v1.2.0 GA Enterprise Road Engine*
-A production-grade C++20 Physical AI road safety system for high-density Indian traffic compliance.
-- **9-Stage Engine:** DirectML ONNX neural inference, Indian ALPR plate localization, optical flow speed estimation (km/h), pediatric pillion sorting (<4Y stature analysis), Sikh Turban cultural exemption recognition, construction helmet discrimination, and 256-bit cryptographic SHA-256 audit trails.
-- **Embedded Telemetry:** Built-in Winsock2 HTTP server streaming live MJPEG video and REST API status to an interactive web dashboard on port `8080`.
-
-### 🛣️ [ShadowMap](https://github.com/medhansh5/shadowmap) | *v1.5.0 Cyberpunk Rider HUD*
-Real-time motorcycle telemetry & road quality mapping platform tuned to filter out Royal Enfield Classic 350 engine vibrations.
-- **Rider HUD & Audio Synth:** Cyberpunk glassmorphism HUD with Web Audio acoustic alarms, haptic pulse feedback, Kalman-smoothed trajectory tracking, bottom-out suspension depth modeling (mm), and one-click GeoJSON export.
-
-### 📉 [PotholeNet](https://github.com/medhansh5/potholenet) | *v3.0.0 Edge Core*
-Enterprise-grade physical AI road anomaly classification platform.
-- **Native Edge Core:** C++17 core with 4th-order Butterworth Biquad SOS high-pass filtering (12Hz cutoff), zero-allocation circular ring buffers (~0.15ms/sample), 7-feature Random Forest ML model, scikit-learn BallTree DBSCAN spatial clustering ($O(N \log N)$), and PostGIS spatial ingestion.
-
-
-
-### 🏛️ [AshcrestHQ](https://github.com/AshcrestHQ) | *Open Source Collective*
-An open-source collective exploring security, systems, AI, developer tools, and creative technology. Building the next generation of foundational tools.
-
----
-
-## 🖋️ Behind the Mask (Beyond the Code)
-
-I explore the dark, moody side of human emotion and urban concrete through cinematic, retro-digital photography. Every empire needs its art—a creative counterbalance to engineering absolute control.
- 
-- 📸 **Cinematic Photography:** [@medhansh.hq](https://instagram.com/medhansh.hq)
-- 📧 **Direct Transmissions:** [medhansh5@proton.me](mailto:medhansh5@proton.me)
-- 💼 **Holonet LinkedIn:** [in/medhansh5](https://www.linkedin.com/in/medhansh5)
-- 🌐 **Data Hub:** [medhansh5.github.io](https://medhansh5.github.io)
-
----
-
-## 🎯 The Academic Blueprint
-
-- **🔬 Core Specialization:** Computer Science × Artificial Intelligence
-- **🏆 Current Mandate:** Published *FusionNet* (Multi-Modal Edge AI Framework for Vision & Inertial Telemetry).
-- **🌌 Long-Term Horizon:** Transitioning from undergraduate execution to a Stanford Masters degree.
-
----
-
-<p align="center">
-  <i>"You underestimate my power."</i><br>
-  <b>Medhansh Kabadwal — Building for the Edge — 2026</b>
+  <sub>Built with craft, curiosity, and code · <a href="https://medhansh5.github.io/medhansh5/">medhansh5.github.io/medhansh5</a></sub>
 </p>

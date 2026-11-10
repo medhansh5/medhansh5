@@ -1,101 +1,130 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { SOCIAL_LINKS } from '../data/portfolio';
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: "#work", label: "WORK" },
-    { href: "#engineering", label: "ENGINEERING" },
-    { href: "#stack", label: "STACK" },
-    { href: "#ashcrest", label: "ASHCREST" },
-    { href: "#janus", label: "JANUS" },
-    { href: "#about", label: "ABOUT" },
-    { href: "#experience", label: "TIMELINE" },
-    { href: "#contact", label: "CONTACT" },
+    { href: '#work', label: 'Systems' },
+    { href: '#experiments', label: 'Experiments' },
+    { href: '#interests', label: 'Focus' },
+    { href: '#archive', label: 'Archive' },
+    { href: '#notes', label: 'Notes' },
+    { href: '#contact', label: 'Contact' }
   ];
 
   return (
-    <>
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 transition-all duration-300 ${
-          scrolled ? 'bg-[#070708]/90 backdrop-blur-md border-b border-white/10 shadow-2xl py-4' : 'bg-transparent'
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-          <a href="#" className="text-sm font-mono tracking-widest uppercase font-semibold hover:text-accent transition-colors">
-            MEDHANSH KABADWAL <span className="text-muted/60 font-normal">/ 2026</span>
-          </a>
-        </div>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b w-full min-w-0 ${
+        scrolled
+          ? 'bg-navy-deep/95 backdrop-blur-md border-border'
+          : 'bg-navy-deep/80 backdrop-blur-sm border-border-subtle'
+      }`}
+    >
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-14 flex items-center justify-between min-w-0">
+        {/* Brand */}
+        <a
+          href="#"
+          className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-pink transition-colors shrink-0"
+          aria-label="Medhansh Kabadwal — Home"
+        >
+          <span className="w-2 h-2 rounded-full bg-pink shadow-[0_0_8px_rgba(255,46,147,0.6)] shrink-0" />
+          <span className="truncate">Medhansh Kabadwal</span>
+        </a>
 
-        <div className="hidden lg:flex items-center gap-7 text-xs font-mono tracking-widest">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-6 text-xs font-mono text-silver" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-muted hover:text-white transition-colors relative py-1 group"
+              className="hover:text-white transition-colors py-1 hover:border-b hover:border-pink"
             >
               {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-accent group-hover:w-full transition-all duration-300"></span>
             </a>
           ))}
-        </div>
-        
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-xs font-mono tracking-widest uppercase px-3 py-1.5 border border-white/15 hover:border-accent hover:text-accent transition-colors cursor-pointer"
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? 'CLOSE' : 'MENU'}
-          </button>
-        </div>
-      </motion.nav>
+        </nav>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#070708]/98 backdrop-blur-xl lg:hidden flex flex-col justify-center px-8 py-20"
+        {/* External links */}
+        <div className="hidden sm:flex items-center gap-3 text-xs font-mono">
+          <a
+            href={SOCIAL_LINKS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 rounded-full bg-navy-elevated/70 border border-border text-silver hover:text-white hover:border-pink transition-all"
           >
-            <div className="flex flex-col gap-6 font-mono text-lg tracking-widest">
-              {navLinks.map((link, idx) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-white/80 hover:text-accent transition-colors flex items-center justify-between border-b border-white/10 pb-3"
-                >
-                  <span>{link.label}</span>
-                  <span className="text-xs text-muted">0{idx + 1}</span>
-                </a>
-              ))}
+            GitHub ↗
+          </a>
+          <a
+            href="#work"
+            className="px-3.5 py-1 rounded-full bg-pink text-white font-semibold shadow-[0_2px_12px_rgba(255,46,147,0.35)] hover:bg-pink/90 transition-all"
+          >
+            Explore Work
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden text-xs font-mono text-pink hover:text-white p-2 shrink-0 font-semibold"
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-navy-elevated border-b border-border px-6 py-4 shadow-xl">
+          <nav className="flex flex-col gap-3 text-sm font-mono text-silver">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white hover:text-pink transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="flex items-center gap-4 pt-3 mt-2 border-t border-border text-xs font-mono">
+              <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-silver hover:text-white"
+              >
+                GitHub
+              </a>
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-silver hover:text-white"
+              >
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${SOCIAL_LINKS.email}`}
+                className="text-silver hover:text-pink"
+              >
+                Email
+              </a>
             </div>
-            <div className="mt-12 text-xs font-mono text-muted tracking-widest">
-              GHAZIABAD, INDIA · PHYSICAL AI & SYSTEMS
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 }
-
